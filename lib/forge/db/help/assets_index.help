@@ -1,0 +1,18 @@
+title: Creating and Managing Assets
+slugs: assets_index
+language: en
+status: published
+********************************************
+The asset library is a place for you to create, view, and manage all the non-video assets that are uploaded to your site.  You can upload assets directly into this section, but assets that get attached to other items (such as images that are uploaded to a project) will appear here as well.  These assets are available all over Forge.  You can insert them into pages or posts, and attach them to items such as products.  
+
+## Uploading New Assets
+
+Uploading assets is easy.  Start by clicking the "Create New Asset" button.  This will open up a dialog window that presents a field for you to enter some tags and a button to browse your computer for files.  Tags make it easier for you to search and sort your assets, but they can be left blank as well.  Tags should be separated by a comma and a space, so the tags field for an asset might look like "photos, 2011, animals" or "documents, instruction manuals".  
+
+Once you've entered your tags, press the browse button.  This will show you a list of files on your computer.  Find the file(s) you want to upload.  You can select as many files as you want in this dialog but keep in mind that they will all be given the tags that you entered above.  Once you've found selected the files you want press "Open" or "Ok" (depending on your operating system) and the files will queue up and begin to upload.  Once they're done uploading you can continue to upload more assets, or close the dialog window.
+
+## Managing Assets
+
+You can view, edit, and delete assets from the asset library.  If the asset is an image, click on the thumbnail to view a larger version.  If you want to change details about an asset you can click the edit button to change its title and its tags.  Finally, if you no longer want an asset you can delete it.  Note that if you delete an asset it will disappear from anywhere that you have entered it via the [visual editor][1] (such as pages or posts) but it won't be deleted from any objects where it has been explicitly attached (such as product images).
+
+[1]: /forge/help/visual_editor   "The Visual Editor"

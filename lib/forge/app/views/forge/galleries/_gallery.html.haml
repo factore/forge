@@ -1,0 +1,10 @@
+= big_list_item(:class => "top", :id => "#{gallery.id}") do
+  .item-title.gallery
+    %strong= link_to gallery.title, edit_forge_gallery_path(gallery)
+    %br/
+    %small= pluralize gallery.photos.size, 'Photo'
+
+  .item-actions
+    = edit_link(gallery)
+    = delete_link(gallery)
+  .spacer

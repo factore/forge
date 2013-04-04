@@ -1,0 +1,21 @@
+- unless user.is_super_admin? && !current_user.is_super_admin?
+  = big_list_item do
+    .item-title.user{:class => user.approved? ? "" : "draft"}
+      %strong= can?(:edit, user) ? link_to(user.email, edit_forge_user_path(user)) : user.email
+      %br/
+      %small= user.roles.map(&:title).to_sentence
+
+    .item-actions
+      .item-info{:style => "width: 190px;"}
+        %small
+          User Since:
+          = user.created_at.strftime('%B %e, %Y')
+        %br/
+        %small
+          Last Login:
+          = user.try(:last_sign_in_at).strftime('%B %e, %Y') rescue "Never"
+      - if user.id != current_user.id
+        = action_link(user.approved? ? "Unapprove" : "Approve", approve_forge_user_path(user), :icon => user.approved? ? "thumbdown" : "thumbup", :class => "approve", :confirm => user.approved? ? "Are you sure you want to unapprove this user?" : "Are you sure? The user will be notified by email.") if can?(:edit, user)
+      = edit_link(user)
+      = delete_link(user)
+    .spacer

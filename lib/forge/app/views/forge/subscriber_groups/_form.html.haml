@@ -1,0 +1,6 @@
+%h3= "#{params[:action] == 'index' ? 'Add' : 'Edit'} Group"
+.explanation= params[:action] == "index" ? "You can create a new group here, just enter a title." : "Edit the group below and save."
+= form_for [:forge, @subscriber_group] do |f|
+  = f.text_field :title
+  %hr
+  = button_link "Save", "javascript:;", :class => "submit button"

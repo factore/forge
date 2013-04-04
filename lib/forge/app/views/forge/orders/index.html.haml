@@ -1,0 +1,21 @@
+- content_for :scripts do
+  = javascript_include_tag 'jquery.quickSearch.js'
+  :javascript
+    $(function() {
+      $('#quick-search').quickSearch({url: '#{forge_orders_path}'});
+    });
+
+%h1 Your Orders
+
+%p.info Review your orders here. Mark them as 'fulfilled' only once you've provided the goods purchased to your customer.
+
+
+= render :partial => "forge/shared/section_header", :locals => {:item => Order, :options => { :show_new => false }}
+%ul#item-list
+  = render :partial => "order", :collection => @orders
+  .comment-approval
+    %span.font Filter:
+    = link_to "Unfulfilled", "?show=unfulfill", :class => ("active" if params[:show] == "unfulfill"), :id => "first"
+    = link_to "Fulfilled", "?show=fulfill", :class => ("active" if params[:show] == "fulfill")
+
+= render :partial => "forge/shared/section_footer", :locals => {:items => @orders}

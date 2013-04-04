@@ -1,0 +1,24 @@
+%h1= link_to "Posts", posts_path
+
+.inside.post
+  %h2= @post.title
+  .date= @post.created_at.strftime('%B %d, %Y')
+  = raw @post.content
+  .spacer
+
+  - if params[:action] != "preview" && @post.allow_comments?
+    #comments
+      %h3 Comments
+      %hr
+      - if @post.comments.approved.size > 0
+        = render :partial => "mobile/comment", :collection => @post.comments.approved
+      - else
+        %p
+          %small No comments have been posted yet.
+      = render :partial => "mobile/comment_form", :locals => {:object => @post}
+
+  %hr
+  .pagination
+    = link_to image_tag("mobile/arrow.png"), post_path(@post.previous), :class => "previous_page", :title => "Previous Post" unless @post.previous.blank?
+    = link_to image_tag("mobile/arrow.png"), post_path(@post.next), :class => "next_page", :title => "Next Post" unless @post.next.blank?
+  .spacer

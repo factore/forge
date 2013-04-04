@@ -1,0 +1,16 @@
+#section-header
+  #search
+    Search
+    &nbsp;
+    = text_field_tag :q, params[:q], :id => 'quick-search', :class => 'search'
+
+  - if File.exist?(File.join(Rails.root, 'app', 'views', 'forge', item.to_s.underscore.pluralize, '_drawer.html.haml'))
+    #drawer-control
+      %a{:href => '#'}> Sort &amp; Filter
+      = link_to image_tag('forge/down-arrow.jpg'), '#', :style => "padding: 0px 5px;"
+
+  / this could become a helper (or something):
+  - options ||= {}
+  - options[:show_new] = true unless options.has_key?(:show_new)
+  - if options[:show_new] && can?(:create, item)
+    = button_link "New #{item.to_s.scan(/[A-Z][a-z]*/).join(' ')}", new_polymorphic_url([:forge, item]), :class => "new button", :id => item == Asset ? "new-asset-link" : ""

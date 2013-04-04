@@ -1,0 +1,23 @@
+%h1= @page_title
+
+.pagination-wrap
+  = page_entries_info @posts
+  %br/
+  = will_paginate @posts, :previous_label => "Previous", :next_label => "Next"
+
+
+- @posts.each do |post|
+  .post
+    %h2= link_to post.title, post_path(post)
+    %strong= post.created_at.strftime('%B %d, %Y')
+    %br/
+    = raw post.excerpt
+    %br/
+    = link_to("Read More", post_path(post))
+
+
+- unless @posts.blank? || @posts.total_pages < 2
+  .pagination-info= will_paginate @posts, :previous_label => "Previous", :next_label => "Next"
+
+= render "posts/categories"
+= render "posts/archive_months"

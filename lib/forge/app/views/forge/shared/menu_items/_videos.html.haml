@@ -1,0 +1,6 @@
+- if can?(:index, Video)
+  = forge_menu_item item, forge_videos_path, :active => is_active("videos"), :submenu => can?(:create, Video)
+  - if can?(:create, Video)
+    %ul.forge_submenu{ :class => is_active(["videos"]) ? "#{item} active" : item }
+      = link_to "New Video", new_forge_video_path, :class => ("active" if is_active(["videos"]) && params[:action] == "new")
+    .spacer

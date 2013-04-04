@@ -1,0 +1,43 @@
+- content_for :scripts do
+  :javascript
+    $(function() {
+      FORGE.features.videos.init({uploadUrl: '#{@s3_direct_upload.upload_url}', postParams: #{@s3_direct_upload.post_params.to_json}})
+    });
+
+= error_messages_for :video
+
+= form_for [:forge, @video], :html => { :multipart => true, :id => 'video-form' } do |f|
+  = f.hidden_field :video, :value => @video.video_file_name
+  #form-header= title_row(:explanation => "Give your video a title.") { f.text_field :title, :class => 'title' }
+
+  .inner-form.with-normal-sidebar
+    .column.side
+
+      = publish_box(f, @video)
+      = side_row("Comments", :explanation => "Allow site visitors to comment on this video?") { slider("Yes", f.radio_button(:allow_comments, true), "No", f.radio_button(:allow_comments, false)) }
+      = side_row("Thumbnail", :explanation => "A thumbnail will be created when the video is encoded, but you can set your own here.", :last => true) { file_select_widget(f, :thumbnail, :allow_remove => true) }
+
+    .column.main.last
+      %h3= @video.new_record? ? "Select Video" : "Replace Video"
+      .explanation Choose a video to upload from your computer.
+      %span#swfupload-video-button
+
+      #upload-info{:style => "display: none; margin-top: 10px;"}
+        #upload-status
+        .extendable-inset.deep#progress-bar{:style => "padding: 5px;"}
+          #dispatch-progress-read
+
+        .spacer
+      %hr
+
+      = content_row("Video Description") { f.cktext_area :description, :width => '100%', :height => '278px;' }
+
+
+    .spacer
+
+  #item-list-bottom
+    .float-right
+      Everything look good?
+      = button_link "Save", "javascript:;", :class => "submit button"
+
+#swfupload-video-control

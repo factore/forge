@@ -1,0 +1,10 @@
+= big_list_item(:class => "top", :id => "#{product.id}") do
+  .item-title.product.big{:class => row_class(product)}
+    %strong= link_to product.title, edit_forge_product_path(product)
+    = "(Draft)" unless product.published?
+
+  .item-actions
+    = action_link("View on Site", product, :icon => "laptop") if product.published?
+    = edit_link(product)
+    = delete_link(product)
+  .spacer

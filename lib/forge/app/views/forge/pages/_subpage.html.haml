@@ -1,0 +1,9 @@
+%span.item-id{"data-item-id" => subpage.id, :style => "display: none;"}
+.item-title{:class => row_class(subpage)}
+  = link_to subpage.list_title, edit_forge_page_path(subpage)
+.item-actions
+  = action_link("View on Site", page_path(subpage)) if subpage.published?
+  = action_link "Create a Sub-Page", new_forge_page_path(:parent_id => subpage)
+  = edit_link(subpage, false)
+  = delete_link(subpage, false)
+.spacer

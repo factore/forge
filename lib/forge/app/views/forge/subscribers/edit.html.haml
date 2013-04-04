@@ -1,0 +1,19 @@
+:javascript
+  $( function () {
+    FORGE.features.buttons.init();
+  });
+
+= form_for [:forge, @subscriber] do |f|
+  %table.form
+    = form_row("Name") { f.text_field :name }
+    = form_row("Email") { f.text_field :email }
+    - unless @groups.blank?
+      %tr
+        %td.label{:style => 'vertical-align: top'} Groups
+        %td.control
+          - @groups.each do |group|
+            %label
+              .float-left= check_box_tag "subscriber[group_ids][]", group.id, @subscriber.group_ids.include?(group.id)
+              .float-left{:style => "width: 200px; margin-left: 3px;"}= group.title
+            .spacer
+    = form_row() { button_submit_tag "Save", :class => "button no-icon" }

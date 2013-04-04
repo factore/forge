@@ -1,0 +1,9 @@
+books:
+  title: Books
+  list_order: 1
+maps:
+  title: Maps
+  list_order: 2
+widgets:
+  title: Widgets
+  list_order: 3

@@ -1,0 +1,27 @@
+<% files = attributes.select {|a| a.name.match(/_content_type|_file_size|_file_name/)}.map {|a| a.name.split('_')[0..-3].join('_')}.uniq -%>
+<% collections = attributes.select {|a| a.name.match(/_id$/)}.map {|a| a.name.gsub(/_id$/, '')}.uniq -%>
+
+= form_for [:forge, @<%= singular_name %>], :builder => ForgeFormBuilder do |f|
+  = error_messages_for :<%= singular_name %>
+<% collections.each do |c| %>
+  %h3 <%= c.titleize %>
+  = f.collection_select :<%=c%>_id, @<%= c.pluralize %>, :id, :title
+  %hr
+<% end -%>
+<% attributes.reject {|a| a.field_type.to_s == "text_area" || ["timestamp", "datetime"].include?(a.type.to_s) }.reject {|a| a.name.match(/_id$/)}.each do |attribute| -%>
+<% if !attribute.name.match(/_content_type|_file_size|_file_name/) && !['list_order', 'published'].include?(attribute.name) -%>
+  = f.text_field :<%= attribute.name %>
+<% elsif attribute.name == "published" -%>
+  = publish_box(f, @<%= singular_name %>)
+  %hr
+<% end -%>
+<% end -%>
+<% attributes.select { |a| ["datetime", "timestamp"].include?(a.type.to_s) }.each do |f| -%>
+      = f.datetime_widget :<%= f.name %>
+<% end -%>
+<% files.each do |f| -%>
+  %h3 <%= f.titleize %>
+  = file_select_widget(f, :<%= f %>, :allow_remove => true)
+<% end -%>
+  %hr
+  = button_link "Save", "javascript:;", :class => "submit button"

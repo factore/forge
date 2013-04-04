@@ -1,0 +1,10 @@
+= render :partial => "help_nav" if request.format == 'js'
+
+%h1= @page_title
+
+- if @help_topics && @help_topics.size > 0
+  %ul
+    - @help_topics.each do |ht|
+      %li= link_to ht.title, forge_help_topic_path(ht)
+- else
+  No help topics found.

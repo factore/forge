@@ -1,0 +1,14 @@
+- content_for :scripts do
+  = javascript_include_tag 'jquery.quickSearch.js'
+  :javascript
+    $(function() {
+      $('#quick-search').quickSearch({url: '#{forge_posts_path}'});
+    });
+  
+%h1 Your Posts
+
+%p.info Posts are like #{link_to "pages", forge_pages_path}, except they're sorted by date (newest first) and can be categorized.  You can create, edit, and delete posts in this section.
+
+= render :partial => "forge/shared/section_header", :locals => {:item => Post}
+%ul#item-list= render :partial => "post", :collection => @posts
+= render :partial => "forge/shared/section_footer", :locals => {:items => @posts}

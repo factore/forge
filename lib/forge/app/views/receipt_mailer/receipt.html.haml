@@ -1,0 +1,18 @@
+%p Thank you very much for your order!  Your receipt details follow:
+
+%h2 Transaction Details
+
+%table{:border => 0, :width => "100%"}
+  %tr{:style => "font-weight: bold;"}
+    %td Items
+    %td Item Price
+    %td Quantity
+    %td Total  
+  - @order.line_items.each do |line_item|
+    %tr
+      %td= line_item.product.title    
+      %td= number_to_currency(line_item.price)
+      %td= line_item.quantity
+      %td= number_to_currency(line_item.total_price)
+
+= render "forge/orders/addresses"

@@ -1,0 +1,5 @@
+- if can?(:index, VideoFeed)
+  = forge_menu_item item, forge_video_feeds_path, :active => is_active("video_feeds"), :alt_title => "Video Feed", :submenu => true
+  %ul.forge_submenu{ :class => is_active(["video_feeds"]) ? "#{item} active" : item }
+    = link_to "Pull Video Feed", new_forge_video_feed_path, :class => ("active" if is_active(["video_feeds"]) && params[:action] == "new"), :id => "pull-video-feed"
+  .spacer

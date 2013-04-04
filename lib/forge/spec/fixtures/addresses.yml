@@ -1,0 +1,37 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+adrian:
+  address1: 298 Jackson St. W. 
+  address2: 
+  city: Hamilton 
+  province: ontario
+  postal: L8P 1M7
+  country: canada
+  phone: 905 555 5555
+  first_name: Adrian 
+  last_name: Duyzer
+  email: adrian@example.com
+
+incomplete:
+  address1: 
+  address2: 
+  city: 
+  province: ontario
+  postal: L8P 1M7
+  country: canada
+  phone: 905 555 5555
+  first_name: Adrian 
+  last_name: Duyzer
+  email: adrian@example.com
+
+un:
+  address1: 760 United Nations Plaza
+  address2:
+  city: New York 
+  province: ny 
+  postal: 10017 
+  country: us
+  phone: 
+  first_name: United 
+  last_name: Nations
+  email: un@example.com 

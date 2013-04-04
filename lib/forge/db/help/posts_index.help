@@ -1,0 +1,11 @@
+title: Posts
+slugs: posts_index
+language: en
+status: published
+********************************************
+
+This section lists all the posts on your site.  Posts are listed chronologically with the newest posts appearing first.
+
+For more information, see [Adding and Editing Posts][1]
+
+[1]: /forge/help/posts_new   "Adding and Editing Posts"

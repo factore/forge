@@ -1,0 +1,48 @@
+- content_for :scripts do
+  = javascript_include_tag 'jquery.quickSearch.js'
+  :javascript
+    $(function() {
+      $('#quick-search').quickSearch({url: '#{forge_subscribers_path}'});
+
+      $('div.edit a').click(function(e) {
+        var url = this.href;
+        FORGE.loadInDialog(url, {title: "Edit Subscriber"});
+        e.preventDefault();
+      });
+
+      $("#show_group").bind("change", function() {
+        window.onbeforeunload = null;
+        var group = $(this).val();
+        window.location = "/forge/subscribers?group=" + group;
+      });
+    });
+
+
+%h1 ForgePress Subscribers
+%p.info
+  Add, edit, and delete subscribers using the tools on this page.  You can also #{link_to "export your subscriber list to Excel", "/forge/subscribers/export"}.
+
+= error_messages_for :subscriber
+
+.inner-form.no-top.with-wide-sidebar
+  .column.wide-side
+    %h2 New Subscriber
+    .explanation You can create a new subscriber here.
+    %hr
+    = render "form"
+
+  .column.main-small.last
+    %h2 Subscribers
+    .explanation You can edit or delete your existing subscribers here.
+    %hr
+    .explanation
+      .float-right= select_tag "group", ("<option value=''>Filter by Group</option>" + options_for_select(SubscriberGroup.all.map { |c| [c.title, c.id] }, params[:group].to_i)).html_safe, :id => "show_group"
+      Filter the list of subscribers by subscriber group:
+    %hr
+    - unless @group.blank?
+      %h3= "Displaying Group: #{@group.title}"
+      %hr
+    %ul.item-list-compact= render :partial => "subscriber", :collection => @subscribers
+
+  .spacer
+= render :partial => "forge/shared/section_footer", :locals => {:items => @subscribers}

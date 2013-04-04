@@ -1,0 +1,37 @@
+- content_for :scripts do
+  :javascript
+    $(function() {
+      $('.preview').click(function(e) {
+        for ( instance in CKEDITOR.instances )
+          CKEDITOR.instances[instance].updateElement();
+        var vals = $('form').serialize();
+        window.open('/products/preview?' + vals);
+        e.preventDefault();
+      });
+
+      $('#tabs').tabs();
+      clearUIClasses();
+
+      FORGE.features.nestedFields.init('#images', {after: function() { FORGE.features.nestedFields.reorganize(4, '#images-list li'); }});
+      FORGE.features.nestedFields.reorganize(4, '#images-list li');
+    });
+
+
+= form_for [:forge, @product], :builder => ForgeFormBuilder do |f|
+  = error_messages_for :product
+  #tabs
+    %ul.tabbed
+      %li= link_to "Product Details", '#details'
+      %li= link_to "Product Images", '#images'
+      %li= link_to "Taxes & Shipping", '#taxes_shipping'
+      %li= link_to "SEO Fields", "#seo"
+    .spacer
+    #details= render :partial => "forge/products/modules/details", :locals => {:f => f}
+    #images= render :partial => "forge/products/modules/images", :locals => {:f => f}
+    #taxes_shipping= render :partial => "forge/products/modules/taxes_shipping", :locals => {:f => f}
+    #seo= render :partial => "forge/shared/seo_fields", :locals => {:f => f}
+  #item-list-bottom
+    .float-right
+      Everything look good?
+      = button_link "Preview", "javascript:;", :class => "preview button"
+      = button_link "Save", "javascript:;", :class => "submit button"

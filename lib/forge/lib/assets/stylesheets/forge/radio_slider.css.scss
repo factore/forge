@@ -1,0 +1,14 @@
+// radio slider
+.inset { background:#4d4d4d; display:inline-block; line-height: 30px; padding:0 6px; @include rounded(4px);
+  .radio-slider {
+    label { color:#9b9b9b; float:left; font-size:11px; line-height:30px; margin:0px 4px; text-transform:uppercase;
+      &.slider-active { color:white; text-shadow:#fafae3 0px 0px 6px; }
+    }
+    .slider-widget { background:image-url('forge/slider-bg.jpg') no-repeat; float:left; height:21px; margin:7px 4px 0px; position:relative; width:39px;
+      img {
+        position:absolute; top:0px; left:0px;
+        &.focus { outline: #c7c7c7 dotted thin; }
+      }
+    }
+  }
+}

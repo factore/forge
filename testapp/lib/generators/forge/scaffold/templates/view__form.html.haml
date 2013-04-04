@@ -1,0 +1,43 @@
+<% files = attributes.select {|a| a.name.match(/_content_type|_file_size|_file_name/)}.map {|a| a.name.split('_')[0..-3].join('_')}.uniq -%>
+<% collections = attributes.select {|a| a.name.match(/_id$/)}.map {|a| a.name.gsub(/_id$/, '')}.uniq -%>
+
+= error_messages_for :<%= singular_name %>
+
+= form_for [:forge, @<%= singular_name %>], :builder => ForgeFormBuilder do |f|
+  #form-header= f.title_field :title, :explanation => "Give your <%= singular_name.humanize.downcase %> a title."
+
+  .inner-form.with-normal-sidebar
+    .column.side
+<% collections.each do |c| %>
+      = side_row("<%= c.titleize %>", :explanation => "") { f.collection_select :<%=c%>_id, @<%= c.pluralize %>, :id, :title }
+<% end -%>
+<% attributes.reject {|a| a.field_type.to_s == "text_area" || ["timestamp", "datetime"].include?(a.type.to_s)}.reject {|a| a.field_type.to_s == "check_box"}.reject {|a| a.name.match(/_id$/)}.each do |attribute| -%>
+<% if !attribute.name.match(/_content_type|_file_size|_file_name/) && !['list_order', 'published', 'title'].include?(attribute.name) -%>
+      = f.text_field :<%= attribute.name %>
+<% end -%>
+<% end -%>
+
+<% attributes.select {|a| a.field_type.to_s == "check_box"}.each do |attribute| -%>
+<% if !attribute.name.match(/published/) -%>
+      = side_row("<%= attribute.name.humanize.titleize %>", :explanation => "") { slider("Yes", f.radio_button(:<%= attribute.name %>, true), "No", f.radio_button(:<%= attribute.name %>, false)) }
+<% elsif attribute.name == "published" -%>
+      = publish_box(f, @<%= singular_name %>)
+<% end -%>
+<% end -%>
+<% attributes.select { |a| ["datetime", "timestamp"].include?(a.type.to_s) }.each do |f| -%>
+      = f.datetime_widget :<%= f.name %>
+<% end -%>
+<% files.each do |f| -%>
+      = side_row("<%= f.titleize %>") { file_select_widget(f, :<%= f %>, :allow_remove => true) }
+<% end -%>
+
+    .column.main.last
+<% attributes.select {|a| a.field_type.to_s == "text_area"}.each do |attribute| -%>
+      = f.cktext_area :<%= attribute.name %>, :width => '100%', :height => '300px;'
+<% end -%>
+    .spacer
+
+  #item-list-bottom
+    .float-right
+      Everything look good?
+      = button_link "Save", "javascript:;", :class => "submit button"

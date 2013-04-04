@@ -1,0 +1,92 @@
+- content_for :scripts do
+  = javascript_include_tag "https://www.google.com/jsapi"
+  :javascript
+    google.load("visualization", "1", {packages:["corechart"]});
+    $(function() {
+      var dispatch = new FORGE.features.Dispatch(#{@dispatch.id})
+      dispatch.init();
+    });
+
+%h1 Overview: #{@dispatch.subject}
+
+#tabs
+  = render :partial => "show_nav"
+  #overview
+    = render :partial => "header", :locals => {:dispatch => @dispatch}
+    .inner-form#dispatch-stats
+      .column
+        .grey
+          .extendable-inset.deep{:style => "padding: 5px;"}
+            #dispatch-progress-sent
+              #dispatch-progress-read
+            .spacer
+          .chart-legend
+            .unread
+              %span
+              Sent (#{@dispatch.sent_messages.size})
+            .read
+              %span
+              Opened (#{@dispatch.opens.size})
+          .spacer
+      .spacer
+      %hr
+      .column.inner-half
+        .extendable-inset.deep
+          %h2 Statistics
+          .grey.half
+            .row
+              %big= link_to number_to_percentage(@dispatch.opens.size.to_f / @dispatch.messages.size * 100.0, :precision => 2), '#opens'
+              of recipients opened it
+              %small= link_to "view opens", opens_forge_dispatch_path(@dispatch)
+            %hr.serious
+            .row
+              %big= link_to number_to_percentage(@dispatch.clicks.size.to_f / @dispatch.messages.size * 100, :precision => 2), '#clicks'
+              clicked a link
+              %small= link_to "view clicks", clicks_forge_dispatch_path(@dispatch)
+            %hr.serious
+            .row
+              %big= link_to number_to_percentage(@dispatch.unsubscribes.size.to_f / @dispatch.messages.size * 100, :precision => 2), '#unsubscribes'
+              unsubscribed
+              %small= link_to "view unsubscribes", unsubscribes_forge_dispatch_path(@dispatch)
+
+      .column.inner-half.last
+        .extendable-inset.deep
+          %h2 Top Links
+          .grey.half
+            .row
+              %h3.link Link
+              %h3.click Clicks
+              .spacer
+              %hr.serious
+              - @dispatch.dispatch_links.each do |link|
+                .link= link.uri
+                .click= link.clicks.size
+                .spacer
+                %hr.serious
+      .spacer
+      %hr
+      .column
+        .extendable-inset.deep#chart-div-holder{:style => "display: none;"}
+          %h2 Opens, Clicks, and Unsubscribes
+          .grey
+            #chart_div
+            .chart-legend
+              .read
+                %span
+                Opens
+
+              .clicked
+                %span
+                Clicks
+
+              .unsubscribed
+                %span
+                Unsubscribes
+            .spacer
+      .spacer
+
+  #opens
+  #clicks
+
+#item-list-bottom
+  .float-right= link_to "Back to Dispatch List", forge_dispatches_path

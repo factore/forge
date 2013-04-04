@@ -1,0 +1,32 @@
+%h1 Pay Securely Online With Your Credit Card
+
+%p 
+  Your data are kept in strict confidence and security.  All prices are in #{Forge::Settings[:currency]}.
+
+%div{:style => "float:left; width:40%;"}
+  %h2 Billing Address 
+  = render :partial => "orders/display_address", :locals => { :address => @cart_order.billing_address, :address_type => 'billing_address' }
+  = link_to "Edit billing address", orders_checkout_path
+
+%div{:style => "float:right; width:40%;"}
+  %h2 Shipping Address
+  = render :partial => "orders/display_address", :locals => { :address => @cart_order.shipping_address, :address_type => 'shipping_address', :show_company => true }
+  = link_to "Edit shipping address", orders_checkout_path
+
+.spacer
+
+%h2 Order Summary
+
+= render :partial => "orders/summary", :locals => { :order => @cart_order }
+
+%br/
+%br/
+
+%h2 Credit Card Information
+%small All fields are required
+
+%br
+%br/
+
+= form_tag :action => "pay" do
+  = render :partial => "credit_card_form", :locals => { :total => @total }

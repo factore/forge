@@ -1,0 +1,25 @@
+= form_for [:forge, @tax_rate] do |f|
+  %h3 Title
+  .explanation Name your tax rate.
+  = f.text_field :title
+  %hr
+
+  %h3 Rate
+  .explanation The tax rate as a floating point (decimal) number. E.g. 5.00% should be entered as 5.00.
+  = f.text_field :rate, :size => 6
+  %hr
+
+  %h3 Country
+  .explanation
+    The country this tax rate belongs to. Note that Country and Province/State refer to the taxes charged when selling
+    to people who live in those locations, based on their billing address.
+  = f.select :country_id, Country.options_for_select.collect { |c| [truncate(c[0]), c[1]] }
+  %hr
+
+  %h3 Province/State
+  .explanation The province/state (within your selected country) that this tax rate belongs to. Choose 'All' for rates that apply country-wide.
+  = f.select :province_id, Province.options_for_select(:add_blank => true).collect { |p| [truncate(p[0]), p[1]] }
+
+  .spacer
+  %br/
+  = button_link "Save", "javascript:;", :class => "submit button"

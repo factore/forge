@@ -1,0 +1,20 @@
+%table{:border => 0, :width => "100%"}
+  %tr
+    %th
+      Items
+    %th
+      Item Price
+    %th
+      Quantity
+    %th
+      Total  
+  - cart.products.each do |p|
+    %tr
+      %td
+        = p.title    
+      %td
+        = number_to_currency(p.price)
+      %td
+        = p.quantity
+      %td
+        = number_to_currency(p.price * p.quantity)

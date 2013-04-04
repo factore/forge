@@ -1,0 +1,7 @@
+/ PAGE
+%h1
+  = raw "#{link_to @page.parent.title, page_path(@page.parent)} | " if @page.parent
+  = @page.title
+.inside
+  = raw @page.content
+  .spacer

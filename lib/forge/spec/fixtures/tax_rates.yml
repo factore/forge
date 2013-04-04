@@ -1,0 +1,21 @@
+valid:
+  title: Valid
+  rate: 1.0
+  country: us 
+
+hst:
+  title: HST
+  rate: 13.0
+  province: ontario
+  country: canada
+
+gst:
+  title: GST 
+  rate: 5.0
+  country: canada
+
+ny_sales:
+  title: NY Sales Tax
+  rate: 3.0
+  country: us
+  province: ny

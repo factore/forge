@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+ontario:
+  title: Ontario
+  code: ON
+  country: canada
+
+ny:
+  title: New York 
+  code: NY
+  country: us

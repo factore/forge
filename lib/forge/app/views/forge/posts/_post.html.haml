@@ -1,0 +1,17 @@
+= big_list_item do
+  .item-title.post{:class => row_class(post)}
+    %strong= link_to post.title, edit_forge_post_path(post)
+    = "(Draft)" unless post.published?
+
+    %br/
+    %small Posted in #{post.post_categories.map(&:title).to_sentence}
+  .item-actions
+    .item-info{:style => "width: 137px;"}
+      %strong= post.created_at.strftime('%B %e, %Y')
+      %br/
+      %small= post.created_at.strftime('%l:%M %p')
+    = action_link("View on Site", post_path(post), :icon => "laptop")
+    = edit_link(post)
+    = delete_link(post)
+
+  .spacer

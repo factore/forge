@@ -1,0 +1,2 @@
+- if can?(:index, Comment)
+  = forge_menu_item "Comments", forge_comments_path, :active => is_active("comments"), :submenu => false

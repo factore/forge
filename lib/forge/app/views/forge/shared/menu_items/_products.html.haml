@@ -1,0 +1,8 @@
+- if can?(:index, Product)
+  = forge_menu_item item, forge_products_path, :active => is_active(["products", "product_categories", "sales", "orders"]), :alt_title => "Shopping", :submenu => can?(:create, Product) || can?(:index, ProductCategory) || can?(:index, Order) || can?(:index, Sale)
+  %ul.forge_submenu{ :class => is_active(["products", "product_categories", "orders", "sales"]) ? "#{item} active" : item }
+    = link_to "New Product", new_forge_product_path, :class => ('active' if is_active('products') && params[:action] == "new") if can?(:create, Product)
+    = link_to "Product Categories", forge_product_categories_path, :class => ('active' if is_active('product_categories')) if can?(:index, ProductCategory)
+    = link_to "Orders", forge_orders_path, :class => ('active' if is_active('orders')) if can?(:index, Order)
+    = link_to "Sales", forge_sales_path, :class => ('active' if is_active('sales')) if can?(:index, Sale)
+  .spacer

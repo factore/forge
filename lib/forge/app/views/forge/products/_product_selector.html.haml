@@ -1,0 +1,11 @@
+%li
+  = big_list_item do
+    -product = product_selector
+
+    .product-row.select
+      .item-title{:id => "product_#{product.id}", "data-product-id" => product.id}
+        %strong= product.title #, edit_forge_product_path(product)
+      .item-action.last<
+        %small Category: #{product.product_category.title}
+
+    .spacer

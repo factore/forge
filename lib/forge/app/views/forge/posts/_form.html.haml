@@ -1,0 +1,58 @@
+- content_for :scripts do
+  :javascript
+    $(function() {
+      $('.preview').click(function(e) {
+        for ( instance in CKEDITOR.instances )
+          CKEDITOR.instances[instance].updateElement();
+        var vals = $('form').serialize();
+        window.open('/posts/preview?' + vals);
+        e.preventDefault();
+      })
+
+      $('#tabs').tabs();
+      clearUIClasses();
+    })
+
+
+= form_for [:forge, @post], :builder => ForgeFormBuilder do |f|
+  = error_messages_for :post
+  #tabs
+    %ul.tabbed
+      %li= link_to "Post Details", "#details"
+      %li= link_to "SEO Fields", "#seo"
+    .spacer
+
+    #details
+      #form-header= f.title_field(:title, :explanation => "Give your post a title.")
+
+      .inner-form.with-normal-sidebar
+        .column.side
+          = publish_box(f, @post)
+
+          - unless @categories.blank?
+            %h3 Categories
+            .explanation Where would you like your post to appear?
+            - @categories.each do |category|
+              %label{:style => "font-weight: normal; font-size: 14px;"}
+                .float-left= check_box_tag('post[post_category_ids][]', category.id, @post.post_category_ids.include?(category.id))
+                .float-right{:style => "width: 130px"}= category.title
+                .spacer
+            %hr
+
+          = side_row("Comments", :explanation => "Allow site visitors to comment on this post?") { slider("Sure", f.radio_button(:allow_comments, true), "No", f.radio_button(:allow_comments, false)) }
+
+          = f.datetime_widget :created_at, :label => "Publication Date", :explanation => "When should this post go live?"
+
+
+        .column.main.last
+          = f.cktext_area :excerpt, :width => '100%', :height => '100px;', :label => "Compose & Format Your Excerpt"
+          = f.cktext_area :content, :width => '100%', :height => '400px;', :label => "Compose & Format Your Post"
+        .spacer
+
+    #seo=render :partial => "forge/shared/seo_fields", :locals => {:f => f}
+
+  #item-list-bottom
+    .float-right
+      Everything look good?
+      = button_link "Preview", "javascript:;", :class => "preview button"
+      = button_link "Save", "javascript:;", :class => "submit button"

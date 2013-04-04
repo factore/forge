@@ -1,0 +1,9 @@
+= big_list_item(:class => "top", :id => "#{video.id}") do
+  .item-title{:class => row_class(video), :style => "width:480px;"}
+    %strong= video.title
+    %br
+    %small= "Source: #{video.source.capitalize}"
+  .item-actions
+    = action_link(video.published? ? "Unpublish" : "Publish", publish_forge_video_feed_path(video), :icon => video.published? ? "thumbdown" : "thumbup", :class => "publish") if can?(:edit, video)
+    = action_link("Preview/Edit", edit_forge_video_feed_path(video), :icon => "edit") if can?(:edit, video)
+  .spacer

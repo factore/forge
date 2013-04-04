@@ -1,0 +1,11 @@
+%h2 Pay Securely Online With PayPal
+
+%p 
+  Your data are kept in strict confidence and security.  All prices are in #{Forge::Settings[:currency]}.
+
+= render :partial => "orders/summary", :locals => { :order => @cart_order }
+
+%br
+%br
+
+= render :partial => "paypal", :locals => { :order => @cart_order }

@@ -1,0 +1,62 @@
+- content_for :scripts do
+  :javascript
+    $(function() {
+      $(".active_slider").change(function() {
+        var country_id = $(this).attr("rel");
+        $.post('/forge/countries/' + country_id + ".js", {_method : "PUT", country : {active : $(this).val() }}, function() {
+          update_active_countries();
+        });
+      });
+
+      $(".top_of_list_slider").change(function() {
+        var country_id = $(this).attr("rel");
+        $.post('/forge/countries/' + country_id + ".js", {_method : "PUT", country : {top_of_list : $(this).val() }}, function() {
+          update_active_countries();
+        });
+      });
+
+      $("#quick-search").keyup( $.debounce( 600, function(){
+        value = $(this).val();
+
+        $.each($('ul.item-list-compact li.country-row'), function() {
+          if ($(this).find('.item_title').html().toLowerCase().match(value.toLowerCase())) { $(this).show(); }
+          else { $(this).hide(); }
+          if (value == "") { $(this).hide(); }
+        });
+        $(".column.main-small.last").attr("style", "height:auto");
+      }));
+
+    });
+
+    function update_active_countries() {
+      $.getJSON('/forge/countries/get_active_countries.js', function(data) {
+        $("#active_countries").html(create_list_from_JSON(data));
+        FORGE.features.forms.changesMade = false;
+      });
+      $(".column.wide-side").attr("style", "height:auto");
+
+    }
+
+    function create_list_from_JSON(data) {
+      var html = "";
+      $.each(data, function(index, element) {
+        html += "<li>" + element + "</li>\n";
+      });
+      return html;
+    }
+
+%h1 Customize Forge: Countries
+%p.info Activate countries to use as shipping destinations, to input tax rates, and so forth.
+
+= form_tag
+.inner-form.no-bottom.no-top.with-wide-sidebar
+  .column.wide-side
+    %h3 Active Countries
+    = render :partial => "active_countries", :locals => {:active_countries => @active_countries}
+  .column.main-small.last
+    %h3 Search
+    .explanation To add or remove a country to the list of Active Countries, start typing the name of the country below:
+
+    = text_field_tag :q, params[:q], :id => 'quick-search', :class => "title", :style => "width:400px"
+    = render :partial => "country_list", :locals => {:countries => @countries}
+  .spacer

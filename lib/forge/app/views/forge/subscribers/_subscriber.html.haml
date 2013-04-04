@@ -1,0 +1,12 @@
+= big_list_item do
+  .item-title
+    %strong= link_to subscriber.name, "mailto:#{subscriber.email}"
+  .item-actions
+    .item-action.edit{:style => "width: 110px;"}<
+      = link_to image_tag('forge/icons/edit.png', :style => "vertical-align: middle;"), edit_forge_subscriber_path(subscriber)
+      %small= link_to "Edit", edit_forge_subscriber_path(subscriber)
+    .item-action.last<
+      = link_to image_tag('forge/icons/delete.png', :style => "vertical-align: middle;"), forge_subscriber_path(subscriber), :method => :delete, :confirm => "Are you sure?"
+      %small= link_to "Delete", forge_subscriber_path(subscriber), :method => :delete, :confirm => "Are you sure?"
+  
+  .spacer

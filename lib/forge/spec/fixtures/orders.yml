@@ -1,0 +1,9 @@
+pending_order:
+  key: A_UNIQUE_KEY
+  state: pending
+
+pending_with_addresses:
+  key: ANOTHER_UNIQUE_KEY
+  state: pending
+  billing_address: adrian
+  shipping_address: adrian

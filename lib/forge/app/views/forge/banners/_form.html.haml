@@ -1,0 +1,36 @@
+- content_for :scripts do
+  :javascript
+    $(function() {
+      $('.preview').click(function() {
+        for ( instance in CKEDITOR.instances )
+          CKEDITOR.instances[instance].updateElement();
+
+        var form = $('form');
+        var vals = form.serialize();
+        var old_action = form.attr('action');
+        form.attr({action: '/banners/preview', target: '_blank'}).submit();
+        form.attr({action: old_action, target: ''});
+
+        e.preventDefault();
+      })
+    })
+
+= error_messages_for :banner
+
+= form_for [:forge, @banner] do |f|
+  #form-header= title_row(:explanation => "Give your banner a title.") { f.text_field :title, :class => 'title' }
+
+  .inner-form.with-normal-sidebar
+    .column.side
+
+      = publish_box(f, @banner)
+
+      = side_row("Photo") { file_select_widget(f, :photo, :allow_remove => false) }
+
+    .column.main.last
+    .spacer
+
+  #item-list-bottom
+    .float-right
+      Everything look good?
+      = button_link "Save", "javascript:;", :class => "submit button"

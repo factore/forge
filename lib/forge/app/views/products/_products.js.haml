@@ -1,0 +1,24 @@
+:javascript
+  $(function(){
+  
+    $("form#add_to_cart").submit(function(e){
+      e.preventDefault();
+      // use ajax to send the data to rails
+      $.post("#{add_to_cart_orders_path(:format => :json)}", $(this).serialize(), function(data){
+        if (data.status == "Success") {
+          update_cart();
+        }
+        update_cart_message(data.message);
+      }, "json");    
+    });
+  
+    function update_cart() {
+      $.get("#{get_cart_orders_path}", function(html) {
+        $("#cart").html(html);
+      }, "html");
+    };
+
+    function update_cart_message(message) {
+      $("#cart_message").html(message);
+    }
+  }); 

@@ -1,0 +1,10 @@
+= big_list_item(:class => "top", :id => "#{event.id}") do
+  .item-title.event{:class => row_class(event)}
+    %strong= event.title
+    %br/
+    %small= event.display_date
+  .item-actions
+    = action_link("View on Site", event_path(event), :icon => "laptop") if event.published?
+    = edit_link(event)
+    = delete_link(event)
+  .spacer

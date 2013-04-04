@@ -1,0 +1,7 @@
+#section-header
+  %h2
+    Dispatch:
+    = dispatch.messages.size > dispatch.sent_messages.size ? "Sending..." : "Sent!"
+    .float-right
+      %small #{dispatch.sent_messages.size} of #{dispatch.messages.size} sent
+    .spacer

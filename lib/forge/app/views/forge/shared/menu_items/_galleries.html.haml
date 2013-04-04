@@ -1,0 +1,6 @@
+- if can?(:index, Gallery)
+  = forge_menu_item item, forge_galleries_path, :active => is_active("galleries"), :submenu => can?(:create, Gallery)
+  - if can?(:create, Gallery)
+    %ul.forge_submenu{ :class => is_active(["galleries"]) ? "#{item} active" : item }
+      = link_to "New Gallery", new_forge_gallery_path, :class => ("active" if is_active(["galleries"]) && params[:action] == "new")
+    .spacer

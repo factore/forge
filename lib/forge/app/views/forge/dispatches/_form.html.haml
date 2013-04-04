@@ -1,0 +1,27 @@
+- content_for :scripts do
+  :javascript
+    $(function() {
+      $('.preview').click(function(e) {
+        for ( instance in CKEDITOR.instances )
+          CKEDITOR.instances[instance].updateElement();
+        var vals = $('form').serialize();
+        window.open('/posts/preview?' + vals);
+        e.preventDefault();
+      })
+    })
+
+= error_messages_for :dispatch
+
+= form_for [:forge, @dispatch] do |f|
+  #form-header= title_row(:explanation => "Give your dispatch a title.") { f.text_field :subject, :class => 'title' }
+
+  .inner-form
+    .column.full.last
+      = content_row("Content", :explanation => "This is the content that will appear in the body of the email.") { f.cktext_area :content, :width => '100%', :height => '300px;' }
+    .spacer
+
+  #item-list-bottom
+    .float-right
+      Everything look good?
+      = button_link "Preview", "javascript:;", :class => "preview button"
+      = button_link "Save", "javascript:;", :class => "submit button"

@@ -1,0 +1,45 @@
+// layout
+#top-shadow { background:image-url('forge/bg-shadow.jpg') top center no-repeat; border-top:10px solid #ccd2d6; min-height:350px; width:100%; }
+#container { margin:0px auto; text-align:left; position:relative; width:980px; }
+#header { height:64px; padding-left:10px; margin:-20px 0 10px;
+  .label { display:inline-block; padding-left:12px; position:relative; top:10px; font-size:22px; }
+}
+
+#content { background:$content-grey; padding:10px 6px 10px 10px; @include rounded(5px); @include box-shadow(0px, 0px, 4px, $black); }
+#content-frame-holder { float:right; margin-right:4px; width:786px; }
+#content-frame { background:white; overflow:hidden; padding:0px; position:relative; @include rounded(5px); @include box-shadow(0px, 0px, 4px, #9a9a9a); }
+
+#footer { font-size:11px; height:60px; margin-top:10px; text-align:right; }
+
+// columns
+.column { float:left; margin-right:20px; }
+.last { margin-right:0px; }
+.half { width:360px; }
+.inner-half { width:300px; }
+.side { width:150px; }
+.main { width:515px; }
+.full { width:690px; }
+.wide-side { width:260px; }
+.main-small { width:408px; }
+.side, .small-side, .wide-side { padding-right:15px; margin-right:15px; }
+.grey { background:$content-grey; color:$black; margin:0 0 20px; padding:20px; width:660px; @include rounded(6px); @include box-shadow-inset(0px, 0px, 4px, $black);
+  &.half { width:300px; }
+  h2 { color:$black; }
+}
+
+.column h2 { color:white; font-size:20px; }
+
+// utilities
+#util-nav { float:right; font-size:12px; position:relative; top:-10px; left:8px;
+  .button-link { margin-top:-3px; }
+}
+#util-nav-content { float:left; background:#ccd2d6; height:40px; line-height:30px; padding:10px 10px 0; @include rounded-bottom(5px);
+  .welcome { display:inline; margin:0 8px; }
+}
+
+// breadcrumb trail
+#crumbs { background:#ecf0f3; height:40px; overflow:hidden; padding:3px 23px 0px; width:740px; @include rounded-top(5px);
+  .crumb { background:image-url('forge/crumb-arrow.png') no-repeat left; display:inline-block; line-height:40px; margin-left:10px; padding-left:20px;
+    &.no-arrow { background:none; margin-left:0px; padding-left:0px; }
+  }
+}

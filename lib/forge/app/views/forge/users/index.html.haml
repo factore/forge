@@ -1,0 +1,21 @@
+- content_for :scripts do
+  = javascript_include_tag 'jquery.quickSearch.js'
+  :javascript
+    $(function() {
+      $('#quick-search').quickSearch({url: '#{forge_users_path}'});
+    });
+
+%h1 Your Users
+
+%p.info
+  This is a list of the users who are currently registered for your site and able to access privileged locations.
+  %strong Admin
+  and
+  %strong Contributor
+  users may access Forge.  Click
+  %strong Unapprove
+  to revoke access.
+
+= render :partial => "forge/shared/section_header", :locals => {:item => User}
+%ul#item-list= render :partial => "user", :collection => @users
+= render :partial => "forge/shared/section_footer", :locals => {:items => @users}

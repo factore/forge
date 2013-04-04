@@ -1,0 +1,27 @@
+= big_list_item(:class => "orders", :id => order.id) do
+  .item-title.order.big{:class => row_class(order)}
+    %small
+      Invoice ID:
+      %br
+      %strong= order.invoice_id
+  .item-info{:style => "width:50px;"}
+    Status:
+    %br
+    %strong= order.state.capitalize
+  .item-info{:style => "width:210px;"}
+    %strong= number_to_currency(order.price)
+    %br
+    %small
+      = "Bill to #{order.billing_address.first_name} #{order.billing_address.last_name}" if order.billing_address
+      %br/
+      = "Ship to #{order.shipping_address.first_name} #{order.shipping_address.last_name}" if order.shipping_address
+  .item-info{:style => "width:110px;"}
+    %small
+      %strong= order.created_at.strftime('%B %e, %Y')
+      %br/
+      = order.created_at.strftime('%l:%M %p')
+  .item-actions
+    = action_link("View order", forge_order_path(order), :icon => "laptop")
+    = fulfillment_link(order)
+  .spacer
+

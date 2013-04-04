@@ -1,0 +1,62 @@
+- content_for :scripts do
+  = javascript_include_tag 'jquery.quickSearch.js'
+  :javascript
+    var products = [#{@sale.product_ids.join(',')}];
+    $(function() {
+      $('#quick-search').quickSearch({url: '#{forge_sales_path}/products', holder: $('.item-list-compact.products')});
+      searchTrigger();
+    });
+
+    function searchTrigger() {
+      $('.item-list-compact.products div').click(selectItem);
+      $('.item-list-compact.selected div').click(removeItem);
+      filterSelected();
+    }
+
+    function filterSelected() {
+      //Filter already selected products out of search list... probably unnecessary
+      for(var i = 0; i < products.length; i++){
+        item = $('.products [data-product-id*='+products[i]+']');
+        item.addClass('inactive')
+        item.unbind('click');
+      }
+    }
+
+    function selectItem(e) {
+      $(this).unbind('click');
+      selected = $(this).clone();
+      selected.click(removeItem);
+      selected.appendTo('.item-list-compact.selected')
+      products.push(parseInt($(this).attr('data-product-id')));
+      $('#sale_product_ids').val(products);
+      $(this).addClass('inactive')
+    }
+
+    function removeItem(e) {
+      $(this).remove();
+      id = parseInt($(this).attr('data-product-id'));
+      products.splice(products.indexOf(id),1);
+      $('#sale_product_ids').val(products);
+      target = $('[data-product-id*='+id+']');
+      target.removeClass('inactive');
+      target.unbind('click');
+      target.click(selectItem);
+    }
+
+
+.inner-form.no-top.with-wide-sidebar
+  .column.wide-side
+    %h3 Products on Sale
+    .explanation
+      The currently selected products.
+    -#Selected Products
+    = f.hidden_field(:product_ids)
+    %ul.item-list-compact.selected
+      = render :partial => "product", :collection => @sale.products
+  .column.main-small.last
+    %h3 Search
+    .explanation To add or remove a product to this sale, start typing the name of the product below:
+    = text_field_tag :q, params[:q], :id => 'quick-search', :class => "title", :style => "width:400px"
+    .item-list-compact.products
+      = render :partial => "product", :collection => @products
+  .spacer

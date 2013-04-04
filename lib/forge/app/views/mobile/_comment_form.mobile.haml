@@ -1,0 +1,26 @@
+=raw session[:comment_errors] if session[:comment_errors]
+
+#new-comment
+  %h3 Add a Comment
+  = form_for @comment do |f|
+    = error_messages_for :comment, :header_message => nil
+    = f.hidden_field :commentable_type, :value => object.class
+    = f.hidden_field :commentable_id, :value => object.id
+    = f.hidden_field :controller, :value => object.class.to_s.downcase.pluralize
+
+    .row= f.text_field :author, :class => "input hint", :title => "Name", :tabindex => 1
+    .row
+      = f.text_field :author_email, :class => "input hint", :title => "Email", :tabindex => 2
+      %small (Won't be published)
+    .row
+      = f.text_field :author_url, :class => "input hint", :title => "Website", :tabindex => 3
+      %small (If you've got one)
+    .row= f.text_area :content, :class => "input textarea hint", :title => "Comment...", :tabindex => 4
+    .row
+      %label
+        = f.check_box :subscribe, :tabindex => 5
+        %small Notify Me of New Comments
+    .row= f.submit "Add Comment", :class => "submit button red right"
+    .spacer
+
+  .spacer

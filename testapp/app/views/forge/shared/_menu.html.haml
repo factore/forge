@@ -1,0 +1,4 @@
+= forge_menu_item "Home", "/forge", :active => params[:controller] == "forge/index"
+
+- @menu_items.each do |item|
+  = show_menu_item(item)

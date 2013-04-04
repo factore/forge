@@ -1,0 +1,13 @@
+%p
+  Subtotal:
+  %strong= number_to_currency(order.price) 
+%p
+  Taxes:
+  %strong= number_to_currency(order.tax)
+%p
+  Shipping &amp; Handling:
+  %strong= number_to_currency(order.shipping_and_handling)
+
+%strong
+  Total:
+  = "#{number_to_currency(order.total_price)} #{MySettings.currency}"

@@ -1,0 +1,3 @@
+%ul.item-list-compact
+  - @countries.each_with_index do |country, i|
+    = toggle_li_tag :title => country.title, :id => country.id, :class => "country-row", :actions => [{"Active" => slider("Yes", radio_button_tag("active_#{country.id}", true, country.active, :class => "active_slider", :rel => country.id), "No", radio_button_tag("active_#{country.id}", false, !country.active, :class => "active_slider", :rel => country.id))}, {"Top of List" => slider("Yes", radio_button_tag("top_of_list_#{country.id}", true, country.top_of_list, :class => "top_of_list_slider", :rel => country.id), "No", radio_button_tag("top_of_list_#{country.id}", false, !country.top_of_list, :class => "top_of_list_slider", :rel => country.id))}]

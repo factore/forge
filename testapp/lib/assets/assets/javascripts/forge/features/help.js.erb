@@ -1,0 +1,121 @@
+FORGE.features.help = {
+  init: function () {
+    var self = FORGE.features.help;
+
+    self.load();
+    $('a#help_toggle').on('click', self.toggle);
+    $('#help-content').on('click', 'a', self.navigate);
+    $('#help-pane').on('click', 'a#close-help', self.toggle);
+    $(document).on('click', '#search-help', self.search);
+  },
+
+  load: function () {
+    var url = (help_slug == "index_index") ? "/forge/help" : "/forge/help/" + help_slug
+    $.ajax({
+      url: url,
+      dataType: 'html',
+      success: function(data) {
+        $('#help-content').html(data);
+        $('#help-content a, #help-content input').attr('tabindex', '-1');
+      }
+    });
+  },
+
+  toggle: function (event) {
+    var self = FORGE.features.help;
+    if ($('#help-pane').css('right') == '3px') {
+      self.hide(event);
+      $(this).removeClass("active");
+    } else {
+      self.show(event);
+      $(this).addClass("active");
+    }
+  },
+
+  show: function (event) {
+    event.preventDefault();
+    var $helpPane = $('#help-pane'),
+        $contentFrame = $('#content-frame'),
+        $movableContent = $('#movable-content'),
+        $crumbs = $("#crumbs");
+
+    $helpPane.show();
+    if (!$contentFrame.is(":animated")) {
+      var crumbsHeight = $crumbs.outerHeight(true);
+      var currentHeight = $movableContent.outerHeight(true) + crumbsHeight;
+      var newHeight = $helpPane.outerHeight(true) + crumbsHeight;
+
+      $contentFrame.animate({height: newHeight}, 1150, 'easeOutQuint');
+      $helpPane.animate({right: 3}, 750, 'easeInOutQuint');
+      $movableContent.css({position: 'absolute'}).animate({left: -940}, 750, 'easeInOutQuint');
+      $('#help-content').find('a, input').attr('tabindex', '0');
+    }
+  },
+
+  hide: function(event) {
+    event.preventDefault();
+    var $helpPane = $('#help-pane'),
+        $contentFrame = $('#content-frame'),
+        $movableContent = $('#movable-content'),
+        $crumbs = $('#crumbs');
+
+    $('#help-content').find('a, input').attr('tabindex', '-1');
+    if (!$contentFrame.is(":animated")) {
+      var crumbsHeight = $crumbs.outerHeight(true);
+      var currentHeight = $helpPane.outerHeight(true) + crumbsHeight;
+      var newHeight = $movableContent.outerHeight(true) + crumbsHeight;
+
+      $helpPane.css({position: 'absolute'}).animate({right: -940}, 750, 'easeInOutQuint');
+      $movableContent.css({position: 'absolute'}).animate({left: 0}, 750, 'easeInOutQuint');
+      $contentFrame.animate({height: newHeight}, 1150, 'easeOutQuint', function() {
+        $movableContent.css({position: 'static'});
+        $helpPane.hide();
+      });
+    }
+  },
+
+  navigate: function(event) {
+    event.preventDefault();
+    var $link = $(this);
+    if ($link.attr('id') !== "close-help" && !$link.attr('href').match('mailto') && !$link.attr('href').match('http://')) {
+      $('#help-content').html("<p style='text-align: center; padding-top: 40px;'><img src='<%= asset_path "forge/loader-bar.gif" %>' alt='Loading...' /></p>");
+      $.ajax({
+        url: $link.attr('href'),
+        dataType: 'html',
+        success: function(data) {
+          //sometimes if the images aren't cached it won't calculate height correctly, so we get the
+          //height without images and then manually count them up, ensuring the correct height each time
+          $('#help-content').html(data).find('img').hide();
+          var newHeight = $('#help-content').outerHeight();
+          $.each($('#help-content').find('img'), function() {
+            var img = new Image();
+            img.src = $(this).attr('src');
+            newHeight = newHeight + img.height + 10;
+          });
+
+          $('#help-content img').show();
+
+          $('#help-pane').height(newHeight + 150);
+          $('#content-frame').animate({height: newHeight + 150}, 1150, 'easeOutQuint');
+        }
+      });
+      return false;
+    }
+
+  },
+
+  search: function(event) {
+    event.preventDefault();
+    var query = $('#help-query').val();
+
+    $.ajax({
+      url: '/forge/help/search',
+      data: {'q': query},
+      success: function(data) {
+        $('#help-content').html(data);
+        var newHeight = $('#help-pane').height();
+        $('#content-frame').animate({height: newHeight}, 1150, 'easeOutQuint');
+      }
+    });
+  }
+};

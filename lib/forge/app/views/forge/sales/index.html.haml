@@ -1,0 +1,14 @@
+- content_for :scripts do
+  = javascript_include_tag 'jquery.quickSearch.js'
+  :javascript
+    $(function() {
+      $('#quick-search').quickSearch({url: '#{forge_sales_path}'});
+    });
+
+%h1 Your Sales
+
+%p This is a list of all the sales in your site. You can add, edit, and delete sales here.  A sale allows you to apply a cost reduction to specified products.
+
+= render :partial => "forge/shared/section_header", :locals => {:item => Sale}
+%ul#item-list= render :partial => "sale", :collection => @sales
+= render :partial => "forge/shared/section_footer", :locals => {:items => @sales}

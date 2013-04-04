@@ -1,0 +1,8 @@
+%p
+  Order ID:
+  %strong= @order.id
+- if @order.authorization_reference
+  %p Authorization reference:
+  %strong= @order.authorization_reference
+
+= render :partial => "summary", :locals => { :order => @order }

@@ -1,0 +1,6 @@
+= flash_messages
+%h2 Coupons
+%p If you have a coupon code, enter it here:
+- form_for :coupon, :url => { :controller => :coupons, :action => :add } do |f|
+  = f.text_field :code
+  = f.submit "Add Coupon"

@@ -1,0 +1,6 @@
+= forge-cli
+
+Describe your project here
+
+:include:forge-cli.rdoc
+

@@ -1,0 +1,15 @@
+= render :partial => "upload_progress"
+
+%table.form
+  - unless params[:for_model]
+    = form_row("Tags") { text_field_tag "asset[tag_list]", '', :class => 'big-rounded' }
+  = form_row(params[:for_model] ? "Select File:" : "Select File(s):") { content_tag :div, '', :id => "swfupload-button" }
+  = hidden_field_tag "single", true if params[:single]
+  
+%small Uploading will commence as soon as you select your file(s).
+
+#swfupload-control
+
+:javascript
+  FORGE.features.assets.uploads.init({forModel: #{params[:for_model] ? "true" : "false"}});
+  

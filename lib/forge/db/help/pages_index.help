@@ -1,0 +1,11 @@
+title: Pages
+slugs: pages_index
+language: en
+status: published
+********************************************
+
+This section lists all the pages on your site.  You can drag and drop pages to re-order them or to change their parent page.  
+
+For more information, see [Adding and Editing Pages][1]
+
+[1]: /forge/help/pages_new   "Adding and Editing Pages"

@@ -1,0 +1,11 @@
+title: Adding and Editing Pages
+slugs: pages_new, pages_edit, pages_update, pages_create
+language: en
+status: published
+********************************************
+
+Creating a new page or editing an existing one is simple. Start by typing in a title for the page if it doesn't have one already.  Once you have given your page a title, you can set a few other options.  First, you can determine if your page is going to be sub-page of another page or if it will be a top level page.  Second, you can select whether or not your page will show up in the menu on your site.  Some sites have pre-set menus, and this option won't affect anything.  Finally, you can decide if you want your page to be published or not.  Unpublished pages can't be viewed by visitors to your website.
+
+Once you've set the options, you're ready to write your page using [The Visual Editor][1]
+
+[1]: /forge/help/visual_editor   "The Visual Editor"

@@ -1,0 +1,10 @@
+%span.item-id{"data-item-id" => page.id, :style => "display: none;"}
+.item-title.page{:class => (page.parent_id ? "" : "big ") + row_class(page)}
+  %strong= link_to page.list_title, edit_forge_page_path(page)
+
+.item-actions
+  = action_link("View on Site", page_path(page), :icon => "laptop") if page.published?
+  = action_link("Create a Sub-Page", new_forge_page_path(:parent_id => page.id), :icon => "plus")
+  = edit_link(page)
+  = page.key.blank? ? delete_link(page) : action_link("Required", "#", :icon => "delete")
+.spacer

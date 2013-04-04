@@ -1,0 +1,26 @@
+!!! Strict
+= html(:ie_versions => 6..10) do
+  %head
+    %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "Content-Type" }/
+    = raw seo_meta_tags
+    %title
+      = @page_title + " | " if @page_title
+      = MySettings.site_title
+    = # auto_discovery_link_tag(:rss, feed_posts_path)
+    = csrf_meta_tag
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag "front"
+    = yield :scripts
+
+  %body{ :id => params[:controller], :class => params[:action] }
+    = link_to("View Mobile Version", :mobile => 1) if Forge::Settings[:mobile_layout] #&& using_mobile_device?
+
+    - if current_user
+      .float-right
+        = "You are currently signed in as a #{current_user.email}"
+        = link_to "Log Out", "/logout"
+
+    = flash_messages
+    = yield
+
+    = raw MySettings.google_analytics unless MySettings.google_analytics.blank?

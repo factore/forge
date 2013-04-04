@@ -1,0 +1,42 @@
+.column.full
+  .grey.full
+    .row.header
+      Items
+      .order-column.float-right Price
+      .order-column.float-right Qty
+      .order-column.float-right Total
+      %hr.serious
+
+    - @order.line_items.each do |line_item|
+      .row
+        .order-column.title.float-left= line_item.product.title
+        .order-column.float-right= number_to_currency(line_item.price)
+        .order-column.float-right= line_item.quantity
+        .order-column.float-right= number_to_currency(line_item.total_price)
+        .spacer
+        %hr.serious
+
+  - if @order.price > 0
+    .grey.full
+      .row
+        %h2 Totals
+        %hr.serious
+      .row
+        %strong
+          Subtotal: &nbsp;&nbsp;&nbsp;
+          .float-right= number_to_currency(@order.price)
+        %hr.serious
+      .row
+        %strong
+          Taxes: &nbsp;&nbsp;&nbsp;
+          .float-right= number_to_currency(@order.tax)
+        %hr.serious
+      .row
+        %strong
+          Shipping &amp; Handling: &nbsp;&nbsp;&nbsp;
+          .float-right= number_to_currency(@order.shipping_and_handling)
+        %hr.serious
+      %h3
+        Total:
+        .float-right= "#{number_to_currency(@order.total_price)} #{MySettings.currency}"
+.spacer

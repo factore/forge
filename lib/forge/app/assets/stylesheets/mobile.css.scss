@@ -1,0 +1,130 @@
+/*
+*= require_self
+*/
+
+@import 'naturalize.css.scss';
+@import 'mixins.css.scss';
+@import 'flash_messages.css.scss';
+
+$f1:#f1f1f1;
+$e0:#e0e0e0;
+$e2:#e2e2e2;
+$e5:#e5e5e5;
+$e9:#e9e9e9;
+$d9:#d9d9d9;
+$a8:#8a8a8a;
+$red:#ee3124;
+
+
+body { background:$f1; border-top:9px solid $red; font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  &.narrow .logo { font-size:24px;
+    img { max-width:140px; }
+  }
+}
+h1,h2,h3,h4,p { margin:0 0 20px 0; padding:0; }
+h1 { border-bottom:1px solid $e0; color:$a8; font-size:28px; line-height:60px; margin:0; padding:0 20px;
+  a { color:$a8; }
+}
+h2 { font-size:22px; }
+h3 { margin-bottom:10px; }
+h4 {}
+a { color:$red; text-decoration:none;
+  &:hover {}
+}
+strong { font-weight:600; }
+
+.spacer { border:0; clear:both; float:none; height:0; margin:0; padding:0; width:0; }
+hr { @extend .spacer; border:0; border-bottom:1px solid $e0; height:10px; width:100%; }
+
+.right { float:right; }
+.left { float:left; }
+
+.logo { display:block; font-size:30px; font-weight:600; text-align:right; width:70%;
+  img { display:block; float:right; max-height:100px; max-width:200px; }
+}
+
+.button { background:$e2; border:1px solid $d9; color:$a8; display:inline-block; font-weight:600; height:38px; line-height:38px; overflow:hidden; padding:0 10px; @include rounded(4px); @include linear-gradient(top, $e2, $e9);
+  &.red { background:$red; border-color:$f1; color:white; text-shadow:0px 0px 2px $a8;
+    &:active { line-height:40px; }
+  }
+  &.navigation { overflow:hidden; text-align:center; width:30px;
+    img { height:12px; position:relative; top:1px; }
+    &.down img { @include rotate(180deg); }
+    &:active img { top:2px; }
+  }
+  &:active { @include linear-gradient(top, $e9, $e2);
+    &.red { background:$red; }
+  }
+}
+
+#head { border-bottom:1px solid $d9; max-height:108px; min-height:40px; overflow:hidden; padding:10px 20px; position:relative; z-index:20;
+  .menu { width:10%; }
+}
+
+#navigation { background:$f1; list-style:none; margin:0; padding:0; position:absolute; top:70px; width:100%; z-index:10; @include box-shadow(0px, 2px, 4px, $d9);
+  &.hidden { display:none; }
+  li { border-top:1px solid white; border-bottom:1px solid $d9; display:block; position:relative;
+    &.expand { border-top:3px solid $d9; }
+    a { color:black; display:block; font-size:20px; font-weight:600; height:44px; line-height:44px; padding:0px 10px; }
+    .icon { height:18px; position:absolute; top:12px; right:20px; }
+    &.subpage {
+      a { font-size:18px; padding-left:24px; height:40px; line-height:40px; }
+    }
+    &.active a { color:$red; }
+  }
+}
+
+#content { background:white; border-bottom:1px solid $e5;
+  img { max-width:100%; }
+  .inside { padding:20px; }
+
+  // FORMS
+  .row { margin:0 0 20px; max-width:400px;
+    .input { background:$f1; border:1px solid $e5; color:$a8; display:block; font-weight:600; height:40px; line-height:22px; padding:4px 2%; width:96%; @include rounded(4px);
+      &.blur { color:$d9; }
+      &.textarea { height:200px; padding:12px 2%; }
+      &:focus { outline:none; }
+    }
+  }
+  #new_contact, #new_comment { padding:20px 0; }
+
+  // POSTS
+  .pagination { margin:0 auto 20px; min-height:34px; padding-top:20px; width:110px;
+    .next_page, .previous_page { @extend .button; height:32px; line-height:32px; padding:0 16px;
+      img { position:relative; top:-2px; width:14px; }
+      &:active img { top:-1px; }
+    }
+    .next_page { float:right;
+      img { @include rotate(-90deg); }
+    }
+    .previous_page { float:left;
+      img { @include rotate(90deg); }
+    }
+    .disabled { display:none; }
+  }
+  .post.inside { border-bottom:1px solid $e0; padding-bottom:0;
+    h2 { margin:0;
+      a { color:black; }
+    }
+    .date { color:$a8; font-size:0.9em; margin-bottom:20px; }
+  }
+  #posts .post { cursor:pointer;
+    &:hover, &:active { background:$f1; }
+  }
+
+  // COMMENTS
+  .comment { border-bottom:1px solid $e0; margin-bottom:20px; padding:10px 0;
+    .avatar { float:left; max-width:60px; margin-right:10px; width:10%;
+      img { border:1px solid $e0; display:block; max-width:60px; padding:2px; width:98%; }
+    }
+    .comment-text { float:left; font-size:0.9em; width:82%;
+      strong { font-size:0.9em; }
+      p { margin-bottom:10px; }
+    }
+
+  }
+}
+
+#foot { font-size:0.9em; padding:20px;
+  p { margin:0 0 2px; min-height:14px; padding:0; }
+}

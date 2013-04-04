@@ -1,0 +1,28 @@
+.inner-form.no-top.with-normal-sidebar
+  .column.side
+    %h3 Footer Address
+    .explanation
+      Up to five lines for the address/phone/contact information that will appear in the footer of your mobile site.
+      %em HTML is permitted
+    = text_field_tag "settings[mobile_address_1]", MySettings.mobile_address_1, :style => "width: 90%;"
+    = text_field_tag "settings[mobile_address_2]", MySettings.mobile_address_2, :style => "width: 90%;"
+    = text_field_tag "settings[mobile_address_3]", MySettings.mobile_address_3, :style => "width: 90%;"
+    = text_field_tag "settings[mobile_address_4]", MySettings.mobile_address_4, :style => "width: 90%;"
+    = text_field_tag "settings[mobile_address_5]", MySettings.mobile_address_5, :style => "width: 90%;"
+    %hr
+
+
+  .column.main.last
+    %h3 Mobile Logo
+    .explanation Full URL path of the mobile site logo. If this is left blank the site name will be displayed.
+    = text_field_tag "settings[logo_url]", MySettings.logo_url, :style => "width: 90%;", :class => "title"
+    %hr
+
+    %h3 Mobile Default Color
+    .explanation The six digit hex code for the mobile site's accent colour. e.g. #a00000, #ffffff, or #345678
+    = text_field_tag "settings[mobile_color]", MySettings.mobile_color, :style => "width: 90%;", :class => "title"
+    %hr
+
+
+
+  .spacer

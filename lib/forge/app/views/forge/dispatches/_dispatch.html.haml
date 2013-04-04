@@ -1,0 +1,16 @@
+= big_list_item do
+  .item-title.dispatch
+    %strong= dispatch.subject
+    %br/
+    %small
+      - if dispatch.sent_at.blank?
+        Not sent.
+      - else
+        Sent at #{dispatch.sent_at.strftime('%l:%M%p on %b. %e %Y')}.
+
+  .item-actions
+    = action_link("View Stats", forge_dispatch_path(dispatch), :icon => "checkmark") unless dispatch.sent_at.blank?
+    = action_link("Queue for Sending", queue_forge_dispatch_path(dispatch), :icon => "laptop")
+    = edit_link(dispatch)
+    = delete_link(dispatch)
+  .spacer

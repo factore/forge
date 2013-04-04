@@ -1,0 +1,14 @@
+- content_for :scripts do
+  = javascript_include_tag 'jquery.quickSearch'
+  :javascript
+    $(function() {
+      $('#quick-search').quickSearch({url: '#{forge_videos_path}'});
+    });
+  
+%h1 Your Videos
+
+%p This is a list of all the videos in your site.  You can add, edit, and delete videos here.
+
+= render :partial => "forge/shared/section_header", :locals => {:item => Video}
+%ul#item-list= render :partial => "video", :collection => @videos
+= render :partial => "forge/shared/section_footer", :locals => {:items => @videos}

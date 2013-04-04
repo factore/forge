@@ -1,0 +1,22 @@
+%h1 Opens: #{@dispatch.subject}
+
+= render :partial => "show_nav"
+= render :partial => "header", :locals => {:dispatch => @dispatch}
+.inner-form.with-wide-sidebar
+  .column.wide-side
+    %strong= @opens.total_entries
+    opens so far
+    %br/
+    %strong= number_to_percentage((@opens.total_entries.to_f / @dispatch.messages.count) * 100.0, :precision => 2)
+    were opened
+  .column.main-small.last
+    %ul.item-list-compact
+      - @opens.each do |open|
+        = big_list_item do
+          .item-title
+            %strong= link_to open.email, "mailto:#{open.email}"
+            %small opened on #{open.created_at.strftime('%B %e, %Y at %I:%M%p')} from #{open.ip}
+          .spacer
+
+  .spacer
+= render :partial => "forge/shared/section_footer", :locals => {:items => @opens}

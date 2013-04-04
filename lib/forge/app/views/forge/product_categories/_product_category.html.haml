@@ -1,0 +1,8 @@
+= big_list_item(:class => "top", :id => "#{product_category.id}") do
+  .item-title
+    %strong= product_category.title
+  .item-actions
+    = edit_link(product_category, true, true)
+    = delete_link(product_category, true, true)
+
+  .spacer

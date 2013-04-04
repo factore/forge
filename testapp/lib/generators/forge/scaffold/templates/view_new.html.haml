@@ -1,0 +1,5 @@
+%h1 
+  New <%= singular_name.humanize.titleize %>
+  = language_switcher(:<%= table_name %>)
+  
+= render :partial => "form"

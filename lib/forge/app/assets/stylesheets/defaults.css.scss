@@ -1,0 +1,30 @@
+// default styles
+small { color:#c8c8c8; font-size:0.8em;
+  strong { color:white; }
+}
+.spacer { border:0; clear:both; float:none; height:0; margin:0; padding:0; width:0; }
+.float-right { float:right; }
+.float-left { float:left; }
+
+// default link
+a { color:#e70a0a; text-decoration:none;
+  a:hover { text-decoration:underline; }
+}
+
+// default post/comment form
+#comments { margin-top:25px;
+  #new-comment{ border-top:1px solid; padding-top:10px; }
+  #comment-message { float:left; width:58%; }
+  #comment-details { float:right; width:38%;
+    strong small { font-weight:normal; }
+    input.textfield { width:90%; }
+    p { margin-bottom:20px; }
+  }
+  #comment-message textarea { height:180px; width:100%; }
+  .comment { border-top:1px solid; padding:20px 0px;
+    .avatar { float:left; width:8%;
+      img { border:1px solid; max-width:60px; padding:4px; width:100%; }
+    }
+    .comment-text { float:right; width:88%; }
+  }
+}

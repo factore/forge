@@ -1,0 +1,36 @@
+- content_for :scripts do
+  = render :partial => "products", :locals => {:order => @cart_order}, :formats => [:js]
+
+%h1= @product.title
+  
+#product_body
+  %p
+    %br/
+    %strong= @product.short_description
+    
+  = @product.description.html_safe
+  
+  %p
+    %strong= number_to_currency(@product.price)
+  
+#product_images  
+  - unless @product.images.blank?  
+    %h2 Images
+    
+    - for image in @product.images
+      %a{:href => image.image.url, :rel => "zoom", :title => image.image_file_name }
+        = image_tag(image.image.url(:thumbnail), { :class => "product_image" })
+      %br/
+      %a{:href => image.image.url, :rel => "zoom", :title => image.image_file_name }
+        = image.image_file_name
+      %br/
+      .spacer{:style => "height: 25px;"}  
+
+.spacer
+
+= render :partial => "add_form", :locals => { :order => @cart_order, :product => @product }
+
+.spacer
+
+#sidebar
+  = render :partial => "orders/cart_wrapper", :locals => { :order => @cart_order }

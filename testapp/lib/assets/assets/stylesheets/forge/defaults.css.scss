@@ -1,0 +1,21 @@
+// document setup/defaults
+html,body,div,h1,h2,h3,h4,h5,h6,ul,ol,dl,li,dt,dd,p,blockquote,pre,form,fieldset,table,th,td{ margin:0px; padding:0px; }
+.spacer, ul#item-list li div.item-content div.spacer, #asset-list ul li.spacer, ul.item-list-compact li div.item-content div.spacer {clear:both;float:none;margin:0;padding:0;border:0;height:0;width:0;}
+body{ background:image-url('forge/bg-tile.jpg') #e7ebee; color:$black; font-family:$font; font-size:14px; line-height:18px; margin:0px; }
+p,h1,h2,h3,h4 { margin-bottom:10px; }
+h1{ color:$red; font-size:28px; font-weight:normal; margin-bottom:20px; }
+h2{ color:$red; font-size:24px; font-weight:normal; line-height:28px; }
+h3{ font-size:16px; margin-bottom:0px; }
+h4{ font-size:14px; }
+a { color:$red; outline:none; text-decoration:none;
+  &:hover { text-decoration:underline; }
+  img { border:0px; }
+}
+input,select { font-size:11px; }
+small { font-size:.8em; }
+.float-left { float:left !important; }
+.float-right { float:right !important; }
+.hide { display:none; }
+hr { border:0px; height:2px; background:image-url('forge/hr.jpg') repeat-x; margin:15px 0px;
+  &.serious { border-top:1px solid white; margin:5px 0px; background:none; }
+}

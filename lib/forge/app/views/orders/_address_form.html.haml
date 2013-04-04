@@ -1,0 +1,17 @@
+- show_company ||= false
+%div{:class => address_type}
+  = error_messages_for address, :header_message => nil
+  %table
+    = hidden_field_tag "address_type", address_type
+    = form_row("First Name", :required => true) {text_field_tag "#{address_type}[first_name]", address.first_name}   
+    = form_row("Last Name", :required => true) {text_field_tag "#{address_type}[last_name]", address.last_name}   
+    = form_row("Company") { text_field_tag "#{address_type}[company]", address.company } if show_company
+    = form_row("Address Line 1", :required => true) {text_field_tag "#{address_type}[address1]", address.address1}   
+    = form_row("Address Line 2") {text_field_tag "#{address_type}[address2]", address.address2}   
+    = form_row("City", :required => true) {text_field_tag "#{address_type}[city]", address.city}   
+    = form_row("Country", :required => true) {select_tag "#{address_type}[country_id]", options_for_select(Country.options_for_select, address.country_id)}   
+    = form_row("Province") {select_tag "#{address_type}[province_id]", options_for_select(Province.options_for_select, address.province_id)}   
+    = form_row("Postal Code", :required => true) {text_field_tag "#{address_type}[postal]", address.postal}   
+    = form_row("Email", :required => true) {text_field_tag "#{address_type}[email]", address.email}   
+    = form_row("Phone") {text_field_tag "#{address_type}[phone]", address.phone}   
+

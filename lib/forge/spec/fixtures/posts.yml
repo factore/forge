@@ -1,0 +1,7 @@
+with_seo:
+  title: A Post with SEO
+  content: This post has some SEO fields.  <p>And HTML.</p>
+  seo_title: SEO Page Title
+  seo_keywords: "post,posts,super post"
+  seo_description: A post with some content and stuff
+  published: true

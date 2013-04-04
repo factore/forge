@@ -1,0 +1,23 @@
+%h1 Clicks: #{@dispatch.subject}
+
+= render :partial => "show_nav"
+= render :partial => "header", :locals => {:dispatch => @dispatch}
+.inner-form.with-wide-sidebar
+  .column.wide-side
+    %strong= @clicks.total_entries
+    links clicked
+    %br/
+    %strong= number_to_percentage((@clicks.total_entries.to_f / @dispatch.messages.count) * 100.0, :precision => 2)
+    clicked a link
+
+  .column.main-small.last
+    %ul.item-list-compact
+      - @clicks.each do |click|
+        = big_list_item do
+          .item-title
+            %strong= link_to click.dispatch_link.uri, click.dispatch_link.uri, :target => "_"
+            %small Clicked on #{click.created_at.strftime('%B %e, %Y at %I:%M%p')} by IP address: #{click.ip}
+          .spacer
+
+  .spacer
+= render :partial => "forge/shared/section_footer", :locals => {:items => @clicks}

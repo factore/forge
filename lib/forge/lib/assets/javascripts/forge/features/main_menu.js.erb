@@ -1,0 +1,46 @@
+FORGE.features.mainMenu = {
+  init: function () {
+    $("#menu").on("click", ".normal .arrow", function () {
+      var $arrow = $(this),
+          klass = $arrow.attr("class").split(" ")[0],
+          status = $arrow.attr("class").split(" ")[2];
+      $(".forge_submenu." + klass).slideToggle(200);
+      if (status === "hide") {
+        $arrow.removeClass("hide");
+        $arrow.addClass("show");
+      } else {
+        $arrow.removeClass("show");
+        $arrow.addClass("hide");
+      }
+    });
+
+
+
+
+    // old forge menu
+    $('[class=forge-menu-link-wrap]').hover(
+      function() { $(this).find('.hover').fadeIn(); },
+      function() {
+        $(this).find('.hover').fadeOut();
+        $(this).find('.press').fadeOut();
+      }
+    );
+
+    $('.forge-menu-link-wrap').mousedown(function() {
+      $(this).find('.press').fadeIn(80);
+    });
+
+    $('.forge-menu-link-wrap .forge-menu-link.press').mouseup(function() {
+      $(this).find('.press').fadeOut(80);
+      window.location = $(this).find('a').attr('href');
+    });
+
+    $(".forge-submenu-link.normal a").click( function() {
+      $(".forge_submenu." + $(this).attr("class")).slideToggle("fast");
+      // rotate arrow
+      if ($(".forge-submenu-link.normal ." + $(this).attr("class") + " img").attr("src") == "<%= asset_path 'forge/menu-arrow-down.png' %>") { var arrow_image = "<%= asset_path 'forge/menu-arrow.png' %>" } else { var arrow_image = "<%= asset_path 'forge/menu-arrow-down.png' %>" }
+      $(".forge-submenu-link.normal ." + $(this).attr("class") + " img").attr("src", arrow_image);
+    });
+  }
+}
+

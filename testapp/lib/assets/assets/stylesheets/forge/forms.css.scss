@@ -1,0 +1,92 @@
+// shared form elements
+#form-header { background:image-url('forge/bg-form-gradient.jpg') repeat-x #5A5A5A; border-bottom:1px solid #464646; color:white; height:56px; padding:14px 20px 0px; @include rounded-top(5px);
+  div { float:left; }
+  .label { width:150px; margin-right:30px; }
+  .field_with_errors { @extend .label; }
+}
+input.title { width:510px; vertical-align:middle; font-size:26px; font-family:Helvetica, Arial, sans-serif;  }
+.explanation { font-size:12px; color:#c9c9c9; line-height:14px; margin-bottom:10px;
+  ul { list-style-position: inside;
+    li { margin-top: 8px; }
+  }
+}
+.inner-form { background-color:#5a5a5a; color:white; padding:0px 20px; position:relative; z-index:20;
+  a { color:white; }
+  p a { background:$red; }
+  .column { padding-top:31px; padding-bottom:21px;
+    h3 { margin-bottom:6px; }
+  }
+  .explanation a { background: none; color: white; padding: 0px;}
+  .side {
+    input[type=text] { width:90%;}
+    select { width:90%;}
+  }
+  .wide-side select { width: 90%; }
+}
+
+// Set the background for sidebar separation
+.inner-form.with-normal-sidebar, .inner-form.with-wide-sidebar { background-image:image-url('forge/sidebar-bg.jpg'); background-repeat: no-repeat; background-position: 135px 0px; }
+.inner-form.with-wide-sidebar { background-position: 245px 0px; }
+
+.ui-dialog-content {
+  h2, .explanation { color:#515151;}
+  hr { border:none; background:#BCBCBC; height:1px; }
+}
+label { display: block; font-size:16px; margin-bottom:6px; font-weight: bold; }
+
+// table forms
+table.form{font-size:10px;border-top:1px solid #BFBEAE;border-spacing:0px;border-collapse:collapse;padding:0px;margin:0px;width:100%;
+  tr {
+    td { border-bottom:1px solid #d2d0bf; padding:10px 6px; vertical-align:middle;
+      &.label { color:#665E59; font-size:14px; vertical-align:middle; width:30%; }
+      &.control { vertical-align:top; width:70%; }
+      img { vertical-align:middle; }
+    }
+  }
+}
+#new-asset-dialog table.form td {
+  &.label { width:20%; }
+  &.control { padding:10px 0px 6px; width:80%; }
+}
+
+// itemlist forms
+table.item-list { width:100%; border-collapse:collapse;
+  th { color:white; text-align:left; padding:5px 0px; background:image-url('forge/hr.jpg') bottom repeat-x;}
+  td { padding:3px 0px; }
+}
+
+// tabbed nav
+ul.tabbed { list-style:none; padding-left:10px; position:relative; z-index:10px;
+  li { float:left; background:#e5e8eb; font-weight:bold; margin-right:10px; padding:4px 20px 4px; position:relative; top:4px;
+    &:hover { top:0px; }
+    a { color:#5a5a5a;
+      &:hover { text-decoration:none; }
+    }
+    &.ui-state-active { background:#5a5a5a; top:0px; }
+    &.ui-state-active a { color:white;}
+  }
+}
+.ui-tabs-panel { position:relative; z-index:20; }
+.ui-tabs-hide { position:absolute; left:-9999px;}
+
+// pop-up forms
+.big-rounded { background:white; border:1px solid $content-grey; line-height:28px; height:28px; font-size:14px; padding:2px 10px; outline:none; width:360px; @include rounded(14px); @include box-shadow-inset(0px, 0px, 5px, $content-grey); }
+
+// attachment list, ie. gallery photos
+ul.attachment-list { @extend ul#assets; padding:20px 0; position:relative; left:-14px; width:740px;
+  li { min-height:180px; padding:10px; width:138px;
+    a { font-size:12px; text-transform:none; }
+  }
+  .extendable-inset img {
+    width: 126px;
+    height: auto;
+  }
+}
+
+// datetime widget
+.inset.datetime-widget { display: block; }
+
+.extendable-inset a, .inset a, .cke_editor a, .item-list-compact a { color:white; background:none; padding:none; }
+.extendable-inset { background:#4d4d4d; padding:5px; color:#9b9b9b; @include rounded(4px); }
+.extendable-inset a { color:white; }
+.extendable-inset.deep { padding:10px; @include box-shadow-inset(1px 1px 5px #303030);  }

@@ -1,0 +1,18 @@
+.column.full
+  .grey.half.float-left
+    %h2 Billing Address
+    %hr.serious
+    - if @order.billing_address
+      = render :partial => "orders/display_address", :locals => { :address => @order.billing_address, :address_type => 'billing_address' }
+    - else
+      %p No billing address provided.
+
+  .grey.half.float-right
+    %h2 Shipping Address
+    %hr.serious
+    - if @order.shipping_address
+      = render :partial => "orders/display_address", :locals => { :address => @order.shipping_address, :address_type => 'shipping_address', :show_company => true }
+    - else
+      %p No shipping address provided.
+
+  .spacer

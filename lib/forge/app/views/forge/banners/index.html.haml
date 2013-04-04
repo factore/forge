@@ -1,0 +1,16 @@
+- content_for :scripts do
+  = javascript_include_tag 'jquery.quickSearch.js', 'jquery.twoLevelSort.js'
+  :javascript
+    $(function() {
+      $('#quick-search').quickSearch({url: '#{forge_banners_path}'});
+
+      $('#item-list').forgeTwoLevelSort({callbackPath: '#{reorder_forge_banners_path}', itemArray: 'banner_list[]'});
+    });
+
+%h1 Your Banners
+
+%p This is a list of all the banners in your site.  You can add, edit, and delete banners here.
+
+= render :partial => "forge/shared/section_header", :locals => {:item => Banner}
+%ul#item-list= render :partial => "banner", :collection => @banners
+= render :partial => "forge/shared/section_footer", :locals => {:items => @banners}

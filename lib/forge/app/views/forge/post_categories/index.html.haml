@@ -1,0 +1,28 @@
+- content_for :scripts do
+  = javascript_include_tag 'jquery.quickSearch.js'
+  :javascript
+    $(function() {
+      $('#quick-search').quickSearch({url: '#{forge_post_categories_path}'});
+      FORGE.features.compact_form.init();
+    });
+
+%h1
+  Post Categories
+  = language_switcher(:post_categories)
+%p.info Add, edit, and delete post categories using the tools on this page.
+
+.inner-form.no-top.with-wide-sidebar
+  .column.wide-side
+    #form
+      - if can?(:create, PostCategory)
+        = render "form"
+      - else
+        You can't create post categories, but you can choose a post category on the right to edit.
+
+  .column.main-small.last
+    %h3 Existing Categories
+    .explanation You can edit or delete your existing categories here.
+    %ul.item-list-compact= render :partial => "post_category", :collection => @post_categories
+
+  .spacer
+= render :partial => "forge/shared/section_footer", :locals => {:items => @post_categories}

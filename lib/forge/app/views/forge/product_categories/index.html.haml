@@ -1,0 +1,32 @@
+- content_for :scripts do
+  = javascript_include_tag 'jquery.quickSearch.js', 'jquery.twoLevelSort.js'
+  :javascript
+    $(function() {
+      $('#quick-search').quickSearch({url: '#{forge_product_categories_path}'});
+
+      $('.item-list-compact').forgeTwoLevelSort({callbackPath: '#{reorder_forge_product_categories_path}', itemArray: 'product_category_list[]'});
+
+      FORGE.features.compact_form.init();
+    });
+
+%h1
+  Product Categories
+  = language_switcher(:product_categories)
+%p.info This is a list of all the product categories in your site.  You can add, edit, and delete product categories here.
+
+
+.inner-form.no-top.with-wide-sidebar
+  .column.wide-side
+    #form
+      - if can?(:create, ProductCategory)
+        = render "form"
+      - else
+        You can't create product categories, but you can choose a product category on the right to edit.
+
+  .column.main-small.last
+    %h3 Existing Product Categories
+    .explanation You can edit or delete your existing product categories here.
+    %ul.item-list-compact= render :partial => "product_category", :collection => @product_categories
+
+  .spacer
+= render :partial => "forge/shared/section_footer", :locals => {:items => @product_categories}

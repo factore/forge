@@ -1,0 +1,10 @@
+.comment{:class => cycle("", "alternate")}
+  %a{:name => "comment-#{comment.id}"}
+  .avatar= gravatar_for(comment)
+  .comment-text
+    %strong
+      On #{comment.created_at.strftime('%B %e %Y at %l%:%M %p')}
+      = link_to_if(!comment.author_url.blank?, comment.author, comment.author_url, :target => "_", :rel => "nofollow")
+      said:
+    = simple_format(comment.content)
+  .spacer

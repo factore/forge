@@ -1,0 +1,165 @@
+title: The Visual Editor
+slugs: visual_editor
+language: en
+status: published
+********************************************
+
+The visual editor gives you a wide range of control over the
+content on your website. It lets you edit content, format its
+appearance, create links, embed additional media like files and
+images, change the HTML code directly (not for the faint of heart)
+and automatically handle text pasted from Microsoft Word or other rich-text sources.
+
+
+## IMPORTANT: Pasting Content From Microsoft Word and Other Websites
+
+You should **never** paste content directly from Microsoft Word or other rich-text sources (such as other websites)
+into the content editor. Word contains many proprietary characters
+such as long dashes and wrapped quotation marks that will not
+display properly or at all on your website if you paste them in
+as-is.  Copying from other websites will also copy invisible HTML tags that will cause content to display incorrectly.
+
+Instead, if you'd like to copy and paste content from Word or other rich-text sources into
+your site, you should use the *Paste from Word* button:
+
+![image](assets/forge/help/word.png)
+
+This will open up a window where you can paste the content safely.
+Forge will automatically convert the extra characters for
+you.
+  
+<a name='formatting_text'></a>
+## Formatting Text
+
+You can bold, italicize, underline and strike-out your text using
+these buttons:
+
+
+![image](assets/forge/help/bold_italicize_underline.png)
+
+You can use these buttons in one of two ways: by highlighting the
+text you want formatted and clicking the button, or by clicking the
+button to turn the style on, typing some text, and clicking it
+again to turn off the style.
+
+**Web usability tip:** Most people associate underlined text with
+hyperlinks, so you may not want to use the underline formatting
+much, if at all.
+
+<a name='text_alignment'></a>
+## Text Alignment
+
+You can change the alignment of your text using these buttons:
+
+
+![image](assets/forge/help/alignment.png)
+
+Note that since we have already set up proper text alignment for
+the text on your website, you may use these buttons rarely, if
+ever.
+
+<a name='formatting_text'></a>
+## Bullets
+
+You can create bulleted and numbered lists using these buttons:
+
+
+
+![image](assets/forge/help/bullets.png)
+
+
+In the same way that the other formatting buttons work, you may
+click the button and start creating bullet points, or you can
+highlight text and then click the button to turn it into bullet
+points (each line of text will become one new bullet point).
+
+**Bullet point tip:** If you want to have more than one line inside
+your bullet points, hold down the Shift key when you press Enter at
+the end of the line. This lets you create a bullet like the first
+one in this list:
+
+
+-   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.   
+      
+    Sed diam nonummy nibh euismod tincidunt ut laoreet.
+-   Duis autem vel eum iriure dolor.
+
+
+<a name='hyperlinks'></a>
+## Hyperlinks
+
+Create hyperlinks by highlighting text and clicking the first of
+these buttons:
+
+
+
+![image](assets/forge/help/hyperlinks.png)
+
+
+A popup box will appear, where you can enter the URL of the
+hyperlink, the target of the link (which lets you make it so that
+it opens in a new window), and optionally the title of the link.
+
+To destroy a hyperlink, place the cursor on the link and click the
+second button.
+
+<a name='inserting_media'></a>
+## Inserting Media
+
+Forge lets you easily insert images and files into your content
+using this button:
+
+
+
+![image](assets/forge/help/media.png)
+
+
+This button will slide open the **Asset Drawer** and allow you to select the item that you wish to insert.  
+
+When you insert a file into your content, it will automatically
+create a hyperlink to that file.
+
+If you wish to change the destination of the link update the URL
+field.
+
+
+**Resizing images tip:** When you insert an image into your
+content, it will be presented at its actual size and resolution, so
+some resizing may be necessary for large images to ensure they
+don't break out of the main content area of the site. Typically,
+images shouldn't be wider than 530 pixels.
+
+The best way to ensure your images are the right size is to resize
+them before you upload them to the site. However, there are two
+ways to resize an image in the browser:
+
+1.  In the pop-up window, the second screen you see when selecting
+    images lets you specify image width and height, as well as text wrapping around the image.
+  
+    ![image](assets/forge/help/prepare.png)
+    
+
+2.  Once you've pasted an image into your content, you can resize
+    it directly in the visual editor by clicking it and using the
+    anchors on the image, or by double clicking on it.
+
+    
+
+<a name='html'></a>
+## Editing HTML Directly
+
+**Not recommended unless you have HTML editing experience,** the
+*Source* button lets you edit the source HTML code of your content
+directly:
+
+
+![image](assets/forge/help/html.png)
+
+Editing HTML gives you more control over the appearance of your
+content than any other method, but you'll need to know HTML (and
+CSS) to make this work. There are plenty of tutorials online if
+you'd like to start learning.
+
+<a name='word'></a>
+
+

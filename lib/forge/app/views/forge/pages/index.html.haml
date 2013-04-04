@@ -1,0 +1,25 @@
+- content_for :scripts do
+  = javascript_include_tag 'jquery.quickSearch.js'
+  :javascript
+    $(function() {
+      FORGE.features.pages.index();
+    })
+
+  - if can?(:manage, Page)
+    = javascript_include_tag 'jquery.twoLevelSort.js'
+    :javascript
+      $(function() {
+        $('#item-list').forgeTwoLevelSort({callbackPath: '#{reorder_forge_pages_path}'});
+      });
+
+%h1 Your Pages
+
+%p.info These are all of the regular pages in your site.  You can drag &amp; drop pages and subpages to change their order.
+
+= render :partial => "forge/shared/section_header", :locals => {:item => Page}
+= sorted_nested_li(@pages, :list_order) do |page|
+  - if page[0].parent_id
+    = render "subpage", :subpage => page[0]
+  - else
+    = render "page", :page => page[0]
+#item-list-bottom

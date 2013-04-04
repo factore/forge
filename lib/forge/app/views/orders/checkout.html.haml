@@ -1,0 +1,94 @@
+- content_for :scripts do
+  = javascript_include_tag 'forge/address_updater', 'forge/orders_checkout'
+
+%h1 Checkout
+- if @cart_order.products.size > 0  
+  %p 
+    You are ordering the following items.
+  
+  = error_messages_for :cart_order
+
+  = form_for(@cart_order) do |order_form|
+    %table.form{:border => 0, :width => "100%"}
+      %tr{:style => "font-weight: bold;"}
+        %td
+          Items
+        %td
+          Item Price
+        %td
+          Quantity
+        %td
+          Total  
+      - @cart_order.line_items.each do |line_item|
+        = order_form.fields_for :line_items, line_item do |line_item_fields|
+          %tr.cart-list
+            %td
+              = line_item.product.title    
+            %td
+              = number_to_currency(line_item.price)
+            %td
+              = line_item_fields.text_field :quantity, :size => 2
+            %td
+              = number_to_currency(line_item.total_price)
+
+      - if @cart_order.discount > 0
+        %tr
+          %td
+            Discount
+          %td
+          %td
+          %td
+            = number_to_currency(-1 * @cart_order.discount)
+          %td
+
+      %tr
+        %td{:colspan => 2}
+        %td Subtotal 
+        %td
+          = number_to_currency(@cart_order.price)
+
+      %tr
+        %td{:colspan => 2}
+        %td{:colspan => 2}
+          Shipping, handling and taxes will be displayed on the next page.
+
+      %tr.hide-if-javascript
+        %td{:colspan => 2}
+        %td After changing quantities, please click:
+        %td= submit_tag "Update Quantities"
+
+
+  %br/
+  %br/
+  = form_tag 'checkout'
+  %div{:style => "float:left; width:40%;"}
+    %h2 Billing Address 
+    = render :partial => "address_form", :locals => { :address => @billing_address, :address_type => 'billing_address' }
+
+  %div{:style => "float:right; width:40%;"}
+    %h2 Shipping Address
+    = check_box_tag "use_billing_for_shipping", "1", @use_billing_for_shipping 
+    My shipping address is the same as my billing address
+    = render :partial => "address_form", :locals => { :address => @shipping_address, :address_type => 'shipping_address', :show_company => true }
+
+  .spacer
+
+
+  %br/
+  %br/
+  .actions
+    %p{:style => "float: left"}
+      = link_to "<< Back to the store", products_path 
+    %p{:style => "float: right"}
+      = submit_tag "Next >>"
+      .spacer 
+        
+  - if MySettings.use_coupons?
+    %hr
+      = render :partial => "coupon"
+    
+- else
+  %p
+    There is nothing in your cart.  Why don't you 
+    %a{:href => "/products"}
+      add something?

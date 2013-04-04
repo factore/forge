@@ -1,0 +1,22 @@
+= form_for [:forge, @subscriber] do |f|
+  %h3 Name
+  .explanation Enter the subscriber's full name.
+  = f.text_field :name
+  %hr
+
+  %h3 Email
+  .explanation The subscriber's email address.
+  = f.text_field :email
+  %hr
+
+  - unless @groups.blank?
+    %h3 Groups
+    .explanation You can assign this subscriber to one or more groups.
+    - @groups.each do |group|
+      %label
+        .float-left= check_box_tag "subscriber[group_ids][]", group.id, @subscriber.group_ids.include?(group.id)
+        .float-left{:style => "width: 200px; margin-left: 3px;"}= group.title
+      .spacer
+    %br/
+
+  = button_link "Save", "javascript:;", :class => "submit button"

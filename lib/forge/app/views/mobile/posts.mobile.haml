@@ -1,0 +1,12 @@
+%h1 Posts
+#posts
+  - @posts.each do |post|
+    .post.inside{"data-url" => post_path(post)}
+      %h2= link_to post.title, post_path(post)
+      .date= post.created_at.strftime('%B %d, %Y')
+      = raw post.excerpt
+      .spacer
+
+- unless @posts.blank? || @posts.total_pages < 2
+  = will_paginate @posts, :previous_label => image_tag("mobile/arrow.png"), :next_label => image_tag("mobile/arrow.png"), :page_links => false
+  .spacer

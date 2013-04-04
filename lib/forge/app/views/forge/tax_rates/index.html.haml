@@ -1,0 +1,34 @@
+- content_for :scripts do
+  = javascript_include_tag 'jquery.quickSearch.js'
+  :javascript
+    $(function() {
+      $('div.edit a').click(function(e) {
+        var url = this.href;
+        FORGE.loadInDialog(url, {title: "Edit Tax Rate"});
+        e.preventDefault();
+      });
+    });
+
+%h1 Customize Forge: Tax Rates
+%p.info
+  Manage tax rates in this section. Tax rates are governed by laws and regulations, so please ensure you research
+  relevant tax codes before changing your tax rates.
+
+= error_messages_for :tax_rate
+
+.inner-form.no-top.with-wide-sidebar
+  .column.wide-side
+    %h3 New Tax Rate
+    .explanation
+      You can add a new tax rate with this form.
+    %hr
+
+    = render "form"
+
+  .column.main-small.last
+    %h3 Existing Tax Rates
+    .explanation You can edit or delete your existing tax rates here.
+    %ul.item-list-compact= render :partial => "tax_rate", :collection => @tax_rates
+
+  .spacer
+= render :partial => "forge/shared/section_footer", :locals => {:items => @tax_rates}

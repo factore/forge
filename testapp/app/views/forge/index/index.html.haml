@@ -1,0 +1,23 @@
+- content_for :scripts do
+  :javascript
+    $( function () {
+      FORGE.features.home_page.init();
+    })
+
+%h1 Welcome to Forge!
+
+- unless @warnings.empty?
+  .errorExplanation
+    %p
+      %strong Some items need your attention!
+    %ul
+      - @warnings.each do |warning|
+        %li= raw warning
+#index-buttons
+  .column.half{:style => "height: 170px;"}
+    = home_button("page", "Create a Page", "Add a regular page to your site.", new_forge_page_path)
+    = home_button("post", "Write a Post", "Add a new article to your site.", new_forge_post_path)
+  .column.half.last{:style => "height: 170px;"}
+    = home_button("asset", "Upload Assets", "Add multimedia assets (like photos and videos).", forge_assets_path)
+    = home_button("analytics", "Google Analytics", "View statistics about your site's visitors", 'http://google.com/analytics', :target => "_")
+  .spacer

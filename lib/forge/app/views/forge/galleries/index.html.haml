@@ -1,0 +1,17 @@
+- content_for :scripts do
+  = javascript_include_tag 'jquery.quickSearch.js', 'jquery.twoLevelSort.js'
+  :javascript
+    $(function() {
+      $('#quick-search').quickSearch({url: '#{forge_galleries_path}'});
+      $('#item-list').forgeTwoLevelSort({callbackPath: '#{reorder_forge_galleries_path}', itemArray: 'gallery_list[]'});
+    });
+  
+%h1 Your Galleries
+
+%p.info
+  This is a list of the image galleries in your site.  If your site only supports one image gallery, it will display the first gallery in this list.
+  Click on the title of the gallery to add new images and manage its existing ones.
+
+= render :partial => "forge/shared/section_header", :locals => {:item => Gallery}
+%ul#item-list= render :partial => "gallery", :collection => @galleries
+= render :partial => "forge/shared/section_footer", :locals => {:items => @galleries}

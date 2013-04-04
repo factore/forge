@@ -1,0 +1,45 @@
+%table.form{:cellspacing => 0, :width => '100%'}  
+  %tr
+    %td.label
+      Credit card number
+    %td
+      %input{:type => 'text', :name => 'credit_card[number]', :size => 30}
+  %tr
+    %td.label
+      Expiry
+    %td{:class => 'medium_select'}
+      =select_month(Date.today)
+      =select_year(Date.today, :start_year => (Time.now.year).to_i, :end_year => (Time.now.year + 8).to_i)
+  %tr
+    %td.label
+      Verification value (CVC2)
+    %td
+      %input{:type => 'text', :name => 'credit_card[verification_value]', :size => 4}
+      %small
+        The 3-digit code on the back of your card.
+  %tr
+    %td
+    %td
+      %input{:type => 'submit', :value => 'Pay Now'}
+      The charge to your credit card will be
+      = "#{number_to_currency(@cart_order.total_price)} #{Forge::Settings[:currency]}"
+  %tr
+    %td.label
+    %td{:style => "padding-top: 25px;"}
+      %p
+        %small
+          All prices are in
+          = Forge::Settings[:currency] + "."
+          Use of your data is governed by our
+          %a{:href => "/security-policy", :target => "_blank" }
+            Security Policy
+          and
+          %a{:href => "/privacy-policy", :target => "_blank" }
+            Privacy Policy.
+          Your order is subject to our
+          %a{:href => "/refund-policy", :target => "_blank" }
+            Refund Policy.
+      %p
+        %small
+          %strong Questions?
+          %a{:href => "/contact"} Contact us.

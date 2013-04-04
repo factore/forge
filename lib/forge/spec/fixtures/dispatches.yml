@@ -1,0 +1,8 @@
+unsent: 
+  subject: A valid dispatch
+  content: It has some links in it.  <a href="http://google.com">Here's a link</a> and <a href="http://google.com">here's another link</a> and the next one has an image <a href="http://google.com"><img src="/images/thingsandstuff.jpg" /></a>
+
+sent: 
+  subject: Also a valid dispatch
+  content: It has some links in it.  <a href="http://google.com">Here's a link</a> and <a href="http://google.com">here's another link</a> and the next one has an image <a href="http://google.com"><img src="/images/thingsandstuff.jpg" /></a>
+  sent_at: <%= Time.now - 1.day %>

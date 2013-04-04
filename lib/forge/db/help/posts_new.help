@@ -1,0 +1,10 @@
+title: Adding and Editing Posts
+slugs: posts_new, posts_edit, posts_update, posts_create
+language: en
+status: published
+********************************************
+Creating a new post or editing an existing one is simple. Start by typing in a title for the post if it doesn't have one already.  Once you have given your post a title, you can set a few other options. First, you can decide if you want your post to be published or not.  Unpublished posts can't be viewed by visitors to your website.  Second, you can set which categories your post will appear in.  Some sites don't have support for categories, so if that's the case with your site you can ignore this option.  Below that you can set whether or not you wish to allow comments on this particular post.  Again, some sites don't have support for comments at all, and if that's the case you can ignore this option completely.  Finally, you can determine the publish date and time for this post.  If you choose a date in the future the post won't be visible on your site until then.  This is a great way to pre-write a lot of content and have your site appear to be getting frequent updates.
+
+Once you've set the options, you're ready to write your post using [The Visual Editor][1]
+
+[1]: /forge/help/visual_editor   "The Visual Editor"

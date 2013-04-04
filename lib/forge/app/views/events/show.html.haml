@@ -1,0 +1,16 @@
+%h1= @event.title
+%dl
+  %dt Location
+  %dd= @event.location
+  %dt Date & Time
+  %dd
+    %time{ :datetime => @event.ends_at.iso8601 }= @event.display_date
+  = @event.description.html_safe
+- if @event.next || @event.previous
+  %dl
+    - if @event.next
+      %dt Next Event
+      %dd= link_to @event.next.title, url_for(@event.next)
+    - if @event.previous
+      %dt Previous Event
+      %dd= link_to @event.previous.title, url_for(@event.previous)

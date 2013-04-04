@@ -1,0 +1,46 @@
+- content_for :scripts do
+  :javascript
+    $(function() {
+      if ($("#settings_flat_rate_shipping_true").is(":checked")) {
+        $(".canada-post").hide();
+      }
+      $('#tabs').tabs({selected: #{@tab}});
+      clearUIClasses();
+      $(".flat-rate-toggle input:radio").change( function() {
+        if ($("#settings_flat_rate_shipping_true").is(":checked")) {
+          $(".canada-post").fadeOut(100);
+        } else {
+          $(".canada-post").fadeIn(100);
+        }
+      });
+    });
+
+%h1 Customize Forge: Site Settings
+%p.info You can update general site settings on this page.  Exercise caution, changing some of these settings could cause unintended consequences.
+
+= form_tag({:action => :update}, :method => "PUT") do
+  #tabs
+    %ul.tabbed
+      %li= link_to "General Settings", '#general'
+      - if Forge::Settings[:mobile_layout]
+        %li= link_to "Mobile Settings", '#mobile'
+      - if @menu_items.include?("video_feeds")
+        %li= link_to "Video Feed Settings", '#video'
+      - if @menu_items.include?("products")
+        %li= link_to "eCommerce Settings", '#ecommerce'
+    .spacer
+
+    #general= render :partial => "general"
+    - if Forge::Settings[:mobile_layout]
+      #mobile= render :partial => "mobile"
+    - if @menu_items.include?("video_feeds")
+      #video= render :partial => "video_feed"
+
+    - if @menu_items.include?("products")
+      #ecommerce= render :partial => "ecommerce"
+
+
+  #item-list-bottom
+    .float-right
+      Everything look good?
+      = button_link "Save", "javascript:;", :class => "submit button"

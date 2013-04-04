@@ -1,0 +1,49 @@
+// main menu
+#menu { float:left; margin-top:0px; padding-bottom:20px; width:170px; }
+
+.forge-menu-item { background:#d8e0e3; font-family:$fancy_font; font-size:16px; margin-bottom:10px; padding:0; width:160px; @include rounded(4px); @include box-shadow(0px, 0px, 4px, #9a9a9a);
+  &.no-submenu .forge-menu-link { width:150px; @include rounded(4px); }
+
+  .arrow { background:#d8e0e3; border-left:1px solid #C0C6C9; display:block; float:right; height:40px; width:29px; @include rounded-right(4px);
+    .icon { background:image-url("forge/buttons/forge-menu-arrows.png") no-repeat; height:10px; margin:0 auto; position:relative; top:15px; width:10px; }
+  }
+
+  .forge-menu-link { color:$black; display:block; float:left; height:40px; line-height:40px; padding-left:10px; width:120px; @include rounded-left(4px);
+    &:hover { text-decoration:none; }
+  }
+
+  &.normal {
+    a {
+      &:link { background:#d8e0e3; }
+      &:hover { background:#e9eef4; }
+      &:active { line-height:42px; @include box-shadow-inset(2px, 2px, 4px, $content-grey); }
+    }
+    .arrow { @include transition(opacity, .25s, linear);
+      &.show { opacity:1;
+        .icon { border:0; background-position:0px -10px; }
+      }
+      &:link { opacity:0.4; }
+      &:hover { opacity:1; }
+      &:active { @include box-shadow-inset(-2px, 2px, 4px, $content-grey);
+        .icon { top:16px; }
+      }
+    }
+  }
+
+  &.active { background:white;
+    a { color:$red; }
+    .arrow { background:white; border-left:1px solid #DBDFE2; opacity:1;
+      .icon { background-position:0px -20px; }
+    }
+  }
+}
+
+.forge_submenu { color:#494949; display:none; margin:0 0 10px 14px;
+  &.active { display:block; }
+  a { color:$black; display:block; line-height:24px; position:relative;
+    &:hover { color:$red; text-decoration:none; }
+    &:active { top:1px; }
+    &.active { color:$red; }
+  }
+}
+

@@ -1,0 +1,17 @@
+%p You have received a message!  Reply to this email to get in touch with the person who sent it.
+
+%p
+  Name:
+  = @contact.name
+  %br/
+  Email:
+  = @contact.email
+  - unless @contact.phone.blank?
+    %br/
+    Phone:
+    = @contact.phone
+
+%p
+Message:
+%br/
+= @contact.content

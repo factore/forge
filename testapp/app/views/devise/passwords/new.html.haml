@@ -1,0 +1,15 @@
+%h2 Forgot your password?
+= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
+  #login-box-top
+  #login-box
+    = devise_error_messages!
+    %p
+      = f.label :email, :class => "font"
+      = f.text_field :email
+    %p
+      %label &nbsp;
+      = f.submit "Send me reset password instructions"
+  #login-box-bottom
+
+%p{:style => "text-align: right; margin-top: 10px; font-size: 12px;"}
+  = link_to "Sign In", new_session_path(resource_name)

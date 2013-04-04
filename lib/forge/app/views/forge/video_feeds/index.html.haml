@@ -1,0 +1,15 @@
+- content_for :scripts do
+  = javascript_include_tag 'jquery.quickSearch.js'
+  :javascript
+    $(function() {
+      $('#quick-search').quickSearch({url: '#{forge_video_feeds_path}'});
+    });
+
+%h1 Videos from your feed
+
+%p This is a list of all the videos imported from your video feed.
+
+
+= render :partial => "forge/shared/section_header", :locals => {:item => VideoFeed, :options => {:show_new => false}}
+%ul#item-list= render :partial => "video", :collection => @videos
+= render :partial => "forge/shared/section_footer", :locals => {:items => @videos}

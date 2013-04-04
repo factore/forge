@@ -1,0 +1,8 @@
+= big_list_item(:class => "top", :id => "#{<%= singular_name %>.id}") do
+  .item-title
+    %strong= <%= singular_name %>.title
+  .item-actions
+    = edit_link(<%= singular_name %>, true, true)
+    = delete_link(<%= singular_name %>, true, true)
+
+  .spacer

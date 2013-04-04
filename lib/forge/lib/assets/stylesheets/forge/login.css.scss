@@ -1,0 +1,38 @@
+/*
+/*= require_self
+*/
+
+// universal variables
+$red:#e70a0a;
+$black:#5c5c5c;
+$content-grey:#cdd2d6;
+$font:"Helvetica Neue",Helvetica, Arial,sans-serif;
+$fancy-font:'Open Sans', Helvetica, Arial, Sans-Serif;
+
+@import 'mixins.css.scss';
+@import 'forge/defaults.css.scss';
+@import 'forge/flash_messages.css.scss';
+@import 'forge/radio_slider.css.scss';
+@import 'forge/buttons.css.scss';
+
+/*------------ layout ---------- */
+#top-shadow { background:image-url('forge/bg-shadow-login.jpg') top center no-repeat; border-top:10px solid #ccd2d6; min-height:350px; width:100%; }
+#container { margin:0px auto; padding-top:100px; text-align:center; width:520px; }
+.logo { height:88px; width:202px; }
+
+/*--------- login box ------------- */
+#login-box { background:$content-grey; margin-top:20px; padding:10px; text-align:left; @include rounded(5px); @include box-shadow(0px, 0px, 4px, $black);
+  form { background:white; padding-top:20px; @include rounded(5px); @include box-shadow(0px, 0px, 4px, #9a9a9a);
+    .row { margin-bottom:10px;
+      input[type=text] { background:#e1e1e1; border:0; color:$black; font-family:$fancy-font; font-size:14px; height:26px; line-height:18px; padding:4px 10px; outline:none; width:220px; @include rounded(18px); @include box-shadow-inset(2px, 2px, 2px, #9a9a9a); }
+      input[type=password] { @extend input[type=text]; }
+      label { display:inline-block; margin-right:10px; text-align:right; width:180px; }
+      .button { margin:10px 0px 10px 196px; }
+    }
+  }
+  .bottom { background:#5a5a5a; color:white; padding:10px 0; @include rounded-bottom(5px);
+    span.label { display:block; float:left; height:30px; line-height:30px; margin-right:12px; text-align:right; width:180px; }
+    #inset { float:left; }
+    label { width:auto; }
+  }
+}

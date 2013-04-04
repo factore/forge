@@ -1,0 +1,69 @@
+book_of_bad_puns:
+  title: "Factore's Bad Puns"
+  short_description: All the bad jokes in one place.
+  description: They might be bad but they will also make you laugh.
+  price: 100.00
+  flat_rate_shipping: 8.00
+  weight: 0.10
+  width: 1
+  height: 2
+  depth: 0.3
+  published: true
+  product_category: books
+  tax_rates: hst 
+tiny_digital_man:
+  title: Tiny Digital Man
+  short_description: Tiny digital men.
+  description: "We captured these tiny digital men on a recent safari, and placed them in specially designed tiny plastic prisons. They require constant attention and we need to get rid of them. Please take one home today."
+  price: 29.99
+  flat_rate_shipping: 3.00
+  weight: 10.0
+  published: true
+  product_category: widgets
+  tax_rates: hst, gst 
+map_of_peninsula:
+  title: Map of the Peninsula
+  short_description: It is a map
+  description: Of the peninsula
+  price: 10.00
+  flat_rate_shipping: 0.00
+  weight: 10.0
+  width: 2
+  height: 4.3
+  depth: 0.1
+  published: true
+  product_category: maps
+  tax_rates: hst, ny_sales
+washer:
+  title: Washer
+  short_description: "It's a washer"
+  description: that washes stuff
+  price: 100.00
+  flat_rate_shipping: 0.00
+  weight: 10.0
+  published: true
+  product_category: widgets
+  tax_rates: hst
+shovel:
+  title: Shovel
+  short_description: "It's a shovel"
+  description: that digs stuff
+  price: 5.00
+  flat_rate_shipping: 4.00
+  weight: 10.0
+  product_category: maps
+  published: true
+  tax_rates: 
+with_seo:
+  title: Shovel
+  short_description: "It's a shovel"
+  description: that digs stuff
+  price: 5.00
+  flat_rate_shipping: 4.00
+  weight: 10.0
+  product_category: maps
+  published: true
+  tax_rates:
+  seo_title: A Great Shovel
+  seo_keywords: "dig,digging"
+  seo_description: "Hello!"

@@ -1,0 +1,34 @@
+%p{:style => "font-size: 12px;"}
+  To place <strong>#{@asset.title}</strong>, first make sure you're happy with the options below.  Next, set the cursor where you want the asset to appear (you can drag this dialog out of
+  the way) and click the "Place Asset" button.
+
+= form_tag(place_forge_asset_path(@asset), :id => "place-asset") do
+  %table.form
+    - if @asset.is_image?
+      = form_row("Width") { text_field_tag "options[width]", @asset.dimensions(:medium)[0] }
+      = form_row("Height") { text_field_tag "options[height]", @asset.dimensions(:medium)[1] }
+      %tr
+        %td.label Align Image
+        %td
+          %label
+            = radio_button_tag "options[wrap]", "left", :checked => true
+            Align Image Left
+        
+          %label
+            = radio_button_tag "options[wrap]", "right"
+            Align Image Right
+        
+          %label
+            = radio_button_tag "options[wrap]", "none"
+            No Alignment
+          %br/
+          %small If you're trying to wrap text around an image, it works best to place the cursor at the beginning of the paragraph.
+    - else
+      = form_row("Link Text") { text_field_tag "options[title]", "#{@asset.title} (#{number_to_human_size(@asset.attachment_file_size)})", :style => "background: url(#{asset_path 'forge/input-overlay.jpg'}); border: 0; width: 354px; height: 34px; font-size: 14px; padding: 0px 10px; outline: none;" }
+  
+    = form_row { submit_tag "Place Asset" }
+- if @asset.is_image?
+  :javascript
+    FORGE.features.assets.dialog.config.$base_width   = #{@asset.dimensions(:medium)[0]};
+    FORGE.features.assets.dialog.config.$base_height  = #{@asset.dimensions(:medium)[1]};
+    

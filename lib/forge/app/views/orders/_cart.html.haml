@@ -1,0 +1,26 @@
+%ul#cart_items
+- if order && order.line_items.size > 0
+  = form_for(order) do |order_form|
+    - order.line_items.each do |line_item|
+      %li
+        %em{:style => "font-size: 12px;"}
+          = line_item.product.title
+          = order_form.fields_for :line_items, line_item do |line_item_fields|
+            = line_item_fields.text_field :quantity, :size => 2
+        %br
+        %small
+          = number_to_currency(line_item.price) + " each"
+          &nbsp;|&nbsp;
+          = link_to "Remove", remove_from_cart_order_path(order, :line_item_id => line_item.id), { :method => :delete, :confirm => "Are you sure you want to remove this product from your cart?" }
+    = submit_tag "Update Quantities" 
+  %li 
+    %strong Subtotal:
+    = "#{number_to_currency(order.price)} #{MySettings.currency}"
+  %br/
+
+  - unless params[:action] == "checkout"
+    %br/
+    = link_to "Proceed to checkout", "/orders/checkout"
+      
+- else
+  %li.empty_cart Your cart is empty.

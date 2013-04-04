@@ -1,0 +1,34 @@
+- paypal_account = MySettings.ecommerce_live ? Forge::Settings[Rails.env.to_sym][:paypal][:account] : Forge::Settings[:development][:paypal][:account]
+= form_tag ActiveMerchant::Billing::Integrations::Paypal.service_url do
+  = hidden_field_tag "business", paypal_account
+
+  = hidden_field_tag "cancel_return", "http://" + request.host + "/orders/cancel"
+  = hidden_field_tag "notify_url", "http://" + request.host + "/hosted_payment/notify"
+  = hidden_field_tag "return", "http://" + request.host + paid_order_path(@cart_order, :key => @cart_order.key)
+    
+  = hidden_field_tag "redirect_cmd", "_xclick"
+  = hidden_field_tag "cmd", "_cart"
+  = hidden_field_tag "upload", 1
+
+  = hidden_field_tag "charset", "utf-8"
+
+  = hidden_field_tag "currency_code", Forge::Settings[:currency]
+  = hidden_field_tag "invoice", invoice_number_for_paypal(order)
+  = hidden_field_tag "tax_cart", order.tax
+  - if MySettings.use_coupons
+    = hidden_field_tag "discount_amount_cart", order.discount
+  = hidden_field_tag "item_name", "Order #{invoice_number_for_paypal(order)}"
+  = hidden_field_tag "handling_cart", order.shipping_and_handling
+
+  - i = 1
+  - order.line_items.each do |item|
+    = hidden_field_tag "item_name_#{i}", item.product.title
+    = hidden_field_tag "amount_#{i}", item.price
+    = hidden_field_tag "quantity_#{i}", item.quantity
+    = hidden_field_tag "tax_#{i}", 0
+    - i += 1
+
+  = hidden_field_tag "no_note", 0
+  = hidden_field_tag "no_shipping", 2
+
+  = submit_tag 'Pay With Paypal', :class => "order-button"

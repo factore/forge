@@ -1,0 +1,13 @@
+- show_company ||= false
+%table.address
+  = table_row "First Name", address.first_name
+  = table_row "Last Name", address.last_name
+  = table_row "Company", address.company if show_company
+  = table_row "Address Line 1", address.address1
+  = table_row "Address Line 2", address.address2
+  = table_row "City", address.city
+  = table_row "Province", address.province ? address.province.title : ""
+  = table_row "Country", address.country ? address.country.title : ""
+  = table_row "Postal Code", address.postal
+  = table_row "Email", address.email
+  = table_row "Phone", number_to_phone(address.phone)

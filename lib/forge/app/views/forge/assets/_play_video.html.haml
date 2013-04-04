@@ -1,0 +1,4 @@
+%div{:style => "width: 660px; height: 500px;"}
+  %video{ :src => @asset.attachment.url, :width => "640", :height => "480" }
+:javascript
+  $('video').mediaelementplayer(/* Options */);

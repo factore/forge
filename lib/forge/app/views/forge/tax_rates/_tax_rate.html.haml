@@ -1,0 +1,12 @@
+= big_list_item do
+  .item-title.tax-rate
+    = raw "#{tax_rate.country.title} - #{tax_rate.province ? tax_rate.province.title : "All"} - <strong>#{number_to_percentage(tax_rate.rate, :precision => 2)} #{tax_rate.title}</strong>"
+  .item-actions
+    .item-action.edit<
+      = link_to icon_tag('edit'), edit_forge_tax_rate_path(tax_rate)
+      %small= link_to "Edit", edit_forge_tax_rate_path(tax_rate)
+    .item-action.last<
+      = link_to icon_tag('trash'), forge_tax_rate_path(tax_rate), :method => :delete, :confirm => "Are you sure?"
+      %small= link_to "Delete", forge_tax_rate_path(tax_rate), :method => :delete, :confirm => "Are you sure?"
+  
+  .spacer

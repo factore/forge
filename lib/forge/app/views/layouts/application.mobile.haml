@@ -1,0 +1,52 @@
+!!! Strict
+%html{ :lang => "en" }
+  %head
+    %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "Content-Type" }/
+    %meta{:name => "viewport", :content => "width = device-width"}
+    %meta{:name => "viewport", :content => "initial-scale=1"}
+    %meta{:name => "viewport", :content => "width=100%"}
+    %meta{:name => "viewport", :content => "initial-scale=1.0"}
+    %meta{:name => "viewport", :content => "maximum-scale=1"}
+    %meta{:name => "viewport", :content => "minimum-scale=1"}
+    %meta{:name => "viewport", :content => "user-scalable=no"}
+
+    = raw seo_meta_tags
+    %title
+      = @page_title + " | " if @page_title
+      = MySettings.site_title
+    = csrf_meta_tag
+    = stylesheet_link_tag 'mobile'
+    %style
+      ="body { border-top-color:#{mobile_color}; }"
+      = "a { color:#{mobile_color}; }"
+      ="#navigation li.active a { color:#{mobile_color}; }"
+      =".button.red { background-color:#{mobile_color}; }"
+      =".button.red:active { background-color:#{mobile_color}; }"
+
+    = javascript_include_tag "front"
+    :javascript
+      $( function () {
+        APP.features.mobile.init();
+      });
+    = yield :scripts
+
+  %body
+    #head
+      .menu= link_to image_tag("mobile/arrow.png"), "#", :class => "button navigation left"
+      = link_to mobile_logo, "/", :class => "logo right"
+      .spacer
+
+    = render "mobile/navigation"
+
+    #content
+      = flash_messages
+      = yield
+
+    #foot
+      %p= raw MySettings.mobile_address_1
+      %p= raw MySettings.mobile_address_2
+      %p= raw MySettings.mobile_address_3
+      %p= raw MySettings.mobile_address_4
+      %p= raw MySettings.mobile_address_5
+
+    = raw MySettings.google_analytics unless MySettings.google_analytics.blank?

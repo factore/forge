@@ -1,0 +1,14 @@
+= big_list_item(:class => "top", :id => "#{sale.id}") do
+  .item-title
+    %strong= sale.title
+  .item-actions
+    .item-action<
+      = link_to image_tag('forge/icons/edit.png'), edit_forge_sale_path(sale)
+      %br/
+      %small= link_to "Edit", edit_forge_sale_path(sale)
+    .item-action.last<
+      = link_to image_tag('forge/icons/delete.png'), forge_sale_path(sale), :method => :delete, :confirm => "Are you sure?"
+      %br/
+      %small= link_to "Delete", forge_sale_path(sale), :method => :delete, :confirm => "Are you sure?"
+  
+  .spacer

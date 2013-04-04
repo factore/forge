@@ -1,0 +1,28 @@
+#form-header= f.title_field :title, :class => 'title', :explanation => "Give your product a title."
+
+.inner-form.with-normal-sidebar
+  .column.side
+    %label Publish
+    .explanation Is your product ready to appear on your website?
+    = slider("Yes", f.radio_button(:published, true), "Not Yet", f.radio_button(:published, false))
+    %hr
+
+    = f.super_label :product_category_id, "Category"
+    .explanation The category this product belongs to.
+    = f.collection_select :product_category_id, @categories, :id, :title, {}, {:style => "width: 100%;"}
+    %hr
+
+    = f.text_field :price, :size => 6, :value => number_with_precision(@product.price, :precision => 2), :explanation => "Enter a price for the product, e.g. 12.99"
+
+    %label Featured
+    .explanation Show this product more prominently?
+    = slider("Sure", f.radio_button(:featured, true, :checked => true), "Nope", f.radio_button(:featured, false))
+    %hr
+
+    = f.text_area :options, :style => "width: 100%", :rows => 10, :explanation => "You can specify options like colour or size, but you have to do it in a specific way. <a href='#' class='help-toggle'>Learn How.</a>", :last => true
+
+  .column.main.last
+    = f.text_area :short_description, :style => "width: 100%; height: 60px;", :label => "Provide Your Product&#39;s Short Description", :explanation => "This is typically used in lists and search results. Write a short, compelling paragraph."
+    = f.cktext_area :description, :width => '100%', :height => '430px;', :label => "Compose &amp; Format Your Product&#39;s Primary Description"
+
+  .spacer

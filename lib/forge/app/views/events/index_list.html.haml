@@ -1,0 +1,9 @@
+%h1 Listing Events
+- @events.each do |month, events|
+  %h2= month
+  %ul
+    - events.each do |event|
+      %li
+        = link_to event.title, url_for(event)
+        %small
+          = event.display_date

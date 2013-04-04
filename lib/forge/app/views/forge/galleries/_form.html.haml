@@ -1,0 +1,31 @@
+- content_for :scripts do
+  :javascript
+    $(function() {
+      FORGE.features.nestedFields.init('#photos', {after: function() { FORGE.features.nestedFields.reorganize(4, '#photos-list li'); }});
+      FORGE.features.nestedFields.reorganize(4, '#photos-list li');
+    });
+
+= error_messages_for :gallery
+
+= form_for [:forge, @gallery], :builder => ForgeFormBuilder do |f|
+  #form-header= f.title_field :title, :explanation => "Give your gallery a title.", :class => 'title'
+
+  .inner-form
+    #photos{:style => "padding: 20px 0px;"}
+      %h3 Photos
+      %p
+        Add as many photos as you like to this gallery.  You can drag and drop to re-order them, or
+        = add_child_link("add another one.", :photos)
+        Any changes you make (adding, removing, replacing, or re-ordering) will not take effect until you click
+        %strong Save.
+
+        %ul#photos-list.sortable.attachment-list
+          = f.fields_for :photos, @gallery.photos do |pf|
+            = render :partial => "photo", :locals => {:f => pf}
+        .spacer
+        = new_child_fields_template(f, :photos, :partial => "photo")
+
+  #item-list-bottom
+    .float-right
+      Everything look good?
+      = button_link "Save", "javascript:;", :class => "submit button"

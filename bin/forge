@@ -1,0 +1,81 @@
+#!/usr/bin/env ruby
+require 'gli'
+require 'forge-cli'
+include GLI::App
+
+program_desc 'Forge command suite for creating apps and installing modules'
+version ForgeCli::VERSION
+
+
+#############################
+#
+# Creating a new app
+#
+#############################
+desc 'Create a new Forge app'
+command :new do |c|
+
+  c.desc 'Comma separated list of modules you wish to install'
+  c.arg_name 'list,of,modules'
+  c.flag [:m,:modules]
+
+  c.action do |global_options,options,args|
+    help_now!('App name is required (eg. forge new blogsite)') if args.empty?
+    ForgeCLI::ApplicationCreator.create!(args.shift)
+  end
+end
+
+
+#############################
+#
+# Installing a module into
+# an existing app
+#
+#############################
+desc 'Describe install here'
+arg_name 'Describe arguments to install here'
+command :install do |c|
+  c.action do |global_options,options,args|
+    puts "install command ran"
+  end
+end
+
+
+#############################
+#
+# Listing the modules
+#
+#############################
+desc 'List the available modules'
+command :list do |c|
+  c.action do |global_options, options, args|
+    puts "The following Forge modules are available: \n"
+    ForgeCLI::MODULES.each do |mod|
+      puts "  - #{mod}" unless mod == "base"
+    end
+  end
+end
+
+
+pre do |global,command,options,args|
+  # Pre logic here
+  # Return true to proceed; false to abort and not call the
+  # chosen command
+  # Use skips_pre before a command to skip this block
+  # on that command only
+  true
+end
+
+post do |global,command,options,args|
+  # Post logic here
+  # Use skips_post before a command to skip this
+  # block on that command only
+end
+
+on_error do |exception|
+  # Error logic here
+  # return false to skip default error handling
+  true
+end
+
+exit run(ARGV)

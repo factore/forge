@@ -1,0 +1,23 @@
+%h1 Unsubscribes: #{@dispatch.subject}
+
+= render :partial => "show_nav"
+= render :partial => "header", :locals => {:dispatch => @dispatch}
+.inner-form.with-wide-sidebar
+  .column.wide-side
+    %strong= @unsubscribes.total_entries
+    unsubscribes
+    %br/
+    %strong= number_to_percentage((@unsubscribes.total_entries.to_f / @dispatch.messages.count) * 100.0, :precision => 2)
+    unsubscribed
+
+  .column.main-small.last
+    %ul.item-list-compact
+      - @unsubscribes.each do |unsubscribe|
+        = big_list_item do
+          .item-title
+            %strong= mail_to unsubscribe.email, unsubscribe.email, :target => "_"
+            %small unsubscribed on #{unsubscribe.created_at.strftime('%B %e, %Y at %I:%M%p')}
+          .spacer
+
+  .spacer
+= render :partial => "forge/shared/section_footer", :locals => {:items => @unsubscribes}

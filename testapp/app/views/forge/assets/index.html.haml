@@ -1,0 +1,21 @@
+- content_for :scripts do
+  = javascript_include_tag 'jquery.quickSearch.js'
+  :javascript
+    $(function() {
+      $('#quick-search').quickSearch({url: '#{forge_assets_path}', holder: $('#asset-list ul')});
+      $('a.new-button').click(function(e) {
+        FORGE.features.assets.dialog.showNew('#new-asset');
+        e.preventDefault();
+      });
+
+    });
+
+%h1 Assets
+= render :partial => "forge/shared/section_header", :locals => {:item => Asset}
+#asset-list.assets
+  %ul#assets
+    = render :partial => "asset", :collection => @assets
+  .spacer
+= render :partial => "forge/shared/section_footer", :locals => {:items => @assets}
+
+#new-asset{:style => "display: none;"}

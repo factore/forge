@@ -1,0 +1,5 @@
+- unless @months.blank?
+  %h3 Archives
+  %ul
+    - @months.each do |month|
+      %li= link_to month[:title], month[:link]

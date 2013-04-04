@@ -1,0 +1,56 @@
+- content_for :scripts do
+  :javascript
+    $(function() {
+      //$('input.start-datepicker').datepicker();
+      //$('input.end-datepicker').datepicker();
+
+      var dates = $( "#from, #to" ).datepicker({
+        defaultDate: "+1w",
+        changeMonth: true,
+        numberOfMonths: 1,
+        onSelect: function( selectedDate ) {
+          var option = this.id == "from" ? "minDate" : "maxDate",
+            instance = $( this ).data( "datepicker" ),
+            date = $.datepicker.parseDate(
+              instance.settings.dateFormat ||
+              $.datepicker._defaults.dateFormat,
+              selectedDate, instance.settings );
+          dates.not( this ).datepicker( "option", option, date );
+        }
+      });
+
+      $('.preview').click(function() {
+        for ( instance in CKEDITOR.instances )
+          CKEDITOR.instances[instance].updateElement();
+
+        var form = $('form');
+        var vals = form.serialize();
+        var old_action = form.attr('action');
+        form.attr({action: '/events/preview', target: '_blank'}).submit();
+        form.attr({action: old_action, target: ''});
+
+        e.preventDefault();
+      })
+    })
+
+= error_messages_for :event
+
+= form_for [:forge, @event], :builder => ForgeFormBuilder do |f|
+  #form-header= f.title_field :title, :explanation => "Give your event a title.", :class => 'title'
+
+  .inner-form.with-normal-sidebar
+    .column.side
+      = f.text_field :location
+      = f.datetime_widget :starts_at, :label => "Start Date/Time"
+      = f.datetime_widget :ends_at, :label => "End Date/Time"
+      = publish_box(f, @event)
+
+
+    .column.main.last
+      = f.cktext_area :description, :width => '100%', :height => '300px;'
+    .spacer
+
+  #item-list-bottom
+    .float-right
+      Everything look good?
+      = button_link "Save", "javascript:;", :class => "submit button"

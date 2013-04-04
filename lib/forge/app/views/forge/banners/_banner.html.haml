@@ -1,0 +1,7 @@
+= big_list_item(:class => "top", :id => "#{banner.id}") do
+  .item-title{:class => row_class(banner)}
+    %strong= banner.title
+  .item-actions
+    = edit_link(banner)
+    = delete_link(banner)
+  .spacer

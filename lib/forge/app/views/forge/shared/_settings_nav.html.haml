@@ -1,0 +1,6 @@
+%ul.tabbed
+  %li{:class => ("ui-state-active" if params[:controller] == "forge/settings")}= link_to "Site Settings", forge_settings_path
+  %li{:class => ("ui-state-active" if params[:controller] == "forge/post_categories")}= link_to "Post Categories", forge_post_categories_path
+  %li{:class => ("ui-state-active" if params[:controller] == "forge/countries")}= link_to "Countries", forge_countries_path
+  %li{:class => ("ui-state-active" if params[:controller] == "forge/tax_rates")}= link_to "Tax Rates", forge_tax_rates_path
+.spacer

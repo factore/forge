@@ -1,0 +1,30 @@
+= big_list_item(:class => "top", :id => "#{video.id}") do
+  .item-title{:class => row_class(video)}
+    %strong= video.list_title
+    %br/
+    %small
+      #{video.encoded_state.titleize}
+  .item-actions
+    - unless video.output_url.blank?
+      .item-action
+        = link_to image_tag("forge/icons/right-arrow.png"), play_forge_video_path(video), :class => 'fancybox notitle'
+        %br/
+        %small= link_to("Play", play_forge_video_path(video), :class => 'fancybox')
+    - unless video.mobile_output_url.blank?
+      .item-action
+        = link_to image_tag("forge/icons/right-arrow.png", :alt => nil), play_forge_video_path(video, :mobile => 1), :class => 'fancybox notitle'
+        %br/
+        %small= link_to("Play Mobile", play_forge_video_path(video, :mobile => 1), :class => 'fancybox')
+    - if video.encoded_state == "unencoded"
+      .item-action
+        = link_to image_tag("forge/icons/gear-alt.png", :alt => nil), encode_forge_video_path(video)
+        %br/
+        %small= link_to "Encode", encode_forge_video_path(video)
+    - elsif video.encoded_state == "queued"
+      .item-action{:style => "opacity: 0.7"}
+        = image_tag("forge/icons/gear-alt.png")
+        %br/
+        %small{:style => "color: #C8C8C8"}= "Encoding..."
+    = edit_link(video)
+    = delete_link(video)
+  .spacer

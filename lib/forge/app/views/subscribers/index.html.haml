@@ -1,0 +1,22 @@
+.callout Our Newsletter
+= flash_messages
+%p You can manage your subscription to our newsletter here.
+
+%h2 Subscribe
+
+= error_messages_for :subscriber, :header_message => nil
+
+- form_for(@subscriber, :url => { :action => :create }) do |f|
+  %table.itemlist
+    = form_row("Name", :required => true) { f.text_field :name }
+    = form_row("Email", :required => true) { f.text_field :email }
+    = form_row { f.submit "Subscribe" }
+
+%h2 Unsubscribe
+
+- form_tag('/subscribe/destroy') do
+  %table.itemlist
+    = form_row("Email", :required => true) { text_field_tag :email }
+    = form_row { submit_tag "Unsubscribe" }
+
+%br/

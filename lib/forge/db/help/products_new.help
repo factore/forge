@@ -1,0 +1,50 @@
+title: Adding and Editing Products
+slugs: products_new
+language: en
+status: published
+********************************************
+
+This is handled by three different tabs: the *Product Details* tab, the *Product Images* tab, and the *Taxes & Shipping* tab.
+
+The Product Details Tab
+-----------------------
+
+* Title: this is the name of your product.
+* Short description: the short description of your product is used in lists, search results, and in places where a long description wouldn't fit.
+* Primary description: put your writing skills into good use and write the most compelling description you can.  This is where you convince people to buy!
+* Publish: whether or not your product is ready for sale.
+* Category: the category that your product belongs to.  You can manage categories in the [Product Categories][1] section.
+* Price: the price, not including taxes or shipping.
+* Featured: whether or not the product is given special prominence on your site.
+
+
+**Options**
+
+Options follow a simple format called YAML. Creating options is easy, just enter the name of attribute with a colon after it, and then underneath it indent each option with two spaces and a hyphen. For example, if you had a shirt and you wanted to allow the user to select colour and size, your options would look like this:
+<pre>
+Color:
+  - Blue
+  - Red
+  - Green
+  
+Size:
+  - Small
+  - Medium
+  - Large
+</pre>
+
+The Images Tab
+--------------
+
+Images are an essential part of marketing your product.  You should have at least one image and preferably three or more for each product you create.
+
+You can upload images from your computer or choose images from the Asset Library.  Start by clicking the highlighted text that says "Add an image".
+
+
+The Taxes & Shipping Tab
+------------------------
+
+This tab lets you specify applicable taxes and shipping fees for the product.
+
+
+[1]: /forge/product_categories "Product Categories"

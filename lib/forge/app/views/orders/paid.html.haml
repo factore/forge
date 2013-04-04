@@ -1,0 +1,14 @@
+%h1 Thank you!
+
+%p
+  Thank you for your payment. Your transaction has been completed, and a receipt for your purchase has been emailed to you. 
+
+- unless Forge::Settings[:integrated_payments]
+  %p
+    You may log into your account at 
+    %a{:href => "http://www.paypal.com/ca", :target => "_blank"} www.paypal.com/ca
+    to view details of this transaction.
+
+%h2 Receipt Details
+
+= render :partial => "order_details"

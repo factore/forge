@@ -1,0 +1,49 @@
+- content_for :scripts do
+  :javascript
+    $(function() {
+      $('.preview').click(function(e) {
+        for ( instance in CKEDITOR.instances )
+          CKEDITOR.instances[instance].updateElement();
+        var vals = $('form').serialize();
+        window.open('/posts/preview?' + vals);
+        e.preventDefault();
+      })
+    })
+
+= error_messages_for :user
+
+= form_for [:forge, @user] do |f|
+  #form-header= title_row(:title => "Email", :explanation => "The user's email") { f.text_field :email, :class => 'title' }
+
+  .inner-form.with-normal-sidebar
+    .column.side
+      - if current_user.is_admin? || current_user.is_super_admin?
+        %h3 Roles
+        .explanation Roles define a user's abilities throughout the site.
+        - @roles.each do |role|
+          - unless (role.title == "Super Admin" && !current_user.is_super_admin?) || (role.title == "Admin" && !current_user.is_admin?)
+            %label
+              .float-left= check_box_tag('role_ids[]', role.id, @user.role_ids.include?(role.id))
+              .float-right{:style => "width: 130px"}= role.title
+              .spacer
+        %hr
+
+      %h3 Avatar
+      .explanation Upload a picture for this user.
+      = file_select_widget(f, :avatar)
+    .column.main.last
+      %h3 New Password
+      .explanation Leave blank unless you want to change the user's password.
+      = f.password_field :password
+      %hr
+
+      %h3 New Password Confirmation
+      .explanation Leave blank unless you want to change the user's password.
+      = f.password_field :password_confirmation
+
+    .spacer
+
+  #item-list-bottom
+    .float-right
+      Everything look good?
+      = button_link "Save", "javascript:;", :class => "submit button"

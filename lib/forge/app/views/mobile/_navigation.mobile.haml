@@ -1,0 +1,12 @@
+/ CONTACT FORM
+%ul#navigation.hidden
+  = mobile_menu_item "Home", "/", :alt_links => [/\/?mobile.*/]
+  - if @mobile_menu_items
+    - @mobile_menu_items.each do |item|
+      = mobile_menu_item item.title, page_path(item), :alt_links => [/#{page_path(item)}.*/]
+      - if item.subpages_for_menu
+        - item.subpages_for_menu.each do |subitem|
+          = mobile_menu_item subitem.title, page_path(subitem), :class => "subpage"
+  = mobile_menu_item "Contact Us", "/contact"
+  = mobile_menu_item "Posts", posts_path, :alt_links => [/#{posts_path}.*/]
+  = mobile_menu_item "View Web Version", "?mobile=0", :icon => "expand"

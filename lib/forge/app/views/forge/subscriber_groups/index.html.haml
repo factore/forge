@@ -1,0 +1,25 @@
+- content_for :scripts do
+  = javascript_include_tag 'jquery.quickSearch.js'
+  :javascript
+    $(function() {
+      $('#quick-search').quickSearch({url: '#{forge_subscriber_groups_path}'});
+      FORGE.features.compact_form.init();
+    });
+
+%h1 ForgePress Subscriber Groups
+%p.info
+  Subscriber groups allow you to send specific newsletters to specific groups of people.  A single subscriber can belong to one
+  group or many (or none at all).  Add, edit, and delete groups using the tools on this page.  Assign subscribers to groups from the
+  = link_to 'subscribers page.', forge_subscribers_path
+
+.inner-form.no-top.with-wide-sidebar
+  .column.wide-side
+    #form= render "form"
+
+  .column.main-small.last
+    %h3 Subscriber Groups
+    .explanation You can edit or delete your existing groups here.
+    %ul.item-list-compact= render :partial => "subscriber_group", :collection => @subscriber_groups
+
+  .spacer
+= render :partial => "forge/shared/section_footer", :locals => {:items => @subscriber_groups}

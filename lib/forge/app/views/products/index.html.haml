@@ -1,0 +1,11 @@
+%ul#product-list
+  - @products.each do |p|
+    %li{:class => cycle('', '', '', 'last', :name => "class")}
+      - if p.featured
+        FEATURED
+      = link_to image_tag(first_image(p)), product_path(p)
+      = link_to p.title, product_path(p)
+      %br/
+      %small
+        = "(#{number_to_currency(p.price)})"
+    = cycle('', '', '', '<li class="spacer"></li>', :name => "spacer")

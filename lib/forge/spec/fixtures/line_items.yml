@@ -1,0 +1,12 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+puns_for_order_with_addresses:
+  order: pending_with_addresses
+  product: book_of_bad_puns
+  price: 100.0
+  quantity: 2
+
+man_for_order_with_addresses:
+  order: pending_with_addresses
+  product: tiny_digital_man
+  price: 29.99
+  quantity: 1

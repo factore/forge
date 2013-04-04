@@ -1,0 +1,47 @@
+- content_for :scripts do
+  :javascript
+    $(function() {
+      $('.preview').click(function(e) {
+        this.blur();
+        for ( instance in CKEDITOR.instances )
+          CKEDITOR.instances[instance].updateElement();
+        var vals = $('form').serialize();
+        window.open('/pages/preview?' + vals, "_blank");
+        e.preventDefault();
+      });
+
+      $('#tabs').tabs();
+      clearUIClasses();
+    });
+
+
+= form_for [:forge, @page], :builder => ForgeFormBuilder do |f|
+  = error_messages_for :page
+  #tabs
+    %ul.tabbed
+      %li= link_to "Page Details", "#details"
+      %li= link_to "SEO Fields", "#seo"
+    .spacer
+
+    #details
+      #form-header= f.title_field :title, :explanation => "Give your page a title.", :class => "title"
+
+      .inner-form.with-normal-sidebar
+        .column.side
+          = side_row("Parent Page", :explanation => "Make this a sub-page of another page?") { f.collection_select :parent_id, @potential_parents, :id, :option_title, {:include_blank => "(No Parent)"}, {:style => "width: 100%"} }
+          = side_row("Show in Menu?", :explanation => "Show this page in menus throughout the site?") { slider("Sure", f.radio_button(:show_in_menu, true, :checked => true), "Nope", f.radio_button(:show_in_menu, false)) }
+          = publish_box(f, @page)
+
+        .column.main.last
+          = f.cktext_area :content, :label => "Compose & Format Your Page", :explanation => "", :width => '100%', :height => '400px;', :last => true
+        .spacer
+
+    #seo= render :partial => "forge/shared/seo_fields", :locals => {:f => f}
+
+
+  #item-list-bottom
+    .float-right
+      - unless @page.slug.blank?
+        Everything look good?
+        = button_link "Preview", "javascript:;", :class => "preview button"
+      = button_link "Save", "javascript:;", :class => "submit button"

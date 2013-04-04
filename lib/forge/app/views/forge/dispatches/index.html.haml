@@ -1,0 +1,14 @@
+- content_for :scripts do
+  = javascript_include_tag 'jquery.quickSearch.js'
+  :javascript
+    $(function() {
+      $('#quick-search').quickSearch({url: '#{forge_dispatches_path}'});
+    });
+
+%h1 Your Dispatches
+
+%p This is a list of all the dispatches in your site.  You can add, edit, and delete dispatches here.
+
+= render :partial => "forge/shared/section_header", :locals => {:item => Dispatch}
+%ul#item-list= render :partial => "dispatch", :collection => @dispatches
+= render :partial => "forge/shared/section_footer", :locals => {:items => @dispatches}

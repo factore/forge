@@ -1,0 +1,18 @@
+!!! XML
+%rss{ :version => "2.0", "xmlns:atom" => "http://www.w3.org/2005/Atom", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" }
+  %channel
+    %title= MySettings.site_name
+    %link= MySettings.site_url + "/posts"
+    %description The 10 newest posts on #{MySettings.site_name}
+    %language en-us
+    %pubDate= Time.now.strftime("%a, %d %b %Y %H:%M:%S %z")
+    %atom:link{ :href => MySettings.site_url + "/posts/feed.rss", :rel => "self", :type => "application/rss+xml"}
+
+    - @posts.each do |post|
+      %item
+        %title= post.title
+        %description= post.excerpt
+        %link= post_url(post)
+        %guid= post_url(post)
+        %dc:creator= MySettings.site_name
+        %pubDate= post.created_at.strftime("%a, %d %b %Y %H:%M:%S %z")

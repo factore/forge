@@ -1,0 +1,31 @@
+#form-header
+  = f.title_field :title, :explanation => "Sale tagline. e.g. 'All widgets 10% off this week!'"
+
+.inner-form.with-normal-sidebar
+  .column.side
+    %label Sale Dates
+    .explanation When should the sale start and end?
+    .extendable-inset
+      %table.datetime_select
+        %tr
+          %td Start:
+          %td= f.super_text_field :start, :class => "datepicker", :size => 12, :value => @sale.start ? @sale.start.strftime('%m/%d/%Y') : Time.now.strftime('%m/%d/%Y')
+        %tr
+          %td End:
+          %td= f.super_text_field :end, :class => "datepicker", :size => 12, :value => @sale.end ? @sale.end.strftime('%m/%d/%Y') : Time.now.strftime('%m/%d/%Y')
+    %hr
+    = f.text_field :value, :explanation => "How much is the sale reduction? Enter a positive number."
+
+    = f.super_label :sale_type, "Type"
+    = f.select(:sale_type, Sale.sale_types.collect {|name, desc| [name.to_s.titleize, name.to_s] })
+    .explanation
+      The reduction to apply to all products in this sale. e.g.
+      %br Percentage: All widgets are 10% off
+      %br Fixed: All widgets are $5
+      %br Reduction: All widgets are $2 off
+
+  .column.main.last
+    = f.cktext_area :description, :explanation => "", :width => '100%', :height => '300px;', :last => true
+  .spacer
+  -#= render :partial => "products", :locals => {:item => Product}
+

@@ -1,0 +1,14 @@
+.inner-form.no-top
+  %div{:style => "padding: 20px 0px;"}
+    %h3 Images
+    %br/
+    %p 
+      = add_child_link "Add an image.", :images
+      You can attach as many images as you want to this product.  The first image in the list will be the one that shows in the product list.  
+      Drag and drop the images to re-order them.
+  
+    %ul#images-list.sortable.attachment-list
+      = f.fields_for :images, @product.images do |pi|
+        = render :partial => "forge/products/modules/image", :locals => {:f => pi}
+    .spacer
+    = new_child_fields_template(f, :images, :partial => "forge/products/modules/image")

@@ -1,0 +1,13 @@
+// help search
+#search-help { @extend #search;
+  input#help-query { @include box-shadow-inset(0px, 0px, 5px, $content-grey); }
+}
+
+// help pane
+#movable-content { padding:20px 23px 20px 23px; position:static; width:740px; }
+#help-pane { background:transparent; min-height:400px; position:absolute; right:-1000px; top:50px; width:780px; display: none; overflow: hidden; }
+#help-content { padding: 20px 23px;
+  h2 { padding-top:15px; margin-top:20px; border-top:1px dotted #CFCFCF; font-size:18px; }
+  ul, ol { list-style:disc; padding-left:25px; margin-bottom:10px; }
+}
+

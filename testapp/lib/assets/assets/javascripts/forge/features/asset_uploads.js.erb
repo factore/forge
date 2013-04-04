@@ -1,0 +1,130 @@
+FORGE.features.assets.uploads = {
+  config: {
+    el:       '#swfupload-control',
+    forModel: false
+  },
+
+  swfuploadOptions: {
+    upload_url: '/forge/assets',
+    flash_url: '/flash/swfupload.swf',
+    file_size_limit: '500 MB',
+    file_types: '*',
+    file_types_description: 'Assets',
+    file_upload_limit: '0',
+    file_queue_limit: '0',
+    button_image_url: "<%= asset_path 'forge/browse.png' %>",
+    button_width: "94",
+    button_height: "24",
+    button_window_mode : SWFUpload.WINDOW_MODE.TRANSPARENT,
+    button_placeholder_id : "swfupload-button",
+    button_text_left_padding: 12,
+    //debug: true,
+    button_text_top_padding: 3
+  },
+
+  init: function (options) {
+    var self = FORGE.features.assets.uploads;
+    $.extend(self.config, options);
+    self.$el = $(self.config.el);
+
+    self.$el.swfupload(self.swfuploadOptions);
+    self.$el
+      .bind('fileQueued',     function (event, file) { self.fileQueued.call(this, event, file); })
+      .bind('uploadSuccess',  function (file, data, resp) { self.uploadSuccess.call(this, file, data, resp); })
+      .bind('uploadProgress', function (event, file, bytesLoaded) { self.uploadProgress.call(this, event, file, bytesLoaded); })
+      .bind('uploadComplete', function (event, file) { self.uploadComplete.call(this, event, file); })
+      .bind('fileQueueError', 'uploadError', function(event, file, errorCode, message) { self.showError(message); });
+  },
+
+  fileQueued: function (event, file) {
+    var $this         = $(this),
+        $progressHTML = $("#upload-template").html();
+
+    $('#queue').append($('<div />').attr('id', file.id).html($progressHTML));
+    $('#' + file.id +' .upload_status').html('Queued <strong>' + file.name + '</strong> for uploading.');
+    $.each($('input[name^=asset], select[name^=asset], textarea[name^=asset]'), function() {
+      $.swfupload.getInstance('#swfupload-control').addPostParam($this.attr('name'), $this.val());
+    });
+    $this.swfupload('startUpload');
+    $('#message').hide();
+  },
+
+  uploadSuccess: function (file, data, resp) {
+    var self     = FORGE.features.assets.uploads,
+        response = eval('(' + resp + ')');
+
+    if (response.errors) {
+      self.showError(response.errors);
+    } else {
+      if (self.config.forModel) {
+        FORGE.assetDrawer.attachToObject(response.id, response.url)
+      } else {
+        self.showNewAsset(response.id);
+      }
+    }
+  },
+
+  uploadProgress: function (event, file, bytesLoaded) {
+    var self            = FORGE.features.assets.uploads,
+        percentage      = Math.round((bytesLoaded/file.size)*100),
+        $uploadBar      = $('#' + file.id +' .upload_bar'),
+        $uploadStatus   = $('#' + file.id +' .upload_status');
+
+
+    $uploadBar.css('width', percentage + '%');
+    if (percentage == 100) {
+      $uploadStatus.html("Upload complete, processing <strong>" + file.name +"</strong>.");
+      $uploadBar.animate({backgroundColor: '#549d37'}, 200);
+    } else {
+      $uploadStatus.html('Uploading <strong>' + file.name + '</strong> - ' + self.bytesToKb(bytesLoaded) + ' of ' + self.bytesToKb(file.size) + 'kB.')
+    }
+  },
+
+  uploadComplete: function (event, file) {
+    var self            = FORGE.features.assets.uploads,
+        $uploadBar      = $('#' + file.id +' .upload_bar'),
+        $uploadStatus   = $('#' + file.id +' .upload_status');
+
+
+    $uploadBar.animate({backgroundColor: '#549d37'}, 200);
+    $uploadBar.css('width', '100%');
+    $uploadStatus.html('Finished uploading <strong>' + file.name + '</strong>');
+    if (self.config.forModel) {
+      FORGE.features.assets.dialog.config.$newDialog.dialog('close');
+    } else {
+      $(this).swfupload('startUpload');
+      setTimeout(function() { $('#' + file.id).fadeOut(850); }, 3500);
+    }
+  },
+
+  showError: function (message) {
+    // TODO: This needs to be nicer.
+    alert(message);
+  },
+
+  bytesToKb: function (number) {
+    return (number/1024).toFixed(0);
+  },
+
+  showNewAsset: function (id) {
+    var holder  = ($('#asset-list').length == 0) ? '#asset-drawer' : '#asset-list',
+        drawer  = (holder == '#asset-drawer'),
+        data    = drawer ? {drawer: true} : {}
+
+    $.ajax({
+      url: '/forge/assets/' + id,
+      type: 'GET',
+      dataType: 'html',
+      data: data,
+      success:  function(data) {
+        $(holder + ' ul').prepend(data);
+        $('#asset_' + id + ' .asset').hide().show("slide", {direction: 'left'});
+        if (drawer) {
+          $(holder + ' ul').css('width', $(holder + ' ul').width() + 172 + 'px');
+        } else {
+          FORGE.features.assets.reorganize(4);
+        }
+      }
+    });
+  }
+}

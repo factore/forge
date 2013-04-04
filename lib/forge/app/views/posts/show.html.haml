@@ -1,0 +1,23 @@
+%h1= @post.title
+
+.post
+  %strong= @post.created_at_date
+  %br/
+  = raw @post.content
+  .spacer
+  
+- if params[:action] != "preview" && @post.allow_comments?
+  #comments
+    %h2 Comments
+    - if @post.comments.approved.size > 0
+      = render :partial => "comments/comment", :collection => @post.comments.approved
+    - else
+      %p No comments have been posted yet.
+    = render :partial => "comments/form", :locals => {:object => @post}
+
+%br/
+= link_to "Return to Posts#Index", posts_url({:page => (session[:page] if session[:page])})
+.spacer
+
+= render "posts/categories"
+= render "posts/archive_months"

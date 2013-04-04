@@ -1,0 +1,12 @@
+%li[asset]
+  .asset
+    .thumbnail
+      - if asset.attachment_content_type =~ /image/
+        = link_to image_tag(asset.icon_path), asset.attachment.url(:medium), :class => 'fancybox', :title => asset.title, :rel => "image_group"
+      - else
+        = link_to image_tag(asset.icon_path), asset.attachment.url, :target => "_"
+    %small
+      = asset.list_title
+    .spacer
+  .float-left= link_to "Edit", edit_forge_asset_path(asset), :class => ("basic-asset-edit" unless asset.attachment_content_type.match(/video/))
+  .float-right= link_to "Delete", forge_asset_path(asset), :method => :delete, :confirm => "Are you sure?"

@@ -1,0 +1,41 @@
+- content_for :scripts do
+  :javascript
+    $(function() {
+      $('.preview').click(function() {
+        for ( instance in CKEDITOR.instances )
+          CKEDITOR.instances[instance].updateElement();
+
+        var form = $('form');
+        var vals = form.serialize();
+        var old_action = form.attr('action');
+        form.attr({action: '/orders/preview', target: '_blank'}).submit();
+        form.attr({action: old_action, target: ''});
+
+        e.preventDefault();
+      })
+    })
+
+= error_messages_for :order
+
+= form_for [:forge, @order] do |f|
+  #form-header= title_row(:explanation => "Give your order a title.") { f.text_field :id, :class => 'id' }
+
+  .inner-form.with-normal-sidebar
+    .column.side
+
+      =# side_row("Billing Address", :explanation => "") { f.collection_select :billing_address_id, @billing_addresses, :id, :title }
+
+      =# side_row("Shipping Address", :explanation => "") { f.collection_select :shipping_address_id, @shipping_addresses, :id, :title }
+      = side_row("Key", :explanation => "") { f.text_field :key }
+      = side_row("State", :explanation => "") { f.text_field :state }
+
+
+
+    .column.main.last
+    .spacer
+
+  #item-list-bottom
+    .float-right
+      Everything look good?
+      = link_to '', 'javascript:;', :class => "preview"
+      = link_to '', 'javascript:;', :class => "submit"

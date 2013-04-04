@@ -1,0 +1,16 @@
+%h1= "Events in #{@year}/#{@month}"
+= calendar_for(@year, @month, &events_calendar_proc)
+
+- nextmonth = Time.mktime(@year, @month) + 1.month
+- lastmonth = Time.mktime(@year, @month) - 1.month
+
+%ul
+  - unless nextmonth > Time.now
+    %li
+      %strong Next Month:
+      = link_to nextmonth.strftime("%b %Y"), "/events/#{nextmonth.strftime('%Y/%m')}"
+      %small= "(#{Event.published.on(nextmonth.year, nextmonth.month).size})"
+  %li
+    %strong Previous Month:
+    = link_to lastmonth.strftime("%b %Y"), "/events/#{lastmonth.strftime('%Y/%m')}"
+    %small= "(#{Event.published.on(lastmonth.year, lastmonth.month).size})"

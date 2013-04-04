@@ -1,0 +1,36 @@
+- content_for :scripts do
+  :javascript
+    $(function() {
+      $('.preview').click(function() {
+        for ( instance in CKEDITOR.instances )
+          CKEDITOR.instances[instance].updateElement();
+
+        var form = $('form');
+        var vals = form.serialize();
+        var old_action = form.attr('action');
+        form.attr({action: old_action, target: ''});
+
+        e.preventDefault();
+      })
+    })
+
+= error_messages_for :video
+
+= form_for [:forge, @video] do |f|
+  #form-header= title_row(:explanation => "The video title.") { f.text_field :title, :class => 'title' }
+
+  .inner-form.with-normal-sidebar
+    .column.side
+      = side_row("Video ID", :explanation => "") { content_tag(:div, @video.video_id) }
+      = side_row("Thumbnail", :explanation => "") { image_tag(@video.thumbnail_url, :style => "border:2px solid #fff;margin-top:6px;width:146px") }
+      = side_row("Published", :explanation => "") { content_tag(:small, @video.published_at.strftime("%B %e, %y at %l:%M")) }
+      = publish_box(f, @video)
+
+    .column.main.last
+      = video_feed_embed_in_forge(@video)
+    .spacer
+
+  #item-list-bottom
+    .float-right
+      Everything look good?
+      = button_link "Save", "javascript:;", :class => "submit button"

@@ -1,0 +1,21 @@
+%h1 Order Details
+%span.order-actions.float-right
+  = fulfillment_link(@order)
+
+#section-header
+  %h2.float-left{:style => "color: white;"}= "Invoice ID: #{@order.invoice_id}"
+  %h2.float-right
+    Status:
+    %strong= @order.state.capitalize
+
+  .spacer
+#order.inner-form.no-bottom
+  .column.full
+    %h3
+      Submitted:
+      %strong.float-right= @order.created_at.strftime("%B %e, %Y at %I:%M:%S %p")
+      %hr
+
+  = render "forge/orders/cart"
+  = render "forge/orders/addresses"
+  .spacer

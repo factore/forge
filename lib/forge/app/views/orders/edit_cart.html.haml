@@ -1,0 +1,59 @@
+%h1 Edit Shopping Cart
+
+- if session[:cart].products.size > 0
+  %p
+    You can remove items or change quantities on this page.  When you are finished, press the 
+    %strong apply changes 
+    button before proceeding to checkout.
+    
+  %p
+    %strong
+      Please note, 
+    the price shown below is a subtotal only and is subject to shipping charges and taxes (where applicable).
+    
+  - form_tag "update_cart_quantities" do
+    %table.form{:border => 0, :width => "100%"}
+      %tr{:style => "font-weight: bold;"}
+        %td
+          Items
+        %td
+          Item Price
+        %td
+          Quantity
+        %td
+          Total
+        %td
+      - session[:cart].products.each do |p|
+        %tr.cart-list
+          %td
+            = p.title
+          %td
+            = number_to_currency(p.price)
+          %td
+            = text_field_tag "quantity[#{p.id}]", p.quantity, {:size => 3}
+          %td
+            = number_to_currency(p.price * p.quantity)
+          %td
+            = link_to "Remove", product_path(p), :method => :delete, :confirm => "Are you sure you want to remove this product from your cart?"            
+      %tr
+        %td{:colspan => 3}
+        %td
+          TOTAL
+        %td
+          = number_to_currency(session[:cart].price) + " " + Settings.currency
+      %tr
+        %td{:colspan => 4}
+        %td
+          = submit_tag "Apply Changes"
+
+  .actions
+    %p{:style => "float: left"}
+      = link_to " Return to products", products_url
+    %p{:style => "float: right"}
+      = link_to "Proceed to checkout", checkout_orders_path
+    .spacer     
+- else
+  .actions
+    %p There are no items in your cart.
+    %br/
+    = link_to " Return to products", products_url

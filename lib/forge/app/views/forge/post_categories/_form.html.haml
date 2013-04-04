@@ -1,0 +1,7 @@
+%h3= "#{params[:action] == 'index' ? 'Add' : 'Edit'} Category"
+.explanation= params[:action] == "index" ? "You can create a new category here, just enter a title." : "Edit the category below and save."
+= form_for [:forge, @post_category], :builder => ForgeFormBuilder do |f|
+  = error_messages_for :post_category
+  = f.text_field :title, :label => false, :last => true, :inline => true
+  %hr
+  = button_link "Save", "javascript:;", :class => "submit button"

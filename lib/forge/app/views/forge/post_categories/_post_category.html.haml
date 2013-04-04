@@ -1,0 +1,8 @@
+= big_list_item do
+  .item-title
+    %strong #{post_category.title} (#{pluralize(post_category.posts.size, 'post')})
+  .item-actions
+    = edit_link(post_category, true, true)
+    = delete_link(post_category, true, true)
+
+  .spacer

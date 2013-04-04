@@ -1,0 +1,7 @@
+%ul.tabbed
+  %li{:class => ('ui-state-active' if params[:action] == "show")}= link_to "Overview", forge_dispatch_path(@dispatch)
+  %li{:class => ('ui-state-active' if params[:action] == "opens")}= link_to "Opens", opens_forge_dispatch_path(@dispatch)
+  %li{:class => ('ui-state-active' if params[:action] == "clicks")}= link_to "Clicks", clicks_forge_dispatch_path(@dispatch)
+  %li{:class => ('ui-state-active' if params[:action] == "unsubscribes")}= link_to "Unsubscribes", unsubscribes_forge_dispatch_path(@dispatch)
+  
+.spacer

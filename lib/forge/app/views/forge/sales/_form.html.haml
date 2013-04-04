@@ -1,0 +1,35 @@
+- content_for :scripts do
+  :javascript
+    $(function() {
+      $('.preview').click(function() {
+        for ( instance in CKEDITOR.instances )
+          CKEDITOR.instances[instance].updateElement();
+
+        var form = $('form');
+        var vals = form.serialize();
+        var old_action = form.attr('action');
+        form.attr({action: '/sales/preview', target: '_blank'}).submit();
+        form.attr({action: old_action, target: ''});
+
+        e.preventDefault();
+      })
+      $('#tabs').tabs();
+      clearUIClasses();
+    })
+
+= error_messages_for :sale
+
+= form_for [:forge, @sale], :builder => ForgeFormBuilder do |f|
+  %p Provide details of the cost reduction. Don't forget to add products to the sale in the 'Products' tab.
+  #tabs
+    %ul.tabbed
+      %li= link_to "Sale Details", '#details'
+      %li= link_to "Products", '#products'
+    .spacer
+    #details= render :partial => "forge/sales/modules/details", :locals => {:f => f}
+    #products= render :partial => "forge/sales/modules/products", :locals => {:f => f, :item => Product}
+
+  #item-list-bottom
+    .float-right
+      Everything look good?
+      = button_link "Save", "javascript:;", :class => "submit button"

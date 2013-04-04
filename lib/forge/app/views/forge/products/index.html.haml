@@ -1,0 +1,22 @@
+- content_for :scripts do
+  = javascript_include_tag 'jquery.quickSearch.js'
+  
+  - if can?(:manage, Product) 
+    = javascript_include_tag 'jquery.twoLevelSort.js'
+    :javascript
+      $(function() {
+        $('#item-list').forgeTwoLevelSort({callbackPath: '#{reorder_forge_pages_path}'});
+        $('#quick-search').quickSearch({url: '#{forge_products_path}'});
+      });
+    
+
+%h1 Your Products
+
+%p.info These are all of the products on your site.
+
+= render :partial => "forge/shared/section_header", :locals => {:item => Product}
+%ul#item-list= render :partial => "product", :collection => @products
+#item-list-bottom
+  %strong.float-right
+    = "Too many results, only 20 displayed" if @products.size > 19
+

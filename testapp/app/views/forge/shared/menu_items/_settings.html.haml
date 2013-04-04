@@ -1,0 +1,7 @@
+- if can?(:index, MySettings)
+  = forge_menu_item item, forge_settings_path, :active => is_active(["settings", "countries", "tax_rates"]), :submenu => can?(:index, Country) || can?(:index, TaxRate)
+  %ul.forge_submenu{ :class => is_active(["settings", "countries", "tax_rates"]) ? "#{item} active" : item }
+    = link_to "Site Settings", forge_settings_path, :class => ('active' if is_active(["settings"]))
+    = link_to "Countries", forge_countries_path, :class => ("active" if is_active(["countries"])) if @menu_items.include?("countries") if can?(:index, Country)
+    = link_to "Tax Rates", forge_tax_rates_path, :class => ("active" if is_active(["tax_rates"])) if @menu_items.include?("tax_rates") if can?(:index, TaxRate)
+  .spacer

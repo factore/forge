@@ -1,0 +1,33 @@
+.inner-form.no-top.with-normal-sidebar
+  .column.side
+    %h3 Taxes
+    .explanation Applicable taxes.
+    - Country.active.all.each do |country|
+      %hr
+      %strong= country.title
+      %br/
+      - country.tax_rates.each do |tr|
+        %label
+          = check_box_tag 'product[tax_rate_ids][]', tr.id, @product.new_record? ? true : @product.tax_rates.include?(tr)
+          = number_to_percentage(tr.rate, :precision => 2)
+          = tr.title
+        %br/
+
+  .column.main.last
+
+    - if MySettings.flat_rate_shipping
+      = f.text_field :flat_rate_shipping, :size => 6, :label => "Shipping Flat Rate", :explanation => "The rate you charge to ship this product on a per-product basis. 8.00 = $8.00.", :last => true
+    - else
+      %p
+        %strong Note Re. Shipping
+      %p Your site currently uses dynamic shipping calculations, so no shipping options are available for adjustment here.
+
+    - if TaxRate.count == 0
+      %p
+        %strong Note Re. Tax Rates
+      %p
+        You have not yet set up any tax rates.  Normally, tax rates are displayed underneath the corresponding country
+        on the left side of this form.
+        = link_to "Set up tax rates now.", forge_tax_rates_path
+
+  .spacer
