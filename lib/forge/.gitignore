@@ -12,7 +12,6 @@ config/deploy.rb
 config/dispatch_daemon.yml
 config/s3.yml
 config/secret_token.txt
-config/settings.yml
 db/*.sqlite3
 db/help/index
 doc/api

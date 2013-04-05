@@ -1,0 +1,8 @@
+development:
+  fake_setting: ''
+
+production:
+  fake_setting: ''
+
+test:
+  fake_setting: ''

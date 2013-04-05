@@ -107,7 +107,6 @@ files:
   - 'lib/tasks/forge.rake'
   - 'lib/templates/active_record/model/model.rb'
   - 'Gemfile'
-  - '.gitignore'
 
 
   # Assets

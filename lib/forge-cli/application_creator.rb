@@ -20,6 +20,8 @@ class ForgeCLI
       FileUtils.rm(File.join(@app, 'app', 'views', 'layouts', 'application.html.erb'))
       FileUtils.rm(File.join(@app, 'app', 'assets', 'stylesheets', 'application.css'))
       FileUtils.rm(File.join(@app, 'public', 'index.html'))
+      FileUtils.rm(File.join(@app, 'Gemfile.lock'))
+
 
       STDOUT.puts completed_message
     end

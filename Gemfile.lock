@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    forge-cli (0.0.1)
+    forge-cli (0.0.6)
       gli (= 2.5.6)
 
 GEM
