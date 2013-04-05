@@ -1,5 +1,4 @@
 class HelpTopic < ActiveRecord::Base
-  acts_as_ferret :fields => [ :content ]
   validates_presence_of :language, :slug, :title, :content
   validates_format_of :slug, :with => /\A[a-zA-Z0-9_-]+\z/
   validates_uniqueness_of :slug, :scope => :language

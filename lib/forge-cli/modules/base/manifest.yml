@@ -8,22 +8,27 @@ files:
   - 'app/models/help_topic.rb'
   - 'app/models/i18n_lookup.rb'
   - 'app/models/my_settings.rb'
+  - 'app/models/page.rb'
   - 'app/models/role.rb'
   - 'app/models/s3_direct_upload.rb'
   - 'app/models/user.rb'
+
 
   # Controllers
   - 'app/controllers/application_controller.rb'
   - 'app/controllers/comments_controller.rb'
   - 'app/controllers/forge_controller.rb'
   - 'app/controllers/index_controller.rb'
+  - 'app/controllers/pages_controller.rb'
   - 'app/controllers/sessions_controller.rb'
   - 'app/controllers/forge/assets_controller.rb'
   - 'app/controllers/forge/comments_controller.rb'
   - 'app/controllers/forge/help_topics_controller.rb'
   - 'app/controllers/forge/index_controller.rb'
+  - 'app/controllers/forge/pages_controller.rb'
   - 'app/controllers/forge/settings_controller.rb'
   - 'app/controllers/forge/users_controller.rb'
+
 
   # Views
   - 'app/views/layouts'
@@ -31,6 +36,7 @@ files:
   - 'app/views/comments'
   - 'app/views/devise'
   - 'app/views/index'
+  - 'app/views/pages'
   - 'app/views/layouts'
   - 'app/views/mobile'
   - 'app/views/user_mailer'
@@ -39,7 +45,9 @@ files:
   - 'app/views/forge/help'
   - 'app/views/forge/help_topics'
   - 'app/views/forge/index'
+  - 'app/views/forge/pages'
   - 'app/views/forge/settings'
+  - 'app/views/forge/users'
   - 'app/views/forge/shared/_asset_drawer.html.haml'
   - 'app/views/forge/shared/_menu.html.haml'
   - 'app/views/forge/shared/_new_model_asset.html.haml'
@@ -50,21 +58,36 @@ files:
   - 'app/views/forge/shared/_settings_nav.html.haml'
   - 'app/views/forge/shared/menu_items/_assets.html.haml'
   - 'app/views/forge/shared/menu_items/_comments.html.haml'
+  - 'app/views/forge/shared/menu_items/_pages.html.haml'
   - 'app/views/forge/shared/menu_items/_settings.html.haml'
   - 'app/views/forge/shared/menu_items/_users.html.haml'
+
+
+  # Helpers etc.
+  - 'app/form_builders'
+  - 'app/helpers/application_helper.rb'
+  - 'app/helpers/forge_button_helper.rb'
+  - 'app/helpers/forge_helper.rb'
+  - 'app/helpers/form_helper.rb'
+  - 'app/helpers/mobile_helper.rb'
+  - 'app/helpers/routes_helper.rb'
+  - 'app/helpers/forge/tree_helper.rb'
+  - 'app/mailers/comment_mailer.rb'
+  - 'app/mailers/user_mailer.rb'
+
 
   # Config
   - 'config/application.rb'
   - 'config/i18n_fields.yml'
   - 'config/google_sitemap.yml'
   - 'config/s3.yml.template'
+  - 'config/settings.yml'
   - 'config/environments/production.rb'
   - 'config/initializers/class_extensions'
   - 'config/initializers/can_be_foreign.rb'
   - 'config/initializers/can_use_asset.rb'
   - 'config/initializers/ckeditor.rb'
   - 'config/initializers/devise.rb'
-  - 'config/initializers/forge.rb'
   - 'config/initializers/generators.rb'
   - 'config/initializers/inflections.rb'
   - 'config/initializers/mime_types.rb'
@@ -86,6 +109,7 @@ files:
   - 'Gemfile'
   - '.gitignore'
 
+
   # Assets
   - 'app/assets'
   - 'lib/assets'
@@ -103,7 +127,8 @@ migrations:
   - create_assets
   - create_comments
   - create_help_topics
-  - create_settings
+  - create_pages
   - create_roles
+  - create_settings
   - create_taggings
   - create_users

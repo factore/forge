@@ -1,6 +1,4 @@
 class IndexController < ApplicationController
-  caches_page :index
-
   def index
     @page = Page.find_by_key("home")
     respond_to do |format|

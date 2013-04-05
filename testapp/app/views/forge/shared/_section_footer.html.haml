@@ -1,9 +1,0 @@
-#item-list-bottom
-  .float-left.search-results{:style => "display: none;"} Displaying Search Results
-  .float-left.regular.pagination-info
-    - unless items.total_pages == 1 || items.total_pages == 0
-      = inset do
-        = will_paginate items, :previous_label => image_tag('forge/icons/left-arrow.png'), :next_label => image_tag('forge/icons/right-arrow.png')
-
-  .float-right.regular{:style => "padding-top: 4px;"}
-    %small= page_entries_info items

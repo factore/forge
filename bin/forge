@@ -21,7 +21,9 @@ command :new do |c|
 
   c.action do |global_options,options,args|
     help_now!('App name is required (eg. forge new blogsite)') if args.empty?
-    ForgeCLI::ApplicationCreator.create!(args.shift)
+    app = args.shift
+    modules = (options[:modules] || '').split(',')
+    ForgeCLI::ApplicationCreator.create!(app, modules)
   end
 end
 

@@ -1,5 +1,0 @@
-= form_for [:forge, @asset] do |f|
-  %table.form
-    = form_row("Title") { f.text_field :title, :class => 'big-rounded' }
-    = form_row("Tags") { f.text_field :tag_list, :class => 'big-rounded' }
-    = form_row { button_submit_tag "Save", :class => "button no-icon" }

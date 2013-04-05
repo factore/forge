@@ -1,6 +1,0 @@
-- if can?(:manage, <%= class_name %>)
-  = forge_menu_item item, forge_<%= plural_name %>_path, :active => is_active("<%= plural_name %>"), :submenu => can?(:create, <%= class_name %>)
-  - if can?(:create, <%= class_name %>)
-    %ul.forge_submenu{ :class => is_active(["<%= plural_name %>"]) ? "#{item} active" : item }
-      = link_to "New <%= singular_name.titleize %>", new_forge_<%= singular_name %>_path, :class => ("active" if is_active(["<%= plural_name %>"]) && params[:action] == "new")
-    .spacer

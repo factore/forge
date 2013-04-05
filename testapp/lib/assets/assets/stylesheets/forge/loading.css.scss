@@ -1,6 +1,0 @@
-// loading/thinking gifs
-#thinking { background:#333; display:none; height:100%; opacity:.7; padding-top:320px; position:fixed; top:0px; left:0px; text-align:center; width:100%; z-index:999;
-  .thinking-box { background:white; height:100px; margin:0 auto; padding:30px; text-align:center; width:180px; @include rounded(6px); }
-  h3 { margin:16px 0 0; }
-}
-#loading { background:#ECF0F3; color:$black; font-family:$fancy-font; font-size:12px; margin:20px auto; padding:10px 0 6px; text-align:center; width:86px; @include rounded(10px); }

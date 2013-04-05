@@ -67,8 +67,10 @@ Forge3::Application.routes.draw do
 
   resources :events, :only => [:index, :show]
 
-  if Forge::Settings[:events][:display] == 'calendar'
-    match 'events/:year/:month' => 'events#index', :via => :get
+  if Forge::Settings[:events]
+    if Forge::Settings[:events][:display] == 'calendar'
+      match 'events/:year/:month' => 'events#index', :via => :get
+    end
   end
 
   resources :dispatches, :only => [] do

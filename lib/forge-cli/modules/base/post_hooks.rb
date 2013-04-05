@@ -4,9 +4,11 @@ class ForgeCLI
   class BasePostHooks < ForgeCLI::PostHooks
     def self.run!(app)
       @app = app
+
       STDOUT.puts "Installing Routes..."
-      install_routes
-      install_routes(:forge)
+      ri = ForgeCLI::RouteInstaller.new(@app, module_path)
+      ri.install_routes
+      ri.install_routes(:forge)
 
       STDOUT.puts "Fixing Application Constant..."
       rewrite_app_name

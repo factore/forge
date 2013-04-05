@@ -1,6 +1,4 @@
 class PagesController < ApplicationController
-  caches_page :show
-
   def show
     @page = current_user.blank? ? Page.published.find_by_path!("/#{params[:slugs]}") : Page.find_by_path!("/#{params[:slugs]}")
     @page_title = @page.seo_title.blank? ? @page.title : @page.seo_title

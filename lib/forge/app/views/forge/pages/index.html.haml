@@ -18,8 +18,9 @@
 
 = render :partial => "forge/shared/section_header", :locals => {:item => Page}
 = sorted_nested_li(@pages, :list_order) do |page|
-  - if page[0].parent_id
-    = render "subpage", :subpage => page[0]
+  - page = page[0] if page.is_a?(Array)
+  - if page.parent_id
+    = render "subpage", :subpage => page
   - else
-    = render "page", :page => page[0]
+    = render "page", :page => page
 #item-list-bottom

@@ -2,8 +2,6 @@ class Forge::PagesController < ForgeController
   load_and_authorize_resource
   before_filter :get_potential_parents, :only => [:new, :edit, :update, :create]
   before_filter :uses_ckeditor, :only => [:new, :edit, :update, :create]
-  cache_sweeper :page_sweeper, :only => [:update, :create, :destroy, :reorder]
-
 
   def index
     respond_to do |format|
