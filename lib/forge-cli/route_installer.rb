@@ -1,10 +1,10 @@
-class ForgeCLI
-  class RouteInstaller
-    def initialize(app, module_path)
-      @app         = app
-      @module_path = module_path
-    end
+class ForgeCLI::RouteInstaller < Thor
+  def initialize(app, module_path)
+    @app         = app
+    @module_path = module_path
+  end
 
+  no_commands do
     def install_routes(type = :normal)
       file = File.join(@app, 'config', 'routes.rb')
       existing_routes = File.read(file)

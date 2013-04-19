@@ -1,10 +1,6 @@
-require 'active_support/core_ext/string'
-
 class ForgeCLI
   class BasePostHooks < ForgeCLI::PostHooks
-    def self.run!(app)
-      @app = app
-
+    def run!
       STDOUT.puts "Installing Routes..."
       ri = ForgeCLI::RouteInstaller.new(@app, module_path)
       ri.install_routes
@@ -16,7 +12,7 @@ class ForgeCLI
       fix_gemfile
     end
 
-    def self.rewrite_app_name
+    def rewrite_app_name
       files = [
         '/config/environments/production.rb',
         '/config/application.rb'
@@ -31,7 +27,7 @@ class ForgeCLI
       end
     end
 
-    def self.fix_gemfile
+    def fix_gemfile
       unless RUBY_VERSION.match(/^1\.8/)
         gemfile_content = File.read(File.join(@app, 'Gemfile'))
         new_content = gemfile_content.gsub("gem 'forge-rad'", "gem 'forge-rad19'")
@@ -41,8 +37,9 @@ class ForgeCLI
       end
     end
 
-    def self.module_path
-      File.dirname(__FILE__)
-    end
+    private
+      def module_path
+        File.dirname(__FILE__)
+      end
   end
 end

@@ -1,6 +1,3 @@
-require 'fileutils'
-require 'active_support/core_ext/string'
-
 class ForgeCLI
   class ModuleInstaller
     def self.install_module!(module_name, app)
@@ -15,9 +12,15 @@ class ForgeCLI
     end
 
     def run!
+      unless @module_name == "base"
+        STDOUT.puts "\nInstalling #{@module_name.titleize}..."
+      end
       copy_files! if @mod["files"]
       create_migrations! if @mod["migrations"]
       post_hooks_class.run!(@app) if post_hooks_class
+      unless @module_name == "base"
+        STDOUT.puts "Done!"
+      end
     end
 
     private
@@ -31,8 +34,8 @@ class ForgeCLI
             raise "FILE MISSING: #{source_file}"
           end
 
-          unless Dir.exist?(destination_dir) && !File.directory?(source_file)
-            STDOUT.puts "Create #{destination}"
+          unless File.exist?(destination_dir) && !File.directory?(source_file)
+            STDOUT.puts "      #{"create".foreground(93, 255, 85)}  #{file}"
             FileUtils.mkdir_p(destination_dir)
           end
 
@@ -70,7 +73,7 @@ class ForgeCLI
           new_file = File.open(new_file_path, "w")
           new_file.puts content
           new_file.close
-          STDOUT.puts "Wrote #{new_file_path}"
+          STDOUT.puts "   migration  ".foreground(93, 255, 85) + new_file_path.gsub("#{destination_path}/", '')
 
           # So that they have different timestamps
           sleep 1

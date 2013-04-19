@@ -58,7 +58,7 @@
         #footer
           &copy; Copyright factor[e] design initiative inc. #{Time.now.year}
           %br/
-          = raw(Forge::Settings[:support_instructions_in_layout])
+          = raw(Forge.config.support_instructions_in_layout)
 
         = link_to '?', '/forge/help', :id => 'help_toggle', :class => 'help-button'
 

@@ -4,6 +4,11 @@ resources :assets do
   post 'encode_notify', :on => :collection
 end
 
+resources :comments, :only => [:index, :destroy] do
+ put     'approve', :on => :member
+ put     'unapprove', :on => :member
+end
+
 resources :pages do
   post    'reorder', :on => :collection
 end

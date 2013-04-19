@@ -12,26 +12,31 @@ class Video < ActiveRecord::Base
   # Validations
   validates_attachment_presence :video
   validates_presence_of :title
-  
+
   before_update :revert_if_new_upload
 
-  
+
   def video=(filename)
     self.video_file_name = filename.gsub('videos/', '')
   end
-  
+
   def list_title
     published ? title : title + " (Draft)"
   end
-  
-  def encoded_state; read_attribute(:encoded_state) || "unencoded"; end
-  def mobile_encoded_state; read_attribute(:mobile_encoded_state) || "unencoded"; end
-  
+
+  def encoded_state
+    read_attribute(:encoded_state) || "unencoded"
+  end
+
+  def mobile_encoded_state
+    read_attribute(:mobile_encoded_state) || "unencoded"
+  end
+
   def encode(rails_env)
     test = rails_env == "production" ? false : true
     response = Zencoder::Job.create({
-      :api_key => Forge::Settings[:zencoder][:api_key],
-      :input => video.url, 
+      :api_key => Forge.config.videos.zencoder_api_key,
+      :input => video.url,
       :outputs => [web_encode_settings, mobile_encode_settings, thumbnail_settings],
       :test => test,
       :skip_ssl_verify => test
@@ -39,7 +44,7 @@ class Video < ActiveRecord::Base
     self.update_attributes(:encoded_state => "queued", :mobile_encoded_state => "queued", :job_id => response.body["id"]) if response.success?
     response
   end
-  
+
   def encode_notify(output)
     prefix = output[:label] == "web" ? "" : "#{output[:label]}_"
     attrs = {"#{prefix}encoded_state" => output[:state]}
@@ -50,15 +55,15 @@ class Video < ActiveRecord::Base
     end
     self.update_attributes(attrs)
   end
-    
-  
+
+
   private
     def base_url
-      "http://s3.amazonaws.com/#{Forge::Settings[:zencoder][:bucket]}"
+      "http://s3.amazonaws.com/" + Forge.config.videos.zencoder_bucket
     end
-  
+
     def web_encode_settings
-      { 
+      {
         :label => "web",
         :base_url => base_url,
         :size => "800x450",
@@ -66,7 +71,7 @@ class Video < ActiveRecord::Base
         :notifications => [{:format => "json", :url => "#{MySettings.site_url}/forge/videos/encode_notify"}]
       }
     end
-  
+
     def mobile_encode_settings
       {
         :label => "mobile",
@@ -76,7 +81,7 @@ class Video < ActiveRecord::Base
         :notifications => [{:format => "json", :url => "#{MySettings.site_url}/forge/videos/encode_notify"}]
       }
     end
-  
+
     def thumbnail_settings
       {
         :thumbnails => {
@@ -87,7 +92,7 @@ class Video < ActiveRecord::Base
         }
       }
     end
-    
+
     def revert_if_new_upload
       if video_file_name_changed?
         self.output_url = self.mobile_output_url = ''

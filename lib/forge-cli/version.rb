@@ -1,3 +1,3 @@
-module ForgeCli
-  VERSION = '0.0.8'
+class ForgeCLI
+  VERSION = '0.0.10'
 end

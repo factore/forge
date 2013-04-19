@@ -1,2 +1,49 @@
 files:
+  - 'app/controllers/products_controller.rb'
+  - 'app/controllers/integrated_payment_controller.rb'
+  - 'app/controllers/orders_controller.rb'
+  - 'app/controllers/hosted_payment_controller.rb'
+  - 'app/controllers/countries_controller.rb'
+  - 'app/controllers/forge/countries_controller.rb'
+  - 'app/controllers/forge/orders_controller.rb'
+  - 'app/controllers/forge/product_categories_controller.rb'
+  - 'app/controllers/forge/products_controller.rb'
+  - 'app/controllers/forge/sales_controller.rb'
+  - 'app/controllers/forge/tax_rates_controller.rb'
+  - 'app/models/address.rb'
+  - 'app/models/country.rb'
+  - 'app/models/order.rb'
+  - 'app/models/order_transaction.rb'
+  - 'app/models/product.rb'
+  - 'app/models/product_category.rb'
+  - 'app/models/product_image.rb'
+  - 'app/models/province.rb'
+  - 'app/models/sale.rb'
+  - 'app/models/tax_rate.rb'
+  - 'app/helpers/orders_helper.rb'
+  - 'app/mailers/receipt_mailer.rb'
+  - 'app/views/hosted_payment'
+  - 'app/views/integrated_payment'
+  - 'app/views/orders'
+  - 'app/views/products'
+  - 'app/views/receipt_mailer'
+  - 'app/views/forge/countries'
+  - 'app/views/forge/orders'
+  - 'app/views/forge/product_categories'
+  - 'app/views/forge/products'
+  - 'app/views/forge/sales'
+  - 'app/views/forge/tax_rates'
+  - 'config/initializers/forge/controllers/ecommerce.rb'
   - 'lib/models/order'
+
+migrations:
+  - create_addresses
+  - create_countries
+  - create_orders
+  - create_order_transactions
+  - create_products
+  - create_product_categories
+  - create_product_images
+  - create_provinces
+  - create_sales
+  - create_tax_rates

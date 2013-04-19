@@ -1,7 +1,15 @@
 module Forge
-  Forge::Application.config.after_initialization do
-    require 'forge/settings'
-    require 'forge/credit_card_processor'
-    require 'forge/form_helper'
+  class << self
+    attr_accessor :config
+  end
+
+  def self.configure
+    self.config ||= Configuration.new
+    yield config
+  end
+
+  class Configuration
+    attr_accessor :mobile_layout
+    attr_accessor :support_instructions_in_layout
   end
 end

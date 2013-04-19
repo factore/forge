@@ -2,7 +2,7 @@
 require File.join([File.dirname(__FILE__),'lib','forge-cli','version.rb'])
 spec = Gem::Specification.new do |s|
   s.name = 'forge-cli'
-  s.version = ForgeCli::VERSION
+  s.version = ForgeCLI::VERSION
   s.author = 'factor[e] design initiative'
   s.email = 'sean@factore.ca'
   s.homepage = 'http://factore.ca/forge-cms'
@@ -20,6 +20,8 @@ spec = Gem::Specification.new do |s|
   s.add_development_dependency('rake')
   s.add_development_dependency('rdoc')
   s.add_development_dependency('aruba')
-  s.add_dependency('rails', '3.2')
-  s.add_runtime_dependency('gli','2.5.6')
+  s.add_dependency('rails', '3.2.12')
+  s.add_dependency('rainbow')
+
+  s.add_runtime_dependency('thor')
 end
