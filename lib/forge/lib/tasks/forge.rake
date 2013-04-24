@@ -144,4 +144,15 @@ namespace :forge do
   task :encode_notify => :environment do
     system "zencoder_fetcher -u http://localhost:3000/forge/videos/encode_notify #{Forge::Settings[:zencoder][:api_key]}"
   end
+
+  desc "Generate a static secret token"
+  task :secret => :environment do
+    require 'securerandom'
+
+    token = SecureRandom.hex(256)
+
+    Rails.root.join("config", "secret_token.txt").open("w") do |f|
+      f.write(token)
+    end
+  end
 end

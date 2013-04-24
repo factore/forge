@@ -1,17 +1,10 @@
-module Forge3::SecretToken
-  LOCATION = if Rails.env.production?
-    "/var/apps/#{File.basename(Dir.pwd)}/shared/secret_token.txt"
-  else
-    'config/secret_token.txt'
-  end
+Forge3::Application.config.secret_token = begin
+  Rails.root.join("config/secret_token.txt").read
+rescue Errno::ENOENT
+  $stderr.puts "Couldn't find a static secret token.  Generating a temporary one..."
+  $stderr.puts "Next time, run: rake forge:secret"
 
-  begin
-    Forge3::Application.config.secret_token = File.read(LOCATION)
-  rescue Errno::ENOENT
-    $stderr.puts "WARNING: Couldn't find a secret token.  Generating one now..."
+  require 'digest/md5'
 
-    Forge3::Application.config.secret_token = SecureRandom.hex(64)
-
-    File.open(LOCATION, 'w') { |f| f.write(Forge3::Application.config.secret_token) }
-  end
+  Digest::MD5.hexdigest(`uname -a`)
 end
