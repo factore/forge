@@ -16,8 +16,8 @@ describe Order, "adding to cart" do
     2.should == @cart_order.products.size
     @cart_order.add(products(:book_of_bad_puns), 2)
     @cart_order.reload
-    assert_equal @cart_order.products.size, 2, "The number of items should not increase since this product is already in the cart." 
-    assert_equal @cart_order.price, 329.99, "three times 100.0 plus 29.99" 
+    assert_equal @cart_order.products.size, 2, "The number of items should not increase since this product is already in the cart."
+    assert_equal @cart_order.price, 329.99, "three times 100.0 plus 29.99"
   end
 
   it "should test retrieve standard info" do
@@ -46,7 +46,7 @@ describe Order, "shipping and handling when shipping is a flat rate" do
     @order = create_order
     @order.shipping_address = addresses(:adrian)
     MySettings.handling = 5.00
-    Forge::Settings[:flat_rate_shipping] = true
+    Forge.config.ecommerce.flat_rate_shipping = true
   end
 
   it "should include the handling fee by default" do
@@ -76,7 +76,7 @@ describe Order, "shipping and handling when shipping is not a flat rate" do
     @order.add(products(:map_of_peninsula)) # $10 + 13% HST and 3% NY Sales Tax
     @order.shipping_address = addresses(:adrian)
     MySettings.handling = 8.00
-    Forge::Settings[:flat_rate_shipping] = true
+    Forge.config.ecommerce.flat_rate_shipping = true
   end
 
   it "should include the handling fee by default" do
@@ -104,7 +104,7 @@ describe Order, "taxes" do
     @order.add(products(:book_of_bad_puns), 2) # 2 * $100 = $200 + 13% HST
     @order.add(products(:map_of_peninsula)) # $10 + 13% HST and 3% NY Sales Tax
     # add another item that only has NY sales tax
-    
+
     # add another item that has no sales tax
   end
 

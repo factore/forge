@@ -1,0 +1,8 @@
+files:
+  - app/views/forge/banners
+  - app/controllers/forge/banners_controller.rb
+  - app/models/banner.rb
+  - app/views/forge/shared/menu_items/_banners.html.haml
+
+migrations:
+  - create_banners

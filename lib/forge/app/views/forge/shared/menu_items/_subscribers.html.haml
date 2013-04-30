@@ -1,0 +1,8 @@
+- if can?(:index, Subscriber)
+  - item = "subscribers"
+  = forge_menu_item item, forge_subscribers_path, :active => is_active(['subscribers', 'subscriber_groups']), :submenu => true
+  %ul.forge_submenu{ :class => is_active(['subscribers', 'subscriber_groups']) ? "#{item} active" : item }
+    = link_to "Subscribers", forge_subscribers_path, :class => ('active' if is_active('subscribers')) if can?(:index, Subscriber)
+    = link_to "Groups", forge_subscriber_groups_path, :class => ('active' if is_active('subscriber_groups')) if can?(:index, SubscriberGroup)
+
+  .spacer

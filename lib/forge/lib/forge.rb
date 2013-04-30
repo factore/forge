@@ -9,7 +9,7 @@ module Forge
   end
 
   class Configuration
-    attr_accessor :mobile_layout
-    attr_accessor :support_instructions_in_layout
+    attr_accessor :mobile_layout, :support_instructions_in_layout,
+                  :languages, :seo_callout
   end
 end

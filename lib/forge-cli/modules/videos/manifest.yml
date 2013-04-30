@@ -1,0 +1,9 @@
+files:
+  - app/views/forge/videos
+  - app/controllers/forge/videos_controller.rb
+  - app/models/video.rb
+  - app/views/forge/shared/menu_items/_videos.html.haml
+  - lib/forge/config/videos.rb
+
+migrations:
+  - create_videos

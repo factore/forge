@@ -1,0 +1,15 @@
+files:
+  - app/views/posts
+  - app/views/forge/posts
+  - app/views/forge/post_categories
+  - app/controllers/posts_controller.rb
+  - app/controllers/forge/posts_controller.rb
+  - app/controllers/forge/post_categories_controller.rb
+  - app/models/post.rb
+  - app/models/post_category.rb
+  - config/initializers/forge/controllers/posts.rb
+  - app/views/forge/shared/menu_items/_posts.html.haml
+
+migrations:
+  - create_posts
+  - create_post_categories

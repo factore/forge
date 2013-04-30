@@ -1,18 +1,18 @@
-- paypal_account = MySettings.ecommerce_live ? Forge::Settings[Rails.env.to_sym][:paypal][:account] : Forge::Settings[:development][:paypal][:account]
+- paypal_account = MySettings.ecommerce_live ? Forge.config.ecommerce.paypal_production[:account] : Forge.config.ecommerce.paypal_sandbox[:account]
 = form_tag ActiveMerchant::Billing::Integrations::Paypal.service_url do
   = hidden_field_tag "business", paypal_account
 
   = hidden_field_tag "cancel_return", "http://" + request.host + "/orders/cancel"
   = hidden_field_tag "notify_url", "http://" + request.host + "/hosted_payment/notify"
   = hidden_field_tag "return", "http://" + request.host + paid_order_path(@cart_order, :key => @cart_order.key)
-    
+
   = hidden_field_tag "redirect_cmd", "_xclick"
   = hidden_field_tag "cmd", "_cart"
   = hidden_field_tag "upload", 1
 
   = hidden_field_tag "charset", "utf-8"
 
-  = hidden_field_tag "currency_code", Forge::Settings[:currency]
+  = hidden_field_tag "currency_code", Forge.config.ecommerce.currency
   = hidden_field_tag "invoice", invoice_number_for_paypal(order)
   = hidden_field_tag "tax_cart", order.tax
   - if MySettings.use_coupons

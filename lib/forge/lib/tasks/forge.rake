@@ -142,6 +142,6 @@ namespace :forge do
 
   desc "Get updates from Zencoder"
   task :encode_notify => :environment do
-    system "zencoder_fetcher -u http://localhost:3000/forge/videos/encode_notify #{Forge::Settings[:zencoder][:api_key]}"
+    system "zencoder_fetcher -u http://localhost:3000/forge/videos/encode_notify #{Forge.config.videos.zencoder_api_key}"
   end
 end

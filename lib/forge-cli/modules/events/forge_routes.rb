@@ -1,0 +1,1 @@
+resources :events, :except => [:show]

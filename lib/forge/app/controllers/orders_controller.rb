@@ -119,7 +119,7 @@ private
   end
 
   def redirect_to_payment
-    if Forge::Settings[:integrated_payments]
+    if Forge.config.ecommerce.payments == :integrated
       redirect_to integrated_payment_billing_path
     else
       redirect_to hosted_payment_billing_path

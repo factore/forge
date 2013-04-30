@@ -16,6 +16,11 @@ class Post < ActiveRecord::Base
 
   before_save :set_created_at
 
+
+  def to_param
+    "#{id}-#{title.parameterize}"
+  end
+
   def self.submenu
     "posts"
   end

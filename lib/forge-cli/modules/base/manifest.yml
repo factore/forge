@@ -125,11 +125,4 @@ files:
   - 'vendor/assets/stylesheets/jscrollpane.css.scss'
 
 migrations:
-  - create_assets
-  - create_comments
-  - create_help_topics
-  - create_pages
-  - create_roles
-  - create_settings
-  - create_taggings
-  - create_users
+  - create_base_forge

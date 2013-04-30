@@ -1,4 +1,4 @@
-%table.form{:cellspacing => 0, :width => '100%'}  
+%table.form{:cellspacing => 0, :width => '100%'}
   %tr
     %td.label
       Credit card number
@@ -22,14 +22,14 @@
     %td
       %input{:type => 'submit', :value => 'Pay Now'}
       The charge to your credit card will be
-      = "#{number_to_currency(@cart_order.total_price)} #{Forge::Settings[:currency]}"
+      = "#{number_to_currency(@cart_order.total_price)} #{Forge.config.ecommerce.currency}"
   %tr
     %td.label
     %td{:style => "padding-top: 25px;"}
       %p
         %small
           All prices are in
-          = Forge::Settings[:currency] + "."
+          = Forge.config.ecommerce.currency + "."
           Use of your data is governed by our
           %a{:href => "/security-policy", :target => "_blank" }
             Security Policy

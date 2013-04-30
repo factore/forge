@@ -1,0 +1,1 @@
+resources :subscribers, :only => [:index, :create, :destroy]

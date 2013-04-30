@@ -1,0 +1,25 @@
+dependencies:
+  - subscribers
+
+files:
+  - 'app/controllers/dispatches_controller.rb'
+  - 'app/controllers/dispatch_links_controller.rb'
+  - 'app/controllers/forge/dispatch_clicks_controller.rb'
+  - 'app/controllers/forge/dispatches_controller.rb'
+  - 'app/mailers/dispatch_mailer.rb'
+  - 'app/models/dispatch.rb'
+  - 'app/models/dispatch_bounce.rb'
+  - 'app/models/dispatch_link.rb'
+  - 'app/models/dispatch_link_click.rb'
+  - 'app/models/dispatch_open.rb'
+  - 'app/models/dispatch_unsubscribe.rb'
+  - 'app/models/queued_dispatch.rb'
+  - 'app/views/forge/dispatch_clicks'
+  - 'app/views/forge/dispatches'
+  - 'app/views/forge/shared/menu_items/_dispatches.html.haml'
+
+delete:
+  - 'app/views/forge/shared/menu_items/_subscribers.html.haml'
+
+migrations:
+  - create_dispatches

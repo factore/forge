@@ -1,0 +1,14 @@
+files:
+  - 'app/controllers/subscribers_controller.rb'
+  - 'app/views/subscribers'
+  - 'app/models/subscriber.rb'
+  - 'app/models/subscriber_group.rb'
+  - 'app/models/subscriber_group_member.rb'
+  - 'app/controllers/forge/subscribers_controller.rb'
+  - 'app/controllers/forge/subscriber_groups_controller.rb'
+  - 'app/views/forge/subscribers'
+  - 'app/views/forge/subscriber_groups'
+  - 'app/views/forge/shared/menu_items/_subscribers.html.haml'
+
+migrations:
+  - create_subscribers

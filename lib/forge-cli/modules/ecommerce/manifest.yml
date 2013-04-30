@@ -35,6 +35,7 @@ files:
   - 'app/views/forge/tax_rates'
   - 'config/initializers/forge/controllers/ecommerce.rb'
   - 'lib/models/order'
+  - 'lib/forge/config/ecommerce.rb'
 
 migrations:
   - create_addresses

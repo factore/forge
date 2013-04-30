@@ -15,8 +15,11 @@ class ForgeCLI
       unless @module_name == "base"
         STDOUT.puts "\nInstalling #{@module_name.titleize}..."
       end
-      copy_files! if @mod["files"]
-      create_migrations! if @mod["migrations"]
+      install_dependencies! if @mod["dependencies"]
+      copy_files!           if @mod["files"]
+      delete_files!         if @mod["delete"]
+      create_migrations!    if @mod["migrations"]
+
       post_hooks_class.run!(@app) if post_hooks_class
       unless @module_name == "base"
         STDOUT.puts "Done!"
@@ -24,6 +27,12 @@ class ForgeCLI
     end
 
     private
+      def install_dependencies!
+        @mod["dependencies"].each do |dependency|
+          ForgeCLI::ModuleInstaller.install_module!(dependency, @app)
+        end
+      end
+
       def copy_files!
         @mod["files"].each do |file|
           source_file = File.join(base_path, file)
@@ -55,6 +64,17 @@ class ForgeCLI
         end
       end
 
+      def delete_files!
+        @mod["delete"].each do |file|
+          raise "You can't delete non-app files" if file.match(/^\//)
+          destination = File.join(app_path, file)
+          if File.exist?(destination)
+            STDOUT.puts "      #{"remove".foreground(93, 255, 85)}  #{file}"
+            FileUtils.rm(destination)
+          end
+        end
+      end
+
       def create_migrations!
         source_path = File.join(base_path, 'db', 'migrate')
         destination_path = File.join(app_path, 'db', 'migrate')
@@ -68,7 +88,7 @@ class ForgeCLI
           content = File.open(source_file, 'r').read
 
           # Write the new one
-          timestamp = Time.now.utc.to_s.gsub(/\D+/, '').to_i
+          timestamp = Time.now.strftime('%Y%m%d%H%M%S')
           new_file_path = File.join(destination_path, "#{timestamp}_#{migration}.rb")
           new_file = File.open(new_file_path, "w")
           new_file.puts content

@@ -28,7 +28,7 @@ class IntegratedPaymentController < ApplicationController
   private
 
     def disallow_if_payment_is_hosted
-      if !Forge::Settings[:integrated_payments]
+      if Forge.config.ecommerce.payments == :hosted
         redirect_to "/hosted_payment/billing" and return false
       end
     end

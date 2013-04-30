@@ -1,0 +1,9 @@
+files:
+  - app/controllers/forge/galleries_controller.rb
+  - app/views/forge/galleries
+  - app/models/gallery.rb
+  - app/models/photo.rb
+  - app/views/forge/shared/menu_items/_galleries.html.haml
+
+migrations:
+  - create_galleries

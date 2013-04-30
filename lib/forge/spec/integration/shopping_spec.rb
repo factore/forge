@@ -9,11 +9,11 @@ describe "Shopping" do
     response.should be_success, response.body
   end
 
-  it "should shop for products" do 
+  it "should shop for products" do
     product = products(:book_of_bad_puns)
     get "/products/#{product.id}"
     assert_response :success
-    
+
     # add an item to the cart
     lambda do
       post_via_redirect(add_to_cart_orders_path, { :product_id => product.id, :quantity => 2}, { "HTTP_REFERER" => "/products/#{product.id}" } )
@@ -33,7 +33,7 @@ describe "Shopping" do
     product.price.should == @order.line_items.first.price
     (product.price * 2.0).should == @order.price
     1.should == @order.products.size
-   
+
     # add another item to the cart
     post_via_redirect(add_to_cart_orders_path, { :product_id => products(:tiny_digital_man).id, :quantity => 1}, { "HTTP_REFERER" => "/products/#{product.id}" } )
     assert_response :success
@@ -46,7 +46,7 @@ describe "Shopping" do
     assert_response :success
     flash[:warning].should_not == nil
     @order.reload
-    assert_equal @order.line_items.size, 2, "the quantity of line items should stay the same, because this addition should have failed" 
+    assert_equal @order.line_items.size, 2, "the quantity of line items should stay the same, because this addition should have failed"
 
     # proceeding to checkout
     get orders_checkout_path
@@ -68,7 +68,7 @@ describe "Shopping" do
       @product = products(:book_of_bad_puns)
       get "/products/#{product.id}"
       assert_response :success
-      
+
       # add an item to the cart
       lambda do
         post_via_redirect(add_to_cart_orders_path, { :product_id => @product.id, :quantity => 2}, { "HTTP_REFERER" => "/products/#{@product.id}" } )
@@ -80,7 +80,7 @@ describe "Shopping" do
     end
 
     it "should choose to pay with paypal" do
-      Forge::Settings[:integrated_payments] = false
+      Forge.config.ecommerce.payments = :hosted
 
       # add an item to the cart
       product = products(:book_of_bad_puns)
@@ -100,8 +100,8 @@ describe "Shopping" do
     end
 
     it "should choose to pay with a credit card and send a receipt" do
-      Forge::Settings[:integrated_payments] = true
-      Forge::Settings[:email_receipt] = true
+      Forge.config.ecommerce.payments = :integrated
+      Forge.config.ecommerce.email_receipt = true
 
       # add an item to the cart
       product = products(:book_of_bad_puns)
@@ -114,7 +114,7 @@ describe "Shopping" do
       response.should be_success, response.body
       response.should render_template("billing")
       response.body.should match(/credit card/)
-      
+
       # for security, hosted payments should be inaccessible
       get "hosted_payment/billing"
       assert_response :redirect

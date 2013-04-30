@@ -1,6 +1,11 @@
 // dispatch statistics
 #progress-bar { height: 25px; }
-#dispatch-progress-holder { background:#373737; padding:4px; @include rounded(5px); }
+#dispatch-progress-holder {
+  background:#373737;
+  padding:4px;
+  @include rounded(5px);
+  width: 100%;
+}
 #dispatch-progress-read { background:image-url('forge/read-meter-bg.png') $red; color:white; float:left; font-size:12px; font-weight:bold; height:22px; padding-top:3px; @include rounded(5px); }
 #dispatch-progress-sent { background:#EAEAEA; float:left; height:25px; @include rounded(5px); @include box-shadow-inset(0px 2px 5px #999); }
 
@@ -14,7 +19,11 @@
   .grey {
     .link { float:left; width:70%; }
     .click { float:right; width:26%; }
+    &.half { width: 280px; }
   }
+}
+.dispatch-animated-bar {
+  margin-top: 25px;
 }
 
 

@@ -1,14 +1,14 @@
 class EventsController < ApplicationController
   caches_page :index, :show
 
-  if Forge::Settings[:events][:display] == 'calendar'
+  if Forge.config.events.display == :calendar
     helper LaterDude::CalendarHelper
   end
 
   def index
     @page_title = 'Listing Events'
 
-    if Forge::Settings[:events][:display] == 'calendar'
+    if Forge.config.events.display == :calendar
       now = Time.now
 
       @year = (params[:year] || now.year).to_i

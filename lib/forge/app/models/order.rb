@@ -87,7 +87,7 @@ class Order < ActiveRecord::Base
   def shipping
     amount = 0.0
     # raise "A valid shipping address must exist in order to calculate the shipping" if self.shipping_address.blank? || !self.shipping_address.valid?
-    if Forge::Settings[:flat_rate_shipping]
+    if Forge.config.ecommerce.flat_rate_shipping
       amount = self.line_items.inject(0.0) { |sum, line_item| sum += (line_item.quantity * line_item.product.flat_rate_shipping) }
     elsif self.shipping_cost
       amount = self.shipping_cost
@@ -134,7 +134,7 @@ class Order < ActiveRecord::Base
       )
 
       # Run functions to get cost estimates
-      shipper = "ActiveMerchant::Shipping::#{MySettings.shipper.underscore.parameterize('_').camelize}".constantize.new(Forge::Settings[Rails.env.to_sym][MySettings.shipper.underscore.parameterize("_").to_sym])
+      shipper = "ActiveMerchant::Shipping::#{MySettings.shipper.underscore.parameterize('_').camelize}".constantize.new(Forge.config.ecommers.shippers[MySettings.shipper.underscore.parameterize("_").to_sym])
       begin
         response = shipper.find_rates(origin, destination, packages)
         # Store all rates, order by price. Return cheapest rate.
@@ -271,7 +271,7 @@ class Order < ActiveRecord::Base
     end
 
     def email_receipt
-      if Forge::Settings[:email_receipt]
+      if Forge.config.ecommerce.email_receipt
         ReceiptMailer.receipt(self).deliver
       end
     end

@@ -14,8 +14,8 @@
   #overview
     = render :partial => "header", :locals => {:dispatch => @dispatch}
     .inner-form#dispatch-stats
-      .column
-        .grey
+      .column.full
+        .dispatch-animated-bar
           .extendable-inset.deep{:style => "padding: 5px;"}
             #dispatch-progress-sent
               #dispatch-progress-read

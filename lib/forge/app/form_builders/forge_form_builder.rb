@@ -82,9 +82,9 @@ class ForgeFormBuilder < ActionView::Helpers::FormBuilder
     end
 
     def internationalize_content(generator, method_name, content, options = {})
-      if Forge::Settings[:languages]
+      if Forge.config.languages
         content = content_tag(:div, content, :class => "i18n en")
-        Forge::Settings[:languages].each do |lang_title, lang|
+        Forge.config.languages.each do |lang_title, lang|
           content += content_tag(:div, self.send(generator, method_name, options, lang, lang_title), :class => "i18n #{lang}")
         end
         content = framed_content(content, options)

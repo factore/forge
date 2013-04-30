@@ -22,7 +22,7 @@
   #tabs
     %ul.tabbed
       %li= link_to "General Settings", '#general'
-      - if Forge::Settings[:mobile_layout]
+      - if Forge.config.mobile_layout
         %li= link_to "Mobile Settings", '#mobile'
       - if @menu_items.include?("video_feeds")
         %li= link_to "Video Feed Settings", '#video'
@@ -31,7 +31,7 @@
     .spacer
 
     #general= render :partial => "general"
-    - if Forge::Settings[:mobile_layout]
+    - if Forge.config.mobile_layout
       #mobile= render :partial => "mobile"
     - if @menu_items.include?("video_feeds")
       #video= render :partial => "video_feed"

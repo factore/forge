@@ -25,7 +25,7 @@ class OrderTransaction < ActiveRecord::Base
       begin
         # TODO: is eval appropriate in this instance?  I tried Object.const_get but had problems.
         # OPTIMIZE: this is a bit crufty
-        am_setting = Forge::Settings[Rails.env.to_sym][:active_merchant]
+        am_setting = Forge.config.ecommerce.active_merchant
         gateway_class = eval("ActiveMerchant::Billing::" + am_setting[:gateway])
         gateway = gateway_class.new(:login => am_setting[:login], :password => am_setting[:password])
         response = yield gateway

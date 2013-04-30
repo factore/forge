@@ -1,0 +1,12 @@
+files:
+  - app/controllers/events_controller.rb
+  - app/views/events
+  - app/controllers/forge/events_controller.rb
+  - app/views/forge/events
+  - app/models/event.rb
+  - app/views/forge/shared/menu_items/_events.html.haml
+  - app/helpers/events_helper.rb
+  - lib/forge/config/events.rb
+
+migrations:
+  - create_events

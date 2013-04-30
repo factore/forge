@@ -1,7 +1,7 @@
 source :rubygems
 
 # Most dependencies come from this gem
-gem 'forge-rad', '~> 3.2.12', :require => 'forge-rad'
+gem 'forge-rad', '~> 3.2.13', :require => 'forge-rad'
 
 # Extra Plugins
 gem 'exception_notification', :require => 'exception_notifier'
@@ -15,7 +15,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara'
+  gem 'capybara', '~> 2.0.0'
   gem 'rspec-rails', '>= 2.0.1'
   gem 'shoulda'
   gem 'shoulda-matchers'

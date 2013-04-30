@@ -99,9 +99,9 @@ module FormHelper
   end
 
   def language_switcher(table)
-    if Forge::Settings[:languages]
+    if Forge.config.languages
       if I18nLookup.fields[:tables][table]
-        select_tag "current_language", options_for_select([["English", "en"]] + Forge::Settings[:languages].map {|k, v| [k.to_s.titleize, v]})
+        select_tag "current_language", options_for_select([["English", "en"]] + Forge.config.languages.map {|k, v| [k.to_s.titleize, v]})
       end
     end
   end

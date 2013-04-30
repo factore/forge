@@ -17,6 +17,10 @@ class Event < ActiveRecord::Base
   validates_format_of :ends_at_time, :with => /\d{1,2}:\d{2}[AaPp][Mm]/i, :message => "must be a valid 12-hour time.", :allow_nil => true
   validates_format_of :ends_at_date, :with => /\d{4}\-\d{1,2}\-\d{2}/, :message => "must match format of YYYY-MM-DD", :allow_nil => true
 
+  def to_param
+    "#{id}-#{title.parameterize}"
+  end
+
   def self.on(year, month=nil, day=nil)
     time = Time.mktime(year, month, day)
     delta = day ? 1.day : month ? 1.month : year ? 1.year : fail

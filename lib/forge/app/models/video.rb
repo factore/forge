@@ -49,7 +49,7 @@ class Video < ActiveRecord::Base
     prefix = output[:label] == "web" ? "" : "#{output[:label]}_"
     attrs = {"#{prefix}encoded_state" => output[:state]}
     if output[:state] == "finished"
-      thumb = open(URI.parse("http://s3.amazonaws.com/" + Forge::Settings[:zencoder][:bucket] + "/thumbnails_#{id}/frame_0000.png"))
+      thumb = open(URI.parse("http://s3.amazonaws.com/" + Forge.config.videos.zencoder_bucket + "/thumbnails_#{id}/frame_0000.png"))
       attrs.merge!({"#{prefix}output_url" => output[:url]})
       attrs.merge!({"thumbnail" => thumb}) if thumbnail.url.blank?
     end

@@ -1,10 +1,10 @@
 %h1 Pay Securely Online With Your Credit Card
 
-%p 
-  Your data are kept in strict confidence and security.  All prices are in #{Forge::Settings[:currency]}.
+%p
+  Your data are kept in strict confidence and security.  All prices are in #{Forge.config.ecommerce.currency}.
 
 %div{:style => "float:left; width:40%;"}
-  %h2 Billing Address 
+  %h2 Billing Address
   = render :partial => "orders/display_address", :locals => { :address => @cart_order.billing_address, :address_type => 'billing_address' }
   = link_to "Edit billing address", orders_checkout_path
 

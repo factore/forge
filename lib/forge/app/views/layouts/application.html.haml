@@ -13,7 +13,7 @@
     = yield :scripts
 
   %body{ :id => params[:controller], :class => params[:action] }
-    = link_to("View Mobile Version", :mobile => 1) if Forge::Settings[:mobile_layout] #&& using_mobile_device?
+    = link_to("View Mobile Version", :mobile => 1) if Forge.config.mobile_layout #&& using_mobile_device?
 
     - if current_user
       .float-right
