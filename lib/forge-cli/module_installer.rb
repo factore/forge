@@ -44,7 +44,7 @@ class ForgeCLI
           end
 
           unless File.exist?(destination_dir) && !File.directory?(source_file)
-            STDOUT.puts "      #{"create".foreground(93, 255, 85)}  #{file}"
+            ForgeCLI::Output.write("create", file)
             FileUtils.mkdir_p(destination_dir)
           end
 
@@ -69,7 +69,7 @@ class ForgeCLI
           raise "You can't delete non-app files" if file.match(/^\//)
           destination = File.join(app_path, file)
           if File.exist?(destination)
-            STDOUT.puts "      #{"remove".foreground(93, 255, 85)}  #{file}"
+            ForgeCLI::Output.write("remove", file)
             FileUtils.rm(destination)
           end
         end
@@ -93,7 +93,7 @@ class ForgeCLI
           new_file = File.open(new_file_path, "w")
           new_file.puts content
           new_file.close
-          STDOUT.puts "   migration  ".foreground(93, 255, 85) + new_file_path.gsub("#{destination_path}/", '')
+          ForgeCLI::Output.write('migration', new_file_path.gsub("#{destination_path}/", ''))
 
           # So that they have different timestamps
           sleep 1

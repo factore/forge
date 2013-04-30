@@ -16,8 +16,10 @@ require 'forge-cli/app.rb'
 # This is alphabetical
 require 'forge-cli/ability_installer.rb'
 require 'forge-cli/application_creator.rb'
+require 'forge-cli/custom_file_copier.rb'
 require 'forge-cli/forge_addon_requirer.rb'
 require 'forge-cli/module_installer.rb'
+require 'forge-cli/output.rb'
 require 'forge-cli/post_hooks.rb'
 require 'forge-cli/route_installer.rb'
 

@@ -17,12 +17,20 @@ class ForgeCLI::ApplicationCreator < ForgeCLI::App
       end
 
       # Remove some base Rails files that we don't want
-      STDOUT.puts "Removing unneccessary base Rails files..."
+      STDOUT.puts "\nRemoving unneccessary base Rails files..."
       remove_file File.join(@app, 'app', 'views', 'layouts', 'application.html.erb')
       remove_file File.join(@app, 'app', 'assets', 'stylesheets', 'application.css')
       remove_file File.join(@app, 'public', 'index.html')
       remove_file File.join(@app, 'Gemfile.lock')
 
+      # Copy custom files from ~/.forge
+      if File.exist?(File.join(ENV["HOME"], '.forge'))
+        STDOUT.puts "\nCopying your custom files from ~/.forge"
+        ForgeCLI::CustomFileCopier.copy_files!(@app)
+      end
+
+      # Rewrite Forge3::Application
+      rewrite_app_name
 
       STDOUT.puts completed_message
     end
@@ -42,6 +50,21 @@ class ForgeCLI::ApplicationCreator < ForgeCLI::App
         if File.exist?(file)
           STDOUT.puts "      #{"remove".foreground(93, 255, 85)}  #{file.gsub(@app + '/', '')}"
           FileUtils.rm(file)
+        end
+      end
+
+      def rewrite_app_name
+        files = [
+          '/config/environments/production.rb',
+          '/config/application.rb'
+        ]
+        files.each do |file|
+          old_content = File.read(File.join(@app, file))
+          app_name = File.basename(@app).classify
+          new_content = old_content.gsub('Forge3', app_name)
+          File.open(File.join(@app, file), 'w') do |f|
+            f.puts new_content
+          end
         end
       end
 
