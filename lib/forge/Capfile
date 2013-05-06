@@ -5,4 +5,11 @@ load 'lib/forge/recipes'
 
 Dir['vendor/gems/*/recipes/*.rb','vendor/plugins/*/recipes/*.rb'].each { |plugin| load(plugin) }
 
-load 'config/deploy' # remove this line to skip loading any of the default tasks
+if `git ls-files`.split($/).include?("config/secret_token.txt")
+  load 'config/deploy' # remove this line to skip loading any of the default tasks
+else
+  $stderr.puts "I'm sorry, #{`whoami`.strip.capitalize}.  I'm afraid I can't let you do that."
+  $stderr.puts "Run `rake forge:secret` and check in config/secret_token.txt first."
+
+  exit 2000
+end
