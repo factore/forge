@@ -1,5 +1,0 @@
-= forge-cli
-
-Generate this with
-    forge-cli rdoc
-After you have described your command line interface
