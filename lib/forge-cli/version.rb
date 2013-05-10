@@ -1,3 +1,3 @@
 class ForgeCLI
-  VERSION = '0.0.10'
+  VERSION = '0.0.14'
 end

@@ -1,6 +1,4 @@
 = forge-cli
 
-Describe your project here
-
-:include:forge-cli.rdoc
+Command line interface for creating Forge apps.
 

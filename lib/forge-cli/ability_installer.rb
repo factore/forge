@@ -1,4 +1,4 @@
-class ForgeCLI::AbilityInstaller < ForgeCLI::App
+class ForgeCLI::AbilityInstaller
   class << self
     def install_abilities!(app, ability_class)
       @app = app

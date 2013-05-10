@@ -1,6 +1,4 @@
 class ForgeCLI::App < Thor
-  include Thor::Actions
-
   desc 'new', 'Create a new Forge app'
   def new(app, modules = '')
     modules = modules.split(',')

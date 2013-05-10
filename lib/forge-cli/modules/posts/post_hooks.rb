@@ -10,6 +10,7 @@ class ForgeCLI::PostPostHooks < ForgeCLI::PostHooks
         'class ApplicationController < ActionController::Base',
         "class ApplicationController < ActionController::Base\n  include Forge::Controllers::Posts\n"
     )
+    content = "require 'forge/shared_controller_methods/posts.rb'\n" + content
     File.open(app_controller_path, 'w') do |f|
       f.puts content
     end

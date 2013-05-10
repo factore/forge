@@ -10,6 +10,7 @@ class ForgeCLI::EcommercePostHooks < ForgeCLI::PostHooks
         'class ApplicationController < ActionController::Base',
         "class ApplicationController < ActionController::Base\n  include Forge::Controllers::ECommerce\n"
     )
+    content = "require 'forge/shared_controller_methods/ecommerce.rb'\n" + content
     File.open(app_controller_path, 'w') do |f|
       f.puts content
     end
