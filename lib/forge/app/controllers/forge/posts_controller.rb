@@ -1,7 +1,6 @@
 class Forge::PostsController < ForgeController
   before_filter :get_collections
   before_filter :uses_ckeditor, :only => [:new, :update, :create, :edit]
-  cache_sweeper :page_sweeper, :only => [:update, :create, :destroy]
   load_and_authorize_resource
 
   def index

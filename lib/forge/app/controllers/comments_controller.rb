@@ -1,11 +1,7 @@
 class CommentsController < ApplicationController
   before_filter :get_archive_months, :only => :create
-  before_filter :get_post_categories, :only => :create  
-  # TODO: figure out a caching mechanism
-  # cache_sweeper :post_sweeper, :only => [:create, :destroy]
-  # TODO: rakismet back in
-  # has_rakismet :only => :create
-  
+  before_filter :get_post_categories, :only => :create
+
   def create
      params[:comment].merge!({:user_ip => request.remote_ip, :user_agent => request.env['HTTP_USER_AGENT'], :referrer => request.env['HTTP_REFERER']})
      @comment = Comment.new(params[:comment])

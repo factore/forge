@@ -46,7 +46,6 @@ module Forge3
 
     config.autoload_paths += [
       File.join(Rails.root, 'lib'),
-      File.join(Rails.root, 'app', 'sweepers'),
       File.join(Rails.root, 'app', 'form_builders'),
       File.join(Rails.root, 'app', 'abilities')
     ]

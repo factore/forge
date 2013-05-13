@@ -1,6 +1,4 @@
 class EventsController < ApplicationController
-  caches_page :index, :show
-
   if Forge.config.events.display == :calendar
     helper LaterDude::CalendarHelper
   end
