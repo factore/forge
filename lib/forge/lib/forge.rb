@@ -10,6 +10,6 @@ module Forge
 
   class Configuration
     attr_accessor :mobile_layout, :support_instructions_in_layout,
-                  :languages, :seo_callout
+                  :languages, :seo_callout, :support_instruction_in_help
   end
 end
