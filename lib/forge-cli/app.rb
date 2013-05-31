@@ -10,7 +10,7 @@ class ForgeCLI::App < Thor
     app = Dir.pwd
     modules = modules.split(',')
     modules.each do |mod|
-      ForgeCLI::ModuleInstaller.install_module!(mod, app)
+      ForgeCLI::ModuleInstaller.install_module!(mod, app, app)
     end
   end
 

@@ -10,9 +10,10 @@ class ForgeCLI::ApplicationCreator
 
   def create_application!
     system("/usr/bin/env rails new #{@app}")
-    ForgeCLI::ModuleInstaller.install_module!(:base, @app)
+    app_path = File.join(Dir.pwd, @app)
+    ForgeCLI::ModuleInstaller.install_module!(:base, @app, app_path)
     @modules.each do |mod|
-      ForgeCLI::ModuleInstaller.install_module!(mod, @app)
+      ForgeCLI::ModuleInstaller.install_module!(mod, @app, app_path)
     end
 
     # Remove some base Rails files that we don't want

@@ -5,10 +5,11 @@ class ForgeCLI
       mi.run!
     end
 
-    def initialize(module_name, app)
+    def initialize(module_name, app, app_path)
       @module_name  = module_name.to_s
       @mod          = module_manifest
       @app          = app
+      @app_path     = app_path
     end
 
     def run!
@@ -102,10 +103,6 @@ class ForgeCLI
 
       def base_path
         @base_path ||= File.join(File.dirname(__FILE__), "..", "forge")
-      end
-
-      def app_path
-        @app_path ||= File.join(Dir.pwd, @app)
       end
 
       def module_manifest
