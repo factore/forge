@@ -1,7 +1,7 @@
 class Forge::HelpTopicsController < ForgeController
 
   def index
-    @help_topics = HelpTopic.order(:title).group(:title)
+    @help_topics = HelpTopic.order(:title).group(:title, :id)
     respond_to do |format|
       format.js { render :layout => false }
       format.html { }
