@@ -9,7 +9,7 @@ class ForgeCLI::ApplicationCreator
   end
 
   def create_application!
-    system("/usr/bin/env rails new #{@app}")
+    system("/usr/bin/env rails new #{@app} --skip-bundle")
     app_path = File.join(Dir.pwd, @app)
     ForgeCLI::ModuleInstaller.install_module!(:base, @app, app_path)
     @modules.each do |mod|
