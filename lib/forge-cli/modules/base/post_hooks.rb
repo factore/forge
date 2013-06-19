@@ -10,7 +10,7 @@ class ForgeCLI
     end
 
     def fix_gemfile
-      if RUBY_VERSION.match(/^1\.9/)
+      if RUBY_VERSION.to_f > 1.8
         gemfile_content = File.read(File.join(@app, 'Gemfile'))
         new_content = gemfile_content.gsub("gem 'capybara', '~> 2.0.0'", "gem 'capybara'")
         new_content = gemfile_content.gsub("gem 'shoulda-matchers', '~> 2.0.0'", "gem 'shoulda-matchers'")
