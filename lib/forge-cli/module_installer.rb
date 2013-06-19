@@ -1,7 +1,7 @@
 class ForgeCLI
   class ModuleInstaller
-    def self.install_module!(module_name, app)
-      mi = new(module_name, app)
+    def self.install_module!(module_name, app, app_path)
+      mi = new(module_name, app, app_path)
       mi.run!
     end
 
@@ -37,7 +37,7 @@ class ForgeCLI
       def copy_files!
         @mod["files"].each do |file|
           source_file = File.join(base_path, file)
-          destination = File.join(app_path, file)
+          destination = File.join(@app_path, file)
           destination_dir = File.dirname(destination)
 
           unless File.exist?(source_file)
@@ -52,7 +52,7 @@ class ForgeCLI
           if File.directory?(source_file)
             Dir[File.join(source_file, '**', '*')].each do |s|
               source_file = s
-              destination = File.join(app_path, s.gsub(base_path, ''))
+              destination = File.join(@app_path, s.gsub(base_path, ''))
               destination_dir = File.dirname(destination)
               FileUtils.mkdir_p(destination_dir)
               unless File.directory?(source_file)
@@ -68,7 +68,7 @@ class ForgeCLI
       def delete_files!
         @mod["delete"].each do |file|
           raise "You can't delete non-app files" if file.match(/^\//)
-          destination = File.join(app_path, file)
+          destination = File.join(@app_path, file)
           if File.exist?(destination)
             ForgeCLI::Output.write("remove", file)
             FileUtils.rm(destination)
@@ -78,7 +78,7 @@ class ForgeCLI
 
       def create_migrations!
         source_path = File.join(base_path, 'db', 'migrate')
-        destination_path = File.join(app_path, 'db', 'migrate')
+        destination_path = File.join(@app_path, 'db', 'migrate')
         unless File.exist?(destination_path)
           FileUtils.mkdir_p(destination_path)
         end

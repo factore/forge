@@ -1,12 +1,13 @@
-source :rubygems
+source "https://rubygems.org"
 
 # Most dependencies come from this gem
 gem 'forge-rad', '~> 3.2.13', :require => 'forge-rad'
 
 # Extra Plugins
 gem 'exception_notification', :require => 'exception_notifier'
-gem 'rails-settings', :git => 'git://github.com/100hz/rails-settings.git'
+gem 'rails-settings', :git => 'git://github.com/devlinzed/rails-settings.git'
 gem 'launchy'
+gem 'nokogiri', '1.5.10'
 
 # The Groups
 group :development, :test do
