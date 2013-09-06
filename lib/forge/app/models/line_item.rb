@@ -24,8 +24,8 @@ class LineItem < ActiveRecord::Base
   # then enumerate through them and add up their rates
   def applicable_tax_rate(billing_address)
     raise "billing address must be an Address" unless billing_address.kind_of? Address
-    applicable_tax_rates = self.product.tax_rates.find_all_by_country_id(billing_address.country_id)
-    applicable_tax_rates += self.product.tax_rates.find_all_by_province_id(billing_address.province_id) if billing_address.province_id
+    applicable_tax_rates = self.product.tax_rates.where(country_id: billing_address.country_id).to_a
+    applicable_tax_rates += self.product.tax_rates.where(province_id: billing_address.province_id).to_a if billing_address.province_id
     # use uniq to ensure we don't charge tax too many times - it's possible to get overlapping rates between a country and its provinces
     applicable_tax_rates.uniq.inject(0.0) { |sum, applicable_tax_rate| sum += applicable_tax_rate.rate }
   end

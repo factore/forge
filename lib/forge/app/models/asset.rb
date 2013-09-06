@@ -3,13 +3,11 @@ class Asset < ActiveRecord::Base
   include Sprockets::Helpers::IsolatedHelper
   include Sprockets::Helpers::RailsHelper
 
-
   acts_as_taggable
   has_attached_file :attachment, :styles => {:thumbnail => "120x108#", :medium => "800x800>"}
   before_attachment_post_process :prevent_pdf_thumbnail
 
-
-  default_scope :order => "assets.created_at DESC"
+  default_scope { order("assets.created_at DESC") }
 
   def swfupload_file!(data, filename)
     data.content_type = MIME::Types.type_for(data.original_filename).to_s

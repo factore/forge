@@ -1,7 +1,7 @@
 class Country < ActiveRecord::Base
   # Scopes, Attrs, Etc.
-  scope :active, where(:active => true).order("top_of_list DESC, title ASC")
-  scope :alphabetical, order("title ASC")
+  scope :active, -> { where(:active => true).order("top_of_list DESC, title ASC") }
+  scope :alphabetical, -> { order("title ASC") }
 
   # Relationships
   has_many :provinces

@@ -11,8 +11,8 @@ class Comment < ActiveRecord::Base
   attr_protected :approved
   attr_accessor :subscribe, :controller
 
-  default_scope :order => "created_at DESC"
-  scope :approved, where(:approved => true).order("created_at ASC")
+  default_scope { order("created_at DESC") }
+  scope :approved, -> { where(:approved => true).order("created_at ASC") }
 
   # Comment/uncomment this to turn off/on moderation
   # before_save :approve

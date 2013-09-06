@@ -15,7 +15,7 @@ class Dispatch < ActiveRecord::Base
   after_save :update_dispatch_links
   
   def deliver!(group_ids = [])
-    subscribers = group_ids.blank? ? Subscriber.all : SubscriberGroup.find_all_by_id(group_ids).map(&:subscribers).flatten.uniq
+    subscribers = group_ids.blank? ? Subscriber.all : SubscriberGroup.where(id: group_ids).to_a.map(&:subscribers).flatten.uniq
     subscribers.each {|s| 
       qd = QueuedDispatch.create(:subscriber => s, :dispatch => self)
       qd.send!

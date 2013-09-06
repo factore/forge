@@ -4,10 +4,10 @@ class QueuedDispatch < ActiveRecord::Base
   belongs_to :subscriber
   
   # Scopes
-  scope :queued, where('sent_at IS NULL')
-  scope :sent, where("sent_at IS NOT NULL")
-  scope :failed, where("failed_attempts > ?", 0)
-  scope :opened, where("opened_at IS NOT NULL")
+  scope :queued, -> { where('sent_at IS NULL') }
+  scope :sent, -> { where("sent_at IS NOT NULL") }
+  scope :failed, -> { where("failed_attempts > ?", 0) }
+  scope :opened, -> { where("opened_at IS NOT NULL") }
   
   # Action Methods
   def send!

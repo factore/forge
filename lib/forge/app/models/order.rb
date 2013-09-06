@@ -14,7 +14,7 @@ class Order < ActiveRecord::Base
 
   accepts_nested_attributes_for :line_items, :reject_if => proc { |attributes| attributes['quantity'].blank? }
 
-  scope :not_pending, where("state != 'pending'")
+  scope :not_pending, -> { where("state != 'pending'") }
 
   validates_presence_of :key
   validates_uniqueness_of :key

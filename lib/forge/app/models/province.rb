@@ -1,6 +1,6 @@
 class Province < ActiveRecord::Base
   # Scopes, Attrs, Etc.
-  default_scope order("title ASC")
+  default_scope { order("title ASC") }
 
   # Relationships
   belongs_to :country

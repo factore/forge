@@ -2,10 +2,10 @@ class Page < ActiveRecord::Base
   # Scopes, Attrs, Etc.
   acts_as_nested_set
   attr_protected :lft, :rgt
-  default_scope :order => "pages.lft, pages.list_order"
-  scope :published, where(:published => true)
-  scope :find_for_menu, published.where("parent_id IS NULL AND show_in_menu = ?", true).includes(:subpages)
-  scope :top, where(:parent_id => nil)
+  default_scope { order("pages.lft, pages.list_order") }
+  scope :published, -> { where(:published => true) }
+  scope :find_for_menu, -> { published.where("parent_id IS NULL AND show_in_menu = ?", true).includes(:subpages) }
+  scope :top, -> { where(:parent_id => nil) }
 
   # Relationships
   belongs_to :parent, :class_name => "Page", :foreign_key => "parent_id"

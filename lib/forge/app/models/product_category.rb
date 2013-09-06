@@ -1,6 +1,6 @@
 class ProductCategory < ActiveRecord::Base
   include Forge::Reorderable
-  default_scope :order => 'product_categories.list_order'
+  default_scope { order('product_categories.list_order') }
   before_destroy :validate_destroy
   has_many :products
   belongs_to :sale

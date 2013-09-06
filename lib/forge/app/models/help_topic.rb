@@ -3,7 +3,7 @@ class HelpTopic < ActiveRecord::Base
   validates_format_of :slug, :with => /\A[a-zA-Z0-9_-]+\z/
   validates_uniqueness_of :slug, :scope => :language
   before_save :convert_content_to_html
-  default_scope where(:language => I18n.locale.to_s)
+  default_scope { where(:language => I18n.locale.to_s) }
 
 protected
 

@@ -1,8 +1,8 @@
 class Product < ActiveRecord::Base
   # Scopes and Inclusions
   include Forge::Reorderable
-  default_scope :order => 'products.list_order ASC'
-  scope :published, :conditions => ["published = ?", true]
+  default_scope { order('products.list_order ASC') }
+  scope :published, -> { :conditions => ["published = ?", true] }
 
   # Relationships
   has_many :images, :class_name => "ProductImage"

@@ -3,7 +3,7 @@ class VideoFeed < ActiveRecord::Base
   require 'open-uri'
 
   # Scopes, attachments, etc.
-  default_scope :order => "published_at DESC"
+  default_scope { order("published_at DESC") }
 
   # Validations
   validates_presence_of :video_id, :title, :channel
