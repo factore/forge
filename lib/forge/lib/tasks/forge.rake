@@ -5,7 +5,7 @@ namespace :forge do
       password = ENV['PASSWORD'].blank? ? role : ENV['PASSWORD']
       user = User.new(:password => password, :password_confirmation => password, :email => "#{role}@factore.ca")
       user.approved = true
-      user.roles << Role.find_or_create_by_title(role.humanize.titleize)
+      user.roles << Role.find_or_create_by(title: role.humanize.titleize)
       if user.save
         puts "#{role.humanize.titleize} user created with username: #{user.email}, password: #{password}"
       else

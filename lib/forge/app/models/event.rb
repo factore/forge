@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
   # Scopes, attachments, etc.
-  scope :published, where(:published => true)
+  scope :published, -> { where(:published => true) }
   scope :upcoming, lambda { { :where => ["ends_at > ?", Time.now], :order => "starts_at" } }
   scope :past, lambda { { :where => ["ends_at < ?", Time.now], :order => "starts_at" } }
 

@@ -57,7 +57,7 @@ class Dispatch < ActiveRecord::Base
       doc = Hpricot(self.content)
       links = doc.search('a')
       links.each_with_index do |link, i|
-        dispatch_link = DispatchLink.find_or_initialize_by_position_and_dispatch_id(i, self.id)
+        dispatch_link = DispatchLink.find_or_initialize_by(position: i, dispatch_id: self.id)
         dispatch_link.uri = link["href"] and dispatch_link.save!
       end
     

@@ -5,7 +5,7 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
-["Super Admin", "Admin", "Contributor", "Member"].each {|r| Role.find_or_create_by_title(r)}
+["Super Admin", "Admin", "Contributor", "Member"].each {|r| Role.find_or_create_by(title: r)}
 
 %w{admin super_admin contributor member}.each do |role|
   password = ENV['PASSWORD'].blank? ? role : ENV['PASSWORD']

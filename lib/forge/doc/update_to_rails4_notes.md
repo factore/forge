@@ -36,13 +36,6 @@ class CommentObserver < ActiveRecord::Observer
 end
 
 
-SEAN:
-
-* where do the config/development.rb and config/test.rb files come from?
-* how are routes handled?
-
-
-
 Later:
 
 * remove protected_attributes from ForgeRad and replace with the default Rails 4 behaviour, which moves
@@ -55,5 +48,6 @@ Notes:
   be bin/forge new NAME_OF_APP MODULE_LIST
   e.g:
   be bin/forge new testapp events,ecommerce
+  be bin/forge new testapp banners,dispatches,ecommerce,events,galleries,posts,subscribers,videos
 
 

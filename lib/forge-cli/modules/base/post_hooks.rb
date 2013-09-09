@@ -12,7 +12,7 @@ class ForgeCLI
     def fix_gemfile
       if RUBY_VERSION.to_f > 1.9
         gemfile_content = File.read(File.join(@app, 'Gemfile'))
-        new_content = new_content.gsub("gem 'forge-rad'", "gem 'forge-rad20'")
+        new_content = gemfile_content.gsub("gem 'forge-rad'", "gem 'forge-rad20'")
 
         File.open(File.join(@app, 'Gemfile'), 'w') do |f|
           f.puts new_content
