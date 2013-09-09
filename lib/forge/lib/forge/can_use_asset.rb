@@ -2,8 +2,6 @@ module Forge
   module CanUseAsset
     
     def self.included(mod)
-      # mod.send(:include, Sprockets::Helpers::IsolatedHelper)
-      # mod.send(:include, Sprockets::Helpers::RailsHelper)
       mod.extend(ClassMethods)
     end
     

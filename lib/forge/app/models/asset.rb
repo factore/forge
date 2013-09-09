@@ -1,7 +1,5 @@
 class Asset < ActiveRecord::Base
   require 'mime/types'
-  include Sprockets::Helpers::IsolatedHelper
-  include Sprockets::Helpers::RailsHelper
 
   acts_as_taggable
   has_attached_file :attachment, :styles => {:thumbnail => "120x108#", :medium => "800x800>"}
@@ -48,13 +46,13 @@ class Asset < ActiveRecord::Base
     when /image/
       attachment.url(:thumbnail)
     when /audio/
-      asset_path "forge/asset-icons/audio.jpg"
+      ActionController::Base.helpers.asset_path "forge/asset-icons/audio.jpg"
     when /excel/
-      asset_path "forge/asset-icons/spreadsheet.jpg"
+      ActionController::Base.helpers.asset_path "forge/asset-icons/spreadsheet.jpg"
     when /pdf/
-      asset_path "forge/asset-icons/pdf.jpg"
+      ActionController::Base.helpers.asset_path "forge/asset-icons/pdf.jpg"
     else
-      asset_path "forge/asset-icons/misc.jpg"
+      ActionController::Base.helpers.asset_path "forge/asset-icons/misc.jpg"
     end
   end
 

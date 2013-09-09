@@ -3,7 +3,9 @@ namespace :forge do
     desc "Create #{role.humanize} user (#{role}@factore.ca/#{role}) (Or pass it PASSWORD=)"
     task("create_#{role}".to_sym => :environment) do
       password = ENV['PASSWORD'].blank? ? role : ENV['PASSWORD']
-      user = User.new(:password => password, :password_confirmation => password, :email => "#{role}@factore.ca")
+      user = User.new
+      user.password = user.password_confirmation = password
+      user.email = "#{role}@factore.ca"
       user.approved = true
       user.roles << Role.find_or_create_by(title: role.humanize.titleize)
       if user.save

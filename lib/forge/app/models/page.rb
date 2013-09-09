@@ -9,7 +9,7 @@ class Page < ActiveRecord::Base
 
   # Relationships
   belongs_to :parent, :class_name => "Page", :foreign_key => "parent_id"
-  has_many :subpages, :class_name => "Page", :foreign_key => "parent_id", :dependent => :destroy, :order => "list_order"
+  has_many :subpages, -> { order "list_order" }, :class_name => "Page", :foreign_key => "parent_id", :dependent => :destroy
 
   # Validations
   before_validation :set_slug_and_path
