@@ -21,8 +21,8 @@ resource :settings, :only => [:show, :update]
 
 resources :help_topics, :only => [:index, :show]
 
-match "help", :controller => :help_topics, :action => :index
-match "help/search", :controller => :help_topics, :action => :search
-match "help/:slug", :controller => :help_topics, :action => :show
+match "help", :controller => :help_topics, :action => :index, :via => :get
+match "help/search", :controller => :help_topics, :action => :search, :via => :post
+match "help/:slug", :controller => :help_topics, :action => :show, :via => :get
 
 root :to => "index#index"

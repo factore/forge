@@ -3,7 +3,6 @@ files:
   - 'app/models/ability.rb'
   - 'app/models/asset.rb'
   - 'app/models/comment.rb'
-  - 'app/models/comment_observer.rb'
   - 'app/models/comment_subscriber.rb'
   - 'app/models/contact.rb'
   - 'app/models/help_topic.rb'

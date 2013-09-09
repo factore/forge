@@ -36,8 +36,24 @@ class CommentObserver < ActiveRecord::Observer
 end
 
 
+SEAN:
+
+* where do the config/development.rb and config/test.rb files come from?
+* how are routes handled?
+
+
+
 Later:
 
 * remove protected_attributes from ForgeRad and replace with the default Rails 4 behaviour, which moves
   that stuff to the controller
+* deal with forge_cli and Gemfile creation/copying - based on appropriate versions of Rails and Ruby
+
+Notes:
+
+* use the local version of Forge to create new Forge sites - from the root folder, run:
+  be bin/forge new NAME_OF_APP MODULE_LIST
+  e.g:
+  be bin/forge new testapp events,ecommerce
+
 

@@ -9,7 +9,7 @@ resources :posts, :only => [:index, :show] do
     get :category
   end
 end
-match 'posts/:month/:year', :controller => 'posts', :action => 'index'
+match 'posts/:month/:year', :controller => 'posts', :action => 'index', :via => :get
 ##############
 # END POSTS ##
 ##############

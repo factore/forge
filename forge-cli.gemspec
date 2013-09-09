@@ -20,7 +20,7 @@ spec = Gem::Specification.new do |s|
   s.add_development_dependency('rake')
   s.add_development_dependency('rdoc')
   s.add_development_dependency('aruba')
-  s.add_dependency('rails', '3.2.13')
+  s.add_dependency('rails', '4.0')
   s.add_dependency('rainbow')
 
   s.add_dependency('thor')
