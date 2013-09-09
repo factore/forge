@@ -41,7 +41,8 @@ module Forge3
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters << :password << :password_confirmation << :credit_card
 
-    config.action_controller.page_cache_directory = File.join(Rails.public_path, 'system', 'cache')
+    # TODO: this is invalid in Rails 4, but not sure if we actually need it or not
+    # config.action_controller.page_cache_directory = File.join(Rails.public_path, 'system', 'cache')
 
     config.autoload_paths += [
       File.join(Rails.root, 'lib'),

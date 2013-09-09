@@ -1,8 +1,6 @@
 class PostsController < ApplicationController
   before_filter :get_archive_months, :only => [:index, :category, :show]
   before_filter :get_post_categories
-  # TODO: re-enable caching
-  # caches_page :index, :feed
 
   def index
     @page_title = "Latest News"
