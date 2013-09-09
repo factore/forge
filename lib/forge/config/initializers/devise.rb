@@ -2,6 +2,7 @@
 # four configuration values can also be set straight in your models.
 Devise.setup do |config|
   config.case_insensitive_keys = [:email]
+  config.strip_whitespace_keys = [ :email ]
   config.reset_password_within = 6.hours
   config.router_name = :main_app
 
@@ -43,7 +44,11 @@ Devise.setup do |config|
   # ==> Configuration for :database_authenticatable
   # For bcrypt, this is the cost for hashing the password and defaults to 10. If
   # using other encryptors, it sets how many times you want the password re-encrypted.
-  config.stretches = 10
+  #
+  # Limiting the stretches to just one in testing will increase the performance of
+  # your test suite dramatically. However, it is STRONGLY RECOMMENDED to not use
+  # a value less than 10 in other environments.
+  config.stretches = Rails.env.test? ? 1 : 10
 
   # Define which will be the encryption algorithm. Devise also supports encryptors
   # from others authentication tools as :clearance_sha1, :authlogic_sha512 (then
@@ -122,7 +127,10 @@ Devise.setup do |config|
   # Configure sign_out behavior.
   # By default sign_out is scoped (i.e. /users/sign_out affects only :user scope).
   # In case of sign_out_all_scopes set to true any logout action will sign out all active scopes.
+  # 
   # config.sign_out_all_scopes = false
+  # The default HTTP method used to sign out a resource. Default is :delete.
+  config.sign_out_via = :delete
 
   # ==> Navigation configuration
   # Lists the formats that should be treated as navigational. Formats like

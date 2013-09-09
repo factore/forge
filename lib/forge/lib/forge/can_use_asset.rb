@@ -2,11 +2,9 @@ module Forge
   module CanUseAsset
     
     def self.included(mod)
-=begin
-      mod.send(:include, Sprockets::Helpers::IsolatedHelper)
-      mod.send(:include, Sprockets::Helpers::RailsHelper)
+      # mod.send(:include, Sprockets::Helpers::IsolatedHelper)
+      # mod.send(:include, Sprockets::Helpers::RailsHelper)
       mod.extend(ClassMethods)
-=end
     end
     
     module ClassMethods
@@ -29,13 +27,13 @@ module Forge
             when /image/
               self.send(field.to_sym).url(:thumbnail)
             when /audio/
-              asset_path "forge/asset-icons/audio.jpg"
+              ActionController::Base.helpers.asset_path "forge/asset-icons/audio.jpg"
             when /excel/
-              asset_path "forge/asset-icons/spreadsheet.jpg"
+              ActionController::Base.helpers.asset_path "forge/asset-icons/spreadsheet.jpg"
             when /pdf/
-              asset_path "forge/asset-icons/pdf.jpg"
+              ActionController::Base.helpers.asset_path "forge/asset-icons/pdf.jpg"
             else
-              asset_path "forge/asset-icons/misc.jpg"
+              ActionController::Base.helpers.asset_path "forge/asset-icons/misc.jpg"
             end
           end
           

@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 # Most dependencies come from this gem
 # gem 'forge-rad', '~> 3.2.13', :require => 'forge-rad'
+gem 'rails', :git => 'http://github.com/rails/rails.git'
 gem 'forge-rad20', :require => 'forge-rad', :path => '/Users/adrianduyzer/www/forge-rad20'
 
 # Extra Plugins
