@@ -4,6 +4,12 @@ Forge3::Application.configure do
   # e-commerce sites: uncomment this line once the SSL certificate is in place
   # config.force_ssl = true
 
+  # Eager load code on boot. This eager loads most of Rails and
+  # your application in memory, allowing both thread web servers
+  # and those relying on copy on write to perform better.
+  # Rake tasks automatically ignore this option for performance.
+  config.eager_load = true
+
   # The production environment is meant for finished, "live" apps.
   # Code is not reloaded between requests
   config.cache_classes = true

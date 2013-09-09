@@ -5,6 +5,8 @@ Devise.setup do |config|
   config.reset_password_within = 6.hours
   config.router_name = :main_app
 
+  config.secret_key = '822358802a5ef7d8fb288539d4d0d7d6b59c02e348d452fc1aae108aea22a5931538a39954733d81b1ceb62376cf2ca7215915375069918f59cc01b7c8ab2ad0'
+
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
   config.mailer_sender = "please-change-me@config-initializers-devise.com"

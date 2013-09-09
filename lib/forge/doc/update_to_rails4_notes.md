@@ -15,6 +15,8 @@ To-Do:
   But we may need something like that.
 * commented out the contents of config/initializers/ecommerce.rb, but we probably need it
 * lib/forge/can_use_asset.rb is broken because of 'uninitialized constant Sprockets::Helpers'
+* added a devise secret key to config/initializers/devise.rb, this will need to get generated on application
+  creation
 
 Later:
 
