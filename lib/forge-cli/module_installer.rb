@@ -30,7 +30,7 @@ class ForgeCLI
     private
       def install_dependencies!
         @mod["dependencies"].each do |dependency|
-          ForgeCLI::ModuleInstaller.install_module!(dependency, @app)
+          ForgeCLI::ModuleInstaller.install_module!(dependency, @app, @app_path)
         end
       end
 
