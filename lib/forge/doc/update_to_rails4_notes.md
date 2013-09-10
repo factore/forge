@@ -30,12 +30,18 @@ To-Do:
   And in config/initializers/forge.rb:
   +require 'forge/shared_controller_methods/posts.rb'
   +require 'forge/shared_controller_methods/ecommerce.rb'
+  - ACTUALLY, in my most recent installation of the app, this doesn't seem to be a problem any more.  Please
+    test.
 * you can't create or edit users because of devise and the way it handles strong parameters.  This blog post
   might be of some use: http://blog.12spokes.com/web-design-development/adding-custom-fields-to-your-devise-user-model-in-rails-4/
   The approach of simply using user_params with .require and .permit does not work here.
   We may need to rework the entire users controller to inherit from some other devise controller or something.
   I don't think we can use attr_accessible even though we have that gem installed, although we might be able to.
 * check that 'remember me' and 'sign out' devise functionality work properly
+* when you create a new project that includes subscribers, it copies two migrations over named 'create_subscribers',
+  which causes a problem.  Only one should get copied.
+* the Forge homepage shows a blank error popup when you log in or return to it for some reason
+* I haven't run any of the tests yet, so that may be a big ugly surprise too!
 
 Observer code:
 
