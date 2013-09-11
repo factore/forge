@@ -28,6 +28,8 @@ High Priority To-Do:
   I don't think we can use attr_accessible even though we have that gem installed, although we might be able to.
 * [SR] check that 'remember me' and 'sign out' devise functionality work properly
 * I haven't run any of the tests yet, so that may be a big ugly surprise too!
+* I'm not actually receiving any emails from my test site (e.g. when I test delayed job sending of dispatches or
+  when I am subscribed to comments).  Not entirely sure why.
 
 Second Priority To-Do:
 
@@ -39,6 +41,9 @@ Second Priority To-Do:
   But we may need something like that.
 * the Forge homepage shows a blank error popup when you log in or return to it for some reason
 * [SR] the close button on the asset upload dialog (from the asset library, not the drawer) is weird looking
+* [SR] the e-commerce module doesn't seem to get copied over entirely correctly.  There is no area for products or
+  orders visible in Forge, and some of the settings (e.g. countries and tax rates) are missing too, although I'm not
+  sure if there other settings in the ecommerce config files that need to get looked at or not
 
 Later:
 
