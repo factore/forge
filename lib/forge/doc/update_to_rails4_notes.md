@@ -42,8 +42,6 @@ Second Priority To-Do:
 * in application.rb, commented out:
   # config.action_controller.page_cache_directory = File.join(Rails.public_path, 'system', 'cache')
   But we may need something like that.
-* when you create a new project that includes subscribers, it copies two migrations over named 'create_subscribers',
-  which causes a problem.  Only one should get copied.
 * the Forge homepage shows a blank error popup when you log in or return to it for some reason
 
 Observer code:
