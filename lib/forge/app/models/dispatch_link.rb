@@ -9,4 +9,7 @@ class DispatchLink < ActiveRecord::Base
   # validates_presence_of :dispatch
   # validates_uniqueness_of :position, :scope => :dispatch_id
   
+  # open up everything for mass assignment
+  attr_protected
+
 end

@@ -6,6 +6,9 @@ class Gallery < ActiveRecord::Base
   validates_uniqueness_of :title
   default_scope { order('galleries.list_order') }
   
+  # open up everything for mass assignment
+  attr_protected
+
   def self.find_with_photos(id)
     includes(:photos).order('photos.list_order').find(id)
   end

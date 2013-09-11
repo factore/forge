@@ -6,6 +6,9 @@ class Asset < ActiveRecord::Base
   before_attachment_post_process :prevent_pdf_thumbnail
 
   default_scope { order("assets.created_at DESC") }
+  
+  # open up everything for mass assignment
+  attr_protected
 
   def swfupload_file!(data, filename)
     data.content_type = MIME::Types.type_for(data.original_filename).to_s

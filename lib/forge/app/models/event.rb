@@ -7,6 +7,8 @@ class Event < ActiveRecord::Base
   attr_accessor :starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
   before_save :set_starts_at, :set_ends_at
 
+  # open up everything for mass assignment
+  attr_protected
 
   # Validations
   validates_presence_of :title

@@ -3,4 +3,8 @@ class Photo < ActiveRecord::Base
   has_attached_file :file, :styles => {:thumbnail => "120x108#", :medium => "800x600>"}
   can_use_asset_for :file
   default_scope { order(:list_order) }
+
+  # open up everything for mass assignment
+  attr_protected
+
 end

@@ -17,6 +17,8 @@ class Product < ActiveRecord::Base
   validates_presence_of :short_description, :description, :if => :published
   validates_numericality_of :price, :flat_rate_shipping, :weight, :width, :height, :depth, :greater_than_or_equal_to => 0.00
 
+  # open up everything for mass assignment
+  attr_protected
 
   # for when the product is used in the cart or in an order hash
   def quantity

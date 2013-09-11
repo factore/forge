@@ -4,6 +4,9 @@ class Contact
   extend ActiveModel::Naming
 
   attr_accessor :name, :email, :phone, :content, :subject
+  
+  # open up everything for mass assignment
+  attr_protected
 
   validates_presence_of :name
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i

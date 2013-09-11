@@ -15,6 +15,8 @@ class Video < ActiveRecord::Base
 
   before_update :revert_if_new_upload
 
+  # open up everything for mass assignment
+  attr_protected
 
   def video=(filename)
     self.video_file_name = filename.gsub('videos/', '')

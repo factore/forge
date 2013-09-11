@@ -9,6 +9,9 @@ class ProductCategory < ActiveRecord::Base
 
   validates_presence_of :title
 
+  # open up everything for mass assignment
+  attr_protected
+
   def validate_destroy
     products.count < 1
   end

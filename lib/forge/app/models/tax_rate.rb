@@ -9,6 +9,9 @@ class TaxRate < ActiveRecord::Base
 
   # the new ActiveAssociation stuff is teh bomb!
   scope :by_country_and_province, -> { joins(:country).joins("LEFT OUTER JOIN provinces ON tax_rates.province_id = provinces.id").order('countries.title, provinces.title') }
+
+  # open up everything for mass assignment
+  attr_protected
   
   protected
 

@@ -8,6 +8,9 @@ class QueuedDispatch < ActiveRecord::Base
   scope :sent, -> { where("sent_at IS NOT NULL") }
   scope :failed, -> { where("failed_attempts > ?", 0) }
   scope :opened, -> { where("opened_at IS NOT NULL") }
+
+  # open up everything for mass assignment
+  attr_protected
   
   # Action Methods
   def send!

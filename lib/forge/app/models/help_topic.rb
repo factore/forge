@@ -5,6 +5,9 @@ class HelpTopic < ActiveRecord::Base
   before_save :convert_content_to_html
   default_scope { where(:language => I18n.locale.to_s) }
 
+  # open up everything for mass assignment
+  attr_protected
+
 protected
 
   def convert_content_to_html

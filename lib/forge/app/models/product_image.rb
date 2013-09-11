@@ -4,4 +4,8 @@ class ProductImage < ActiveRecord::Base
   
   validates_attachment_presence :image
   validates_attachment_content_type :image, :content_type => ['image/gif', 'image/png', 'image/jpeg', 'image/jpg', 'image/pjpeg']
+
+  # open up everything for mass assignment
+  attr_protected
+
 end

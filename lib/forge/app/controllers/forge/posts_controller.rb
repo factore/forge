@@ -69,6 +69,7 @@ class Forge::PostsController < ForgeController
   end
 
   private
+
     def get_collections
       @categories = PostCategory.order(:title)
     end

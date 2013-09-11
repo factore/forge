@@ -8,4 +8,6 @@ class Banner < ActiveRecord::Base
   # Validations
   validates_presence_of :title
   validates_attachment_presence :photo
+  # open up everything for mass assignment
+  attr_protected
 end

@@ -12,6 +12,9 @@ class Dispatch < ActiveRecord::Base
 
   validates_presence_of :subject, :content
   
+  # open up everything for mass assignment
+  attr_protected
+
   after_save :update_dispatch_links
   
   def deliver!(group_ids = [])

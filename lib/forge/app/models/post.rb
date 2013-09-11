@@ -16,6 +16,8 @@ class Post < ActiveRecord::Base
 
   before_save :set_created_at
 
+  # open up everything for mass assignment
+  attr_protected
 
   def to_param
     "#{id}-#{title.parameterize}"
