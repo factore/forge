@@ -14,7 +14,6 @@ High Priority To-Do:
 * [SR] asset uploader overlay doesn't appear (e.g. when trying to upload while creating a page)
 * [AD] searching for help doesn't work
 * [SR] the ckeditor content area is too large
-* [SR] uploading an asset via the asset library fails
 * [SR] inclusion of certain controllers that was taking place in the application controller must be done earlier
   in the application's loading.  So in app/controllers/application_controller.rb:
   -require 'forge/shared_controller_methods/posts.rb'
@@ -39,6 +38,7 @@ Second Priority To-Do:
   # config.action_controller.page_cache_directory = File.join(Rails.public_path, 'system', 'cache')
   But we may need something like that.
 * the Forge homepage shows a blank error popup when you log in or return to it for some reason
+* [SR] the close button on the asset upload dialog (from the asset library, not the drawer) is weird looking
 
 Later:
 

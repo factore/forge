@@ -11,7 +11,7 @@ class Asset < ActiveRecord::Base
   attr_protected
 
   def swfupload_file!(data, filename)
-    data.content_type = MIME::Types.type_for(data.original_filename).to_s
+    data.content_type = MIME::Types.type_for(data.original_filename).first.content_type rescue ""
     self.attachment = data
     self.title = filename
   end
