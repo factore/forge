@@ -2,7 +2,6 @@
 
 High Priority To-Do:
 
-* [AD] check that the new scopes and finders work (see the first commit in this branch)
 * update the secret token stuff (see http://edgeguides.rubyonrails.org/upgrading_ruby_on_rails.html, 2.6)
 * [AD] check that the changes to 'match' in routes work - ones I was unsure of are marked with TODO
 * [AD] commented out the contents of config/initializers/ecommerce.rb due to errors, but we probably need it
@@ -12,7 +11,6 @@ High Priority To-Do:
 * the above probably applies to config.pepper in the config/initializers/devise.rb file, and this may be
   a security issue in existing versions of Forge 3 sites
 * [SR] asset uploader overlay doesn't appear (e.g. when trying to upload while creating a page)
-* [AD] searching for help doesn't work
 * [SR] the ckeditor content area is too large
 * [SR] inclusion of certain controllers that was taking place in the application controller must be done earlier
   in the application's loading.  So in app/controllers/application_controller.rb:
@@ -30,6 +28,7 @@ High Priority To-Do:
 * I haven't run any of the tests yet, so that may be a big ugly surprise too!
 * I'm not actually receiving any emails from my test site (e.g. when I test delayed job sending of dispatches or
   when I am subscribed to comments).  Not entirely sure why.
+* test the "send to group" part of ForgePress - there were some changes that may have altered its behaviour
 
 Second Priority To-Do:
 

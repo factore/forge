@@ -11,6 +11,6 @@ devise_scope :user do
 end
 
 match "/sitemap", :controller => 'index', :action => 'sitemap', :via => :get
-match '/pages/preview', :controller => 'pages', :action => 'preview', :via => :post
+match '/pages/preview', :controller => 'pages', :action => 'preview', :via => :get
 match '*slugs', :controller => 'pages', :action => 'show', :via => :get
 root :to => "index#index"

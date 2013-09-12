@@ -9,6 +9,9 @@ files:
   - app/models/post_category.rb
   - lib/forge/shared_controller_methods/posts.rb
   - app/views/forge/shared/menu_items/_posts.html.haml
+  - db/help/comments_index.help
+  - db/help/posts_index.help
+  - db/help/posts_new.help
 
 migrations:
   - create_posts

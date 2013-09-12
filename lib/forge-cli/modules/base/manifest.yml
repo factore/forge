@@ -98,8 +98,6 @@ files:
 
 
   # Various
-  - 'db/help/assets_index.help'
-  - 'db/help/visual_editor.help'
   - 'doc/i18n.md'
   - 'lib/forge.rb'
   - 'lib/forge/can_be_foreign.rb'
@@ -126,6 +124,12 @@ files:
   - 'vendor/assets/javascripts'
   - 'vendor/assets/stylesheets/fancybox.css.scss'
   - 'vendor/assets/stylesheets/jscrollpane.css.scss'
+
+  # Help
+  - 'db/help/assets_index.help'
+  - 'db/help/visual_editor.help'
+  - 'db/help/pages_index.help'
+  - 'db/help/pages_new.help'
 
 migrations:
   - create_base_forge
