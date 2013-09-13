@@ -1,6 +1,6 @@
 module Forge
   module Controllers
-    module ECommerce
+    module Ecommerce
       def get_cart_order
         @cart_order = Order.where(:key => cookies[:order_key], :state => "pending").first if cookies[:order_key]
       end
