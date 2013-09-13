@@ -109,6 +109,8 @@ files:
   - 'lib/generators/forge'
   - 'lib/tasks/forge.rake'
   - 'lib/templates/active_record/model/model.rb'
+  - 'config/sitemap.yml'
+  - 'db/seeds.rb'
   - 'Gemfile'
 
 

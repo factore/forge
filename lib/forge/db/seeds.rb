@@ -9,7 +9,9 @@
 
 %w{admin super_admin contributor member}.each do |role|
   password = ENV['PASSWORD'].blank? ? role : ENV['PASSWORD']
-  user = User.new(:password => password, :password_confirmation => password, :email => "#{role}@factore.ca")
+  user = User.new
+  user.password = user.password_confirmation = password
+  user.email = "#{role}@example.com"
   user.approved = true
   user.roles << Role.find_by_title(role.humanize.titleize)
   if user.save
@@ -28,7 +30,7 @@ puts "\n============\nBUILDING PAGES"
 content = "<p>Edit this page in Forge</p>"
 classes["Pages"].each do |page, subpages|
   p = Page.new(:title => page, :slug => page.parameterize, :key => page.parameterize, :content => content, :published => true)
-  puts p.save ? "Created #{page}" : "Errors on #{page}: " + p.errors.map { |e| "#{e[0]} #{e[1]}"}.join(', ')
+  puts p.save ? "Created #{page}" : "Errors on #{page}: " + p.errors.full_messages.to_sentence
   # Build the Subpages
   if p.errors.blank?
     subpages.each do |subpage, subsubpages|
@@ -43,7 +45,7 @@ end
 puts "\n============\nPOST CATEGORIES"
 classes["PostCategory"].each do |category|
   pc = PostCategory.new(:title => category)
-  puts pc.save ? "Created #{category}" : "Errors on #{category}: " + pc.errors.map { |e| "#{e[0]} #{e[1]}"}.join(', ')
+  puts pc.save ? "Created #{category}" : "Errors on #{category}: " + pc.errors.full_messages.to_sentence
 end
 
 # Build default countries

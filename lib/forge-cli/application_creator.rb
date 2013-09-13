@@ -44,6 +44,7 @@ class ForgeCLI::ApplicationCreator
   4. Run 'rake db:migrate'
   5. Run 'rake forge:create_admin'
   6. Run 'rake forge:load_help'
+  7. Edit the contents of config/sitemap.yml, then run 'rake db:seed'
     }
   end
 

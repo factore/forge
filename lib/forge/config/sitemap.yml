@@ -1,3 +1,5 @@
+# Use this in conjunction with db/seeds.rb to load a basic site structure.  You can create a list of pages
+# and a set of post categories like this if you wish.  Following are examples of each:
 Pages:
   Home: ''
   Contact Us: ''

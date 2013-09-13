@@ -32,6 +32,10 @@
     = collection_select(:settings, :shipper, @carriers, :name, :name, {:include_blank => true})
     %hr
 
+    %h3 Tax Rates
+    .explanation
+      = link_to "Click here to manage your tax rates", forge_tax_rates_path
+
     .spacer
 
   .spacer

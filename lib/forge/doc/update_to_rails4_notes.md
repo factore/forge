@@ -3,9 +3,6 @@
 High Priority To-Do:
 
 * update the secret token stuff (see http://edgeguides.rubyonrails.org/upgrading_ruby_on_rails.html, 2.6)
-* [AD] check that the changes to 'match' in routes work - ones I was unsure of are marked with TODO
-* [AD] commented out the contents of config/initializers/ecommerce.rb due to errors, but we probably need it
-  - actually, this isn't copied over into new projects, so perhaps we can just delete it
 * added a devise secret key to config/initializers/devise.rb, this will need to get generated on application
   creation
 * the above probably applies to config.pepper in the config/initializers/devise.rb file, and this may be
@@ -40,9 +37,6 @@ Second Priority To-Do:
   But we may need something like that.
 * the Forge homepage shows a blank error popup when you log in or return to it for some reason
 * [SR] the close button on the asset upload dialog (from the asset library, not the drawer) is weird looking
-* [SR] the e-commerce module doesn't seem to get copied over entirely correctly.  There is no area for products or
-  orders visible in Forge, and some of the settings (e.g. countries and tax rates) are missing too, although I'm not
-  sure if there other settings in the ecommerce config files that need to get looked at or not
 
 Later:
 

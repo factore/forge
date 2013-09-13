@@ -33,10 +33,12 @@ files:
   - 'app/views/forge/products'
   - 'app/views/forge/sales'
   - 'app/views/forge/tax_rates'
+  - 'app/views/forge/shared/menu_items/_products.html.haml'
   - 'lib/forge/shared_controller_methods/ecommerce.rb'
   - 'lib/models/order'
   - 'lib/forge/config/ecommerce.rb'
   - 'db/help/products_new.help'
+  - 'config/initializers/ecommerce.rb'
 
 migrations:
   - create_addresses
@@ -46,6 +48,7 @@ migrations:
   - create_products
   - create_product_categories
   - create_product_images
+  - create_products_tax_rates
   - create_provinces
   - create_sales
   - create_tax_rates
