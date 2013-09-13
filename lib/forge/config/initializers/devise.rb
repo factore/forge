@@ -6,7 +6,7 @@ Devise.setup do |config|
   config.reset_password_within = 6.hours
   config.router_name = :main_app
 
-  config.secret_key = '822358802a5ef7d8fb288539d4d0d7d6b59c02e348d452fc1aae108aea22a5931538a39954733d81b1ceb62376cf2ca7215915375069918f59cc01b7c8ab2ad0'
+  config.secret_key = 'DEVISE_SECRET_KEY'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
@@ -57,7 +57,7 @@ Devise.setup do |config|
   # config.encryptor = :bcrypt
 
   # Setup a pepper to generate the encrypted password.
-  config.pepper = "108d63f00a98346f84f236b6f960736495d7e22e8f5dbc2e6ff661bf32eb587386da507c890ae42866f8af588a5f73ae2750cc95f754a2da24721effe1ba9c90"
+  config.pepper = "DEVISE_PEPPER"
 
   # ==> Configuration for :confirmable
   # The time you want to give your user to confirm his account. During this time

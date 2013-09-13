@@ -3,9 +3,8 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
-  # TODO: check on this situation as it relates to devise
   # Setup accessible (or protected) attributes for your model
-  # attr_accessible :email, :password, :password_confirmation, :remember_me, :avatar, :avatar_asset_id, :avatar_asset_url
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :avatar, :avatar_asset_id, :avatar_asset_url
 
   has_attached_file :avatar, :styles => {:thumbnail => "120x108#"}
   can_use_asset_for :avatar
