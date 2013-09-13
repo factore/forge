@@ -3,10 +3,6 @@ class Forge::ProductsController < ForgeController
   before_filter :get_categories, :except => [:destroy, :reorder]
   load_and_authorize_resource :except => [:edit]
 
-  # TODO: see if we need this stuff
-  # before_filter :prevent_publication, :only => [:update, :create]
-  # cache_sweeper :product_sweeper, :only => [:update, :create, :destroy]
-
   # GET /forge_products
   def index
     # @categories = ProductCategory.find(:all, :order => "list_order ASC")

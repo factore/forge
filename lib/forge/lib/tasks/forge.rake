@@ -135,13 +135,6 @@ namespace :forge do
     MySettings.flat_rate_shipping = true
   end
 
-
-  desc "Expire cache"
-  task :expire_cache => :environment do
-    ActionController::Base.new.trash_cache
-    puts "Expired Page Cache"
-  end
-
   desc "Get updates from Zencoder"
   task :encode_notify => :environment do
     system "zencoder_fetcher -u http://localhost:3000/forge/videos/encode_notify #{Forge.config.videos.zencoder_api_key}"
