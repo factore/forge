@@ -16,7 +16,6 @@ class Forge::UsersController < ForgeController
     @user = User.new
   end
 
-
   def create
     @user = User.new(params[:user])
     @user.role_ids = params[:role_ids]
