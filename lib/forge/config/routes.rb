@@ -178,7 +178,6 @@ Forge3::Application.routes.draw do
 
     #resources :help_topics, :only => [:index, :show]
     match "help", :controller => :help_topics, :action => :index, :via => :get
-    # TODO: double check this via:
     match "help/search", :controller => :help_topics, :action => :search, :via => :get
     match "help/:slug", :controller => :help_topics, :action => :show, :via => :get
 
