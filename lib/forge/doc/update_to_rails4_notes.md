@@ -2,11 +2,6 @@
 
 High Priority To-Do:
 
-* update the secret token stuff (see http://edgeguides.rubyonrails.org/upgrading_ruby_on_rails.html, 2.6)
-* added a devise secret key to config/initializers/devise.rb, this will need to get generated on application
-  creation
-* the above probably applies to config.pepper in the config/initializers/devise.rb file, and this may be
-  a security issue in existing versions of Forge 3 sites
 * [SR] asset uploader overlay doesn't appear (e.g. when trying to upload while creating a page)
 * [SR] the ckeditor content area is too large
 * [SR] inclusion of certain controllers that was taking place in the application controller must be done earlier

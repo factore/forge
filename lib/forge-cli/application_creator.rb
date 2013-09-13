@@ -32,6 +32,9 @@ class ForgeCLI::ApplicationCreator
     # Rewrite Forge3::Application
     rewrite_app_name
 
+    # create some new tokens
+    generate_devise_tokens
+
     STDOUT.puts completed_message
   end
 
@@ -45,6 +48,7 @@ class ForgeCLI::ApplicationCreator
   5. Run 'rake forge:create_admin'
   6. Run 'rake forge:load_help'
   7. Edit the contents of config/sitemap.yml, then run 'rake db:seed'
+  8. Review the settings in config/initializers/devise.rb and config/settings.yml
     }
   end
 
@@ -68,6 +72,15 @@ class ForgeCLI::ApplicationCreator
         File.open(File.join(@app, file), 'w') do |f|
           f.puts new_content
         end
+      end
+    end
+
+    def generate_devise_tokens
+      file = '/config/initializers/devise.rb'
+      old_content = File.read(File.join(@app, file))
+      new_content = old_content.gsub('DEVISE_SECRET_KEY', SecureRandom.hex(64)).gsub('DEVISE_PEPPER', SecureRandom.hex(64))
+      File.open(File.join(@app, file), 'w') do |f|
+        f.puts new_content
       end
     end
 end
