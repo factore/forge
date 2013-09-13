@@ -36,6 +36,7 @@ files:
   - 'lib/forge/shared_controller_methods/ecommerce.rb'
   - 'lib/models/order'
   - 'lib/forge/config/ecommerce.rb'
+  - 'db/help/products_new.help'
 
 migrations:
   - create_addresses

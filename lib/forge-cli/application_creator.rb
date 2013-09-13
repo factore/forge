@@ -40,8 +40,10 @@ class ForgeCLI::ApplicationCreator
 #{"Your new Forge site is almost ready!  Next steps:".foreground(:cyan)}
   1. Run 'bundle install'
   2. Set up config/database.yml
-  3. Run 'rake db:migrate'
-  4. Run 'rake forge:create_admin
+  3. Run 'rake db:create' unless your database already exists
+  4. Run 'rake db:migrate'
+  5. Run 'rake forge:create_admin'
+  6. Run 'rake forge:load_help'
     }
   end
 

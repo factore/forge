@@ -179,7 +179,7 @@ Forge3::Application.routes.draw do
     #resources :help_topics, :only => [:index, :show]
     match "help", :controller => :help_topics, :action => :index, :via => :get
     # TODO: double check this via:
-    match "help/search", :controller => :help_topics, :action => :search, :via => :post
+    match "help/search", :controller => :help_topics, :action => :search, :via => :get
     match "help/:slug", :controller => :help_topics, :action => :show, :via => :get
 
     root :to => "index#index"
@@ -188,8 +188,7 @@ Forge3::Application.routes.draw do
   #See how all your routes lay out with "rake routes"
 
   match 'posts/:month/:year', :controller => 'posts', :action => 'index', :via => :get
-  # TODO: double check this via:
-  match '/pages/preview', :controller => 'pages', :action => 'preview', :via => :post
+  match '/pages/preview', :controller => 'pages', :action => 'preview', :via => :get
   match "/sitemap", :controller => 'index', :action => 'sitemap', :via => :get
   match '*slugs', :controller => 'pages', :action => 'show', :via => :get
   root :to => "index#index"
