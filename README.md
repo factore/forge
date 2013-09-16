@@ -30,13 +30,13 @@ For example:
 
 The gem will display next steps once you've created the application.
 
-Once the app is created, you can see a list of available modules by running:
-
-    forge list
-
-To install a module that is not yet installed, use:
+To install a module into an existing application use:
 
     forge install MODULE_NAME
+
+You can see a list of available modules by running:
+
+    forge list
 
 ### Scaffold Generation
 
@@ -57,10 +57,14 @@ As well as generating standard text fields as per Rails' normal behaviour, the s
 * `title:string` (generates a large text field at the top of the form for the title)
 * `ATTRIBUTE_file_name:string, ATTRIBUTE_file_size:integer, ATTRIBUTE_content_type:string` (generates Paperclip-styled attachments that hook into the Asset Library)
 * `list_order:integer` (makes the list of items in Forge reorderable using drag & drop)
+* `published:boolean` (creates a 'Published' selector that is only accessible by users with the Admin or Super Admin role)
 
 You can also generate scaffolds for "small" entities, such as post categories, that have a streamlined interface as follows:
 
+    rails generate forge:scaffold_small MODEL_NAME LIST_OF_ATTRIBUTES_IN_STANDARD_RAILS_FORMAT
 
+
+For either generator it is highly recommended that you include an attribute called "title" as it is relied on in the list views.  If you don't wish to use "title" you can edit the generated views.  This will likely be more customizable in the future.
 
 ## Available Modules
 
