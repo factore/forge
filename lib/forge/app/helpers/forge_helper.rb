@@ -98,8 +98,8 @@ module ForgeHelper
   def action_link(title, link, options = {})
     klass = options[:class] unless options[:class].blank?
     confirmation = options[:confirm] unless options[:confirm].blank?
-    icon_link = link_to(icon_tag(options[:icon]), link, :confirm => confirmation) + "<br />".html_safe if options[:icon]
-    title_link = content_tag(:small, link_to(title, link, :confirm => confirmation))
+    icon_link = link_to(icon_tag(options[:icon]), link, :data => { :confirm => confirmation }) + "<br />".html_safe if options[:icon]
+    title_link = content_tag(:small, link_to(title, link, :data => { :confirm => confirmation }))
     content = icon_link.blank? ? title_link.html_safe  : icon_link.html_safe  + title_link.html_safe
     return content_tag(:div, content.html_safe, :class => "item-action #{klass}")
   end
