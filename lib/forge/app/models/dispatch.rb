@@ -12,10 +12,13 @@ class Dispatch < ActiveRecord::Base
 
   validates_presence_of :subject, :content
   
+  # open up everything for mass assignment
+  attr_protected
+
   after_save :update_dispatch_links
   
   def deliver!(group_ids = [])
-    subscribers = group_ids.blank? ? Subscriber.all : SubscriberGroup.find_all_by_id(group_ids).map(&:subscribers).flatten.uniq
+    subscribers = group_ids.blank? ? Subscriber.all : SubscriberGroup.where(id: group_ids).to_a.map(&:subscribers).flatten.uniq
     subscribers.each {|s| 
       qd = QueuedDispatch.create(:subscriber => s, :dispatch => self)
       qd.send!
@@ -57,7 +60,7 @@ class Dispatch < ActiveRecord::Base
       doc = Hpricot(self.content)
       links = doc.search('a')
       links.each_with_index do |link, i|
-        dispatch_link = DispatchLink.find_or_initialize_by_position_and_dispatch_id(i, self.id)
+        dispatch_link = DispatchLink.find_or_initialize_by(position: i, dispatch_id: self.id)
         dispatch_link.uri = link["href"] and dispatch_link.save!
       end
     

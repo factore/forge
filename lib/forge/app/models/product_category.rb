@@ -1,6 +1,6 @@
 class ProductCategory < ActiveRecord::Base
   include Forge::Reorderable
-  default_scope :order => 'product_categories.list_order'
+  default_scope { order('product_categories.list_order') }
   before_destroy :validate_destroy
   has_many :products
   belongs_to :sale
@@ -8,6 +8,9 @@ class ProductCategory < ActiveRecord::Base
   has_many :subcategories, :class_name => "ProductCategory", :foreign_key => "parent_id", :dependent => :destroy, :order => "list_order"
 
   validates_presence_of :title
+
+  # open up everything for mass assignment
+  attr_protected
 
   def validate_destroy
     products.count < 1

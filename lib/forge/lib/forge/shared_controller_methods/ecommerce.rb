@@ -1,8 +1,8 @@
 module Forge
   module Controllers
-    module ECommerce
+    module Ecommerce
       def get_cart_order
-        @cart_order = Order.where(:key => cookies[:order_key], :state => "pending").first if cookies[:order_key]
+        @cart_order = Order.where("orders.key = ? AND (orders.state = 'pending' OR orders.state = 'failed')", cookies[:order_key]).first if cookies[:order_key]
       end
 
       def require_addresses_for_checkout

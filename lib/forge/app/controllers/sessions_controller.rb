@@ -1,8 +1,7 @@
 class SessionsController < Devise::SessionsController
   def new
-    resource = build_resource
+    self.resource = resource_class.new(sign_in_params)
     clean_up_passwords(resource)
-    # respond_with_navigational(resource, stub_options(resource)){ render_with_scope :new }
     render :template => "devise/sessions/new"
   end
 

@@ -15,6 +15,9 @@ class Address < ActiveRecord::Base
   validates_presence_of :country_id
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
+  # open up everything for mass assignment
+  attr_protected
+
   def self.valid_types
     ['billing', 'shipping']
   end

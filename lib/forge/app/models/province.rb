@@ -1,6 +1,6 @@
 class Province < ActiveRecord::Base
   # Scopes, Attrs, Etc.
-  default_scope order("title ASC")
+  default_scope { order("title ASC") }
 
   # Relationships
   belongs_to :country
@@ -10,6 +10,9 @@ class Province < ActiveRecord::Base
   # Validations
   validates_presence_of :title, :code
   validates_uniqueness_of :title, :code
+
+  # open up everything for mass assignment
+  attr_protected
   
   def self.options_for_select(options={})
     options[:add_blank] ||= false

@@ -20,8 +20,8 @@ class Forge::HelpTopicsController < ForgeController
     @page_title = "Searching Help for: #{params[:q]}"
     q = params[:q] ? params[:q] : ""
     @help_topics = HelpTopic.where(
-      "content LIKE :q OR title LIKE :q",
-      {:q => q}
+      "LOWER(content) LIKE :q OR LOWER(title) LIKE :q",
+      {:q => q.downcase}
     )
     respond_to do |format|
       format.js { render :layout => false }

@@ -16,14 +16,15 @@ class ForgeController < ApplicationController
   end
 
   def get_menu_items
-    require 'rails/application/route_inspector'
-
+    # TODO: we're really not supposed to be reading the routes like this
     # Read the routes to find out which partials to load to build the menu
-    inspector = Rails::Application::RouteInspector.new
-    controllers = inspector.collect_routes(Rails.application.routes.routes).select do |route|
-      route[:reqs].match('forge')
+    routes = Rails.application.routes.routes
+    inspector = ActionDispatch::Routing::RoutesInspector.new(routes)
+    formatter = ActionDispatch::Routing::ConsoleFormatter.new
+    controllers = inspector.format(formatter).split("\n").select do |route|
+      route.match('forge')
     end.map do |route|
-      route[:reqs].gsub('forge/', '').gsub(/#.*/, '')
+      route.gsub(/.*\)\s+/,'').gsub("forge/","").gsub(/#.*/, "")
     end
     @menu_items = controllers.reject {|c| c == "index"}.uniq!
   end

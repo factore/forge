@@ -6,7 +6,8 @@ FORGE.features.help = {
     $('a#help_toggle').on('click', self.toggle);
     $('#help-content').on('click', 'a', self.navigate);
     $('#help-pane').on('click', 'a#close-help', self.toggle);
-    $(document).on('click', '#search-help', self.search);
+    $(document).on('click', '#help-search', self.search);
+    // $('#help-search').on('click', self.search);
   },
 
   load: function () {
@@ -111,11 +112,11 @@ FORGE.features.help = {
     $.ajax({
       url: '/forge/help/search',
       data: {'q': query},
-      success: function(data) {
-        $('#help-content').html(data);
+      complete: function(data) {
+        $('#help-content').html(data.responseText);
         var newHeight = $('#help-pane').height();
         $('#content-frame').animate({height: newHeight}, 1150, 'easeOutQuint');
       }
-    });
+    }, 'html');
   }
 };

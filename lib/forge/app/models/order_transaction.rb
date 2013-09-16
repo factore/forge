@@ -2,6 +2,9 @@ class OrderTransaction < ActiveRecord::Base
   belongs_to :order
   serialize :params
 
+  # open up everything for mass assignment
+  attr_protected
+
   class << self
     def authorize(amount, credit_card, options = {})
       process('authorization', amount) do |gw|

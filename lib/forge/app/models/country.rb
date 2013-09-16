@@ -1,7 +1,7 @@
 class Country < ActiveRecord::Base
   # Scopes, Attrs, Etc.
-  scope :active, where(:active => true).order("top_of_list DESC, title ASC")
-  scope :alphabetical, order("title ASC")
+  scope :active, -> { where(:active => true).order("top_of_list DESC, title ASC") }
+  scope :alphabetical, -> { order("title ASC") }
 
   # Relationships
   has_many :provinces
@@ -11,6 +11,9 @@ class Country < ActiveRecord::Base
   # Validations
   validates_presence_of :title, :code
   validates_uniqueness_of :title, :code
+
+  # open up everything for mass assignment
+  attr_protected
 
   def self.options_for_select
     Country.active.all.collect { |c| [c.title, c.id] }
