@@ -30,7 +30,7 @@ class ForgeCLI
     private
       def install_dependencies!
         @mod["dependencies"].each do |dependency|
-          ForgeCLI::ModuleInstaller.install_module!(dependency, @app)
+          ForgeCLI::ModuleInstaller.install_module!(dependency, @app, @app_path)
         end
       end
 
@@ -84,20 +84,25 @@ class ForgeCLI
         end
         files = Dir[File.join(source_path, '*.rb')]
         @mod["migrations"].each do |migration|
-          # Get the old migration
-          source_file = files.find {|f| f.match(%r{\d+_#{migration}.rb})}
-          content = File.open(source_file, 'r').read
+          # skip the migration if one already exists in the target path, e.g. if one was created
+          # as a result of a dependency already
+          target_files = Dir[File.join(destination_path, '*.rb')]
+          unless target_files.find {|f| f.match(%r{\d+_#{migration}.rb})}
+            # Get the old migration
+            source_file = files.find {|f| f.match(%r{\d+_#{migration}.rb})}
+            content = File.open(source_file, 'r').read
 
-          # Write the new one
-          timestamp = Time.now.strftime('%Y%m%d%H%M%S')
-          new_file_path = File.join(destination_path, "#{timestamp}_#{migration}.rb")
-          new_file = File.open(new_file_path, "w")
-          new_file.puts content
-          new_file.close
-          ForgeCLI::Output.write('migration', new_file_path.gsub("#{destination_path}/", ''))
+            # Write the new one
+            timestamp = Time.now.strftime('%Y%m%d%H%M%S')
+            new_file_path = File.join(destination_path, "#{timestamp}_#{migration}.rb")
+            new_file = File.open(new_file_path, "w")
+            new_file.puts content
+            new_file.close
+            ForgeCLI::Output.write('migration', new_file_path.gsub("#{destination_path}/", ''))
 
-          # So that they have different timestamps
-          sleep 1
+            # So that they have different timestamps
+            sleep 1
+          end
         end
       end
 

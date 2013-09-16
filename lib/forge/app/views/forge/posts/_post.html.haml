@@ -4,7 +4,10 @@
     = "(Draft)" unless post.published?
 
     %br/
-    %small Posted in #{post.post_categories.map(&:title).to_sentence}
+    - if post.post_categories.empty?
+      %small Uncategorized
+    - else
+      %small Posted in #{post.post_categories.map(&:title).to_sentence}
   .item-actions
     .item-info{:style => "width: 137px;"}
       %strong= post.created_at.strftime('%B %e, %Y')

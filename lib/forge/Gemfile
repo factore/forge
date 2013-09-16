@@ -1,13 +1,13 @@
 source "https://rubygems.org"
 
 # Most dependencies come from this gem
-gem 'forge-rad', '~> 3.2.13', :require => 'forge-rad'
+gem 'forge-rad20', :require => 'forge-rad', :git => "git@github.com:factore/forge-rad20.git"
 
 # Extra Plugins
 gem 'exception_notification', :require => 'exception_notifier'
-gem 'rails-settings', :git => 'git://github.com/devlinzed/rails-settings.git'
 gem 'launchy'
 gem 'nokogiri', '1.5.10'
+gem 'pg'
 
 # The Groups
 group :development, :test do
@@ -22,12 +22,6 @@ group :test do
   gem 'shoulda-matchers', '~> 2.0.0'
   gem 'spork', '~> 0.9.0.rc'
   gem 'zentest-without-autotest', '4.4.0'
-end
-
-group :assets do
-  gem 'coffee-rails'
-  gem 'sass-rails'
-  gem 'uglifier', ' >= 1.0.3'
 end
 
 group :darwin do

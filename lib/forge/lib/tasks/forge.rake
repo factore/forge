@@ -1,11 +1,13 @@
 namespace :forge do
   %w{admin super_admin contributor}.each do |role|
-    desc "Create #{role.humanize} user (#{role}@factore.ca/#{role}) (Or pass it PASSWORD=)"
+    desc "Create #{role.humanize} user (#{role}@example.com/#{role}) (Or pass it PASSWORD=)"
     task("create_#{role}".to_sym => :environment) do
       password = ENV['PASSWORD'].blank? ? role : ENV['PASSWORD']
-      user = User.new(:password => password, :password_confirmation => password, :email => "#{role}@factore.ca")
+      user = User.new
+      user.password = user.password_confirmation = password
+      user.email = "#{role}@example.com"
       user.approved = true
-      user.roles << Role.find_or_create_by_title(role.humanize.titleize)
+      user.roles << Role.find_or_create_by(title: role.humanize.titleize)
       if user.save
         puts "#{role.humanize.titleize} user created with username: #{user.email}, password: #{password}"
       else
@@ -131,13 +133,6 @@ namespace :forge do
     Rake::Task["db:seed"].invoke
     # by default, use flat rate shipping
     MySettings.flat_rate_shipping = true
-  end
-
-
-  desc "Expire cache"
-  task :expire_cache => :environment do
-    ActionController::Base.new.trash_cache
-    puts "Expired Page Cache"
   end
 
   desc "Get updates from Zencoder"

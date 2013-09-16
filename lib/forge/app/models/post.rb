@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   attr_accessor :created_at_date, :created_at_time
   scope :posted, lambda { where("created_at <= ? AND published = ?", Time.now, true) }
   scope :for_archive, lambda { |year, month| where(Post.for_archive_conditions(year, month)) }
-  default_scope :order => "created_at DESC"
+  default_scope { order("created_at DESC") }
 
   # Relationships
   has_and_belongs_to_many :post_categories
@@ -16,6 +16,8 @@ class Post < ActiveRecord::Base
 
   before_save :set_created_at
 
+  # open up everything for mass assignment
+  attr_protected
 
   def to_param
     "#{id}-#{title.parameterize}"

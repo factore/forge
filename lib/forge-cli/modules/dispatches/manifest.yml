@@ -17,6 +17,7 @@ files:
   - 'app/views/forge/dispatch_clicks'
   - 'app/views/forge/dispatches'
   - 'app/views/forge/shared/menu_items/_dispatches.html.haml'
+  - 'app/views/dispatch_mailer/dispatch.html.haml'
 
 delete:
   - 'app/views/forge/shared/menu_items/_subscribers.html.haml'

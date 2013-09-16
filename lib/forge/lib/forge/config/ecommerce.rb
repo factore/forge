@@ -35,8 +35,8 @@ module Forge
     end
 
     class EcommerceConfiguration
-      attr_accessor :payments, :flat_rate_shipping, :shippers
-                    :email_receipt, :active_merchant, :paypal_production
+      attr_accessor :payments, :flat_rate_shipping, :shippers,
+                    :email_receipt, :active_merchant, :paypal_production,
                     :paypal_sandbox, :currency
 
       def initialize

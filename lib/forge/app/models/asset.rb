@@ -1,18 +1,17 @@
 class Asset < ActiveRecord::Base
   require 'mime/types'
-  include Sprockets::Helpers::IsolatedHelper
-  include Sprockets::Helpers::RailsHelper
-
 
   acts_as_taggable
   has_attached_file :attachment, :styles => {:thumbnail => "120x108#", :medium => "800x800>"}
   before_attachment_post_process :prevent_pdf_thumbnail
 
-
-  default_scope :order => "assets.created_at DESC"
+  default_scope { order("assets.created_at DESC") }
+  
+  # open up everything for mass assignment
+  attr_protected
 
   def swfupload_file!(data, filename)
-    data.content_type = MIME::Types.type_for(data.original_filename).to_s
+    data.content_type = MIME::Types.type_for(data.original_filename).first.content_type rescue ""
     self.attachment = data
     self.title = filename
   end
@@ -50,13 +49,13 @@ class Asset < ActiveRecord::Base
     when /image/
       attachment.url(:thumbnail)
     when /audio/
-      asset_path "forge/asset-icons/audio.jpg"
+      ActionController::Base.helpers.asset_path "forge/asset-icons/audio.jpg"
     when /excel/
-      asset_path "forge/asset-icons/spreadsheet.jpg"
+      ActionController::Base.helpers.asset_path "forge/asset-icons/spreadsheet.jpg"
     when /pdf/
-      asset_path "forge/asset-icons/pdf.jpg"
+      ActionController::Base.helpers.asset_path "forge/asset-icons/pdf.jpg"
     else
-      asset_path "forge/asset-icons/misc.jpg"
+      ActionController::Base.helpers.asset_path "forge/asset-icons/misc.jpg"
     end
   end
 

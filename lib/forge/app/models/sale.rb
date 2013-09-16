@@ -5,6 +5,8 @@ class Sale < ActiveRecord::Base
   validates_presence_of :title, :description, :start, :end
   validates_numericality_of :value
 
+  # open up everything for mass assignment
+  attr_protected
 
   # Define the types of sale calculation
   @@sale_types =   {:fixed => "All products in this sale are set to the same price. (e.g. Sale = $5.50: Product A = $5.50, Product B = $5.50",

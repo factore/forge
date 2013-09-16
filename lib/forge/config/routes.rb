@@ -177,22 +177,18 @@ Forge3::Application.routes.draw do
     resource :settings, :only => [:show, :update]
 
     #resources :help_topics, :only => [:index, :show]
-    match "help", :controller => :help_topics, :action => :index
-    match "help/search", :controller => :help_topics, :action => :search
-    match "help/:slug", :controller => :help_topics, :action => :show
+    match "help", :controller => :help_topics, :action => :index, :via => :get
+    match "help/search", :controller => :help_topics, :action => :search, :via => :get
+    match "help/:slug", :controller => :help_topics, :action => :show, :via => :get
 
     root :to => "index#index"
   end
 
   #See how all your routes lay out with "rake routes"
 
-  #This is a legacy wild controller route that's not recommended for RESTful applications.
-  #Note: This route will make all actions in every controller accessible via GET requests.
-  #match ':controller(/:action(/:id(.:format)))'
-
-  match 'posts/:month/:year', :controller => 'posts', :action => 'index'
-  match '/pages/preview', :controller => 'pages', :action => 'preview'
-  match "/sitemap", :controller => 'index', :action => 'sitemap'
-  match '*slugs', :controller => 'pages', :action => 'show'
+  match 'posts/:month/:year', :controller => 'posts', :action => 'index', :via => :get
+  match '/pages/preview', :controller => 'pages', :action => 'preview', :via => :get
+  match "/sitemap", :controller => 'index', :action => 'sitemap', :via => :get
+  match '*slugs', :controller => 'pages', :action => 'show', :via => :get
   root :to => "index#index"
 end

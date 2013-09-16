@@ -1,31 +1,23 @@
 class ForgeCLI::PostPostHooks < ForgeCLI::PostHooks
   def run!
+    add_routes
+    add_controller_module
+  end
+
+  def add_routes
     STDOUT.puts "Adding Routes..."
     ri = ForgeCLI::RouteInstaller.new(@app, module_path)
     ri.install_routes
     ri.install_routes(:forge)
-
-    STDOUT.puts "Adding Posts controller methods..."
-    content = app_controller_content.gsub(
-        'class ApplicationController < ActionController::Base',
-        "class ApplicationController < ActionController::Base\n  include Forge::Controllers::Posts\n"
-    )
-    content = "require 'forge/shared_controller_methods/posts.rb'\n" + content
-    File.open(app_controller_path, 'w') do |f|
-      f.puts content
-    end
   end
 
+  def add_controller_module
+    STDOUT.puts "Adding Posts controller methods..."
+    cmi = ForgeCLI::ControllerModuleIncluder.new(@app, 'posts')
+    cmi.run!
+  end
 
   def module_path
     File.dirname(__FILE__)
-  end
-
-  def app_controller_path
-    File.join(@app, 'app', 'controllers', 'application_controller.rb')
-  end
-
-  def app_controller_content
-    @app_controller_content ||= File.read(app_controller_path)
   end
 end

@@ -3,10 +3,9 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
 if defined?(Bundler)
-  # If you precompile assets before deploying to production, use this line
-  Bundler.require *Rails.groups(:assets => %w(development test))
-  # If you want your assets lazily compiled in production, use this line
-  # Bundler.require(:default, :assets, Rails.env)
+  # Require the gems listed in Gemfile, including any gems
+  # you've limited to :test, :development, or :production.
+  Bundler.require(:default, Rails.env)
 end
 
 module Forge3
@@ -21,9 +20,6 @@ module Forge3
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
-
-    # Activate observers that should always be running.
-    config.active_record.observers = :comment_observer
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
@@ -41,8 +37,6 @@ module Forge3
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters << :password << :password_confirmation << :credit_card
-
-    config.action_controller.page_cache_directory = File.join(Rails.public_path, 'system', 'cache')
 
     config.autoload_paths += [
       File.join(Rails.root, 'lib'),

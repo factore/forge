@@ -1,12 +1,14 @@
 class Event < ActiveRecord::Base
   # Scopes, attachments, etc.
-  scope :published, where(:published => true)
+  scope :published, -> { where(:published => true) }
   scope :upcoming, lambda { { :where => ["ends_at > ?", Time.now], :order => "starts_at" } }
   scope :past, lambda { { :where => ["ends_at < ?", Time.now], :order => "starts_at" } }
 
   attr_accessor :starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
   before_save :set_starts_at, :set_ends_at
 
+  # open up everything for mass assignment
+  attr_protected
 
   # Validations
   validates_presence_of :title

@@ -8,7 +8,10 @@ class TaxRate < ActiveRecord::Base
   validate :unique_country_and_province
 
   # the new ActiveAssociation stuff is teh bomb!
-  scope :by_country_and_province, joins(:country).joins("LEFT OUTER JOIN provinces ON tax_rates.province_id = provinces.id").order('countries.title, provinces.title')
+  scope :by_country_and_province, -> { joins(:country).joins("LEFT OUTER JOIN provinces ON tax_rates.province_id = provinces.id").order('countries.title, provinces.title') }
+
+  # open up everything for mass assignment
+  attr_protected
   
   protected
 
@@ -19,7 +22,7 @@ class TaxRate < ActiveRecord::Base
         tax_rates = TaxRate.where(:country_id => self.country_id, :province_id => self.province_id).all
       end
       if tax_rates.size > 0
-          errors.add :base, "A tax rate already exists for this country and province"
+        errors.add :base, "A tax rate already exists for this country and province"
       end
     end
 

@@ -11,11 +11,16 @@ class Comment < ActiveRecord::Base
   attr_protected :approved
   attr_accessor :subscribe, :controller
 
-  default_scope :order => "created_at DESC"
-  scope :approved, where(:approved => true).order("created_at ASC")
+  default_scope { order("created_at DESC") }
+  scope :approved, -> { where(:approved => true).order("created_at ASC") }
+
+  # open up everything for mass assignment
+  attr_protected
 
   # Comment/uncomment this to turn off/on moderation
   # before_save :approve
+  
+  after_save :handle_subscribers
 
   def self.create_comment(object, session)
     session.blank? ? Comment.new(:commentable_type => object.class.to_s, :commentable_id => object.id) : Comment.new(session)
@@ -60,5 +65,15 @@ class Comment < ActiveRecord::Base
     self.errors.full_messages.each { |error| errors << "<li>#{error}</li>" }
     return "<div class='errorExplanation' id='errorExplanation'>There were problems with the following fields:<ul>#{errors}<ul></div>"
   end
+
+  private
+
+    def handle_subscribers
+      # create subscriber
+      CommentSubscriber.create(:commentable => self.commentable, :email => self.author_email) if self.subscribe.to_i == 1
+
+      # notify subscribers
+      self.commentable.subscribers.each {|subscriber| CommentMailer.comment_notification(subscriber.email, self).deliver} if self.approved?
+    end
 
 end
