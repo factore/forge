@@ -84,3 +84,23 @@ Contributions are welcome.  Right now the process of contributing is as follows:
 5. Copy the changed/new files from the new app into the gem's lib/forge folder.  For example, if you changed
    `app/controllers/application_controller.rb` in your new app, you would copy that into the gem's `lib/forge/app/controllers` folder.
 6. Commit your changes and issue a pull request.
+
+
+## LICENSE
+
+(The MIT License)
+
+Copyright (c) 2013 factor[e] design initiative
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+documentation files (the 'Software'), to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and
+to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of
+the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
