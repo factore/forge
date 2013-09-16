@@ -48,9 +48,10 @@ class ForgeCLI::ApplicationCreator
   5.  Run 'rake forge:create_admin'
   6.  Run 'rake forge:load_help'
   7.  Edit the contents of config/sitemap.yml, then run 'rake db:seed'
-  8.  Review the settings in config/initializers/devise.rb and config/settings.yml
-  9.  Run 'rails server' to spin up the application
-  10. Access Forge by going to /forge in your browser (e.g. http://localhost:3000/forge)
+  8.  Set up delayed job with 'rails generate delayed_job:active_record'
+  9.  Review the settings in config/initializers/devise.rb and config/settings.yml
+  10.  Run 'rails server' to spin up the application
+  11. Access Forge by going to /forge in your browser (e.g. http://localhost:3000/forge)
     }
   end
 

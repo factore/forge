@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    forge-cli (0.0.17)
+    forge-cli (0.0.18)
       rails (= 4.0)
       rainbow
       thor
