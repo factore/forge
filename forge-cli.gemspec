@@ -13,7 +13,7 @@ spec = Gem::Specification.new do |s|
 
   s.require_paths << 'lib'
   s.has_rdoc = true
-  s.extra_rdoc_files = ['README.rdoc']
+  s.extra_rdoc_files = ['README.md']
   s.rdoc_options << '--title' << 'forge-cli' << '--main' << 'README.rdoc' << '-ri'
   s.bindir = 'bin'
   s.executables << 'forge'
