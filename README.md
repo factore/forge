@@ -4,7 +4,7 @@ Command line interface for creating Forge apps, which are Rails-based applicatio
 for content management, rapid application development, and improved scaffold generation.
 
 Although the end result of this gem is the creation of a Rails 4 application that you can certainly use as the basis
-for ongoing development, this gem itself is still alpha quality and is undergoing heavy development.  You can, however,
+for a new web application, this gem itself is still alpha quality and is undergoing heavy development.  You can, however,
 create production-ready applications with it (and we do all the time).  Documentation is also greatly lacking at this
 point.
 
@@ -81,6 +81,6 @@ Contributions are welcome.  Right now the process of contributing is as follows:
 2. Use the local copy of the gem to create a new site, e.g: `bin/forge new testapp banners,dispatches`
 3. Spin up the new app
 4. Work on the new app as you would work on a normal Rails site
-5. Copy the changed/new files from the new app into the gem's lib/forge folder.
-
-For example, if you changed `app/controllers/application_controller.rb` in your new app, you would copy that into the gem's `lib/forge/app/controllers` folder.
+5. Copy the changed/new files from the new app into the gem's lib/forge folder.  For example, if you changed
+   `app/controllers/application_controller.rb` in your new app, you would copy that into the gem's `lib/forge/app/controllers` folder.
+6. Commit your changes and issue a pull request.
