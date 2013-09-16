@@ -59,11 +59,12 @@ As well as generating standard text fields as per Rails' normal behaviour, the s
 * `list_order:integer` (makes the list of items in Forge reorderable using drag & drop)
 * `published:boolean` (creates a 'Published' selector that is only accessible by users with the Admin or Super Admin role)
 
-It is highly recommended that you include an attribute called title as it is relied on in the list views.  If you don't wish to use title you can edit the generated files.  This will likely be more customizable in the future.
-
 You can also generate scaffolds for "small" entities, such as post categories, that have a streamlined interface as follows:
 
+    rails generate forge:scaffold_small MODEL_NAME LIST_OF_ATTRIBUTES_IN_STANDARD_RAILS_FORMAT
 
+
+For either generator it is highly recommended that you include an attribute called "title" as it is relied on in the list views.  If you don't wish to use "title" you can edit the generated views.  This will likely be more customizable in the future.
 
 ## Available Modules
 
