@@ -53,10 +53,10 @@ For example:
 
 As well as generating standard text fields as per Rails' normal behaviour, the scaffolder understands the following:
 
-* ATTRIBUTE_NAME:timestamp (generates a calendar picker with a time field)
-* title:string (generates a large text field at the top of the form for the title)
-* ATTRIBUTE_file_name:string, ATTRIBUTE_file_size:integer, ATTRIBUTE_content_type:string (generates Paperclip-styled attachments that hook into the Asset Library)
-* list_order:integer (makes the list of items in Forge reorderable using drag & drop)
+* `ATTRIBUTE_NAME:timestamp` (generates a calendar picker with a time field)
+* `title:string` (generates a large text field at the top of the form for the title)
+* `ATTRIBUTE_file_name:string, ATTRIBUTE_file_size:integer, ATTRIBUTE_content_type:string` (generates Paperclip-styled attachments that hook into the Asset Library)
+* `list_order:integer` (makes the list of items in Forge reorderable using drag & drop)
 
 You can also generate scaffolds for "small" entities, such as post categories, that have a streamlined interface as follows:
 
