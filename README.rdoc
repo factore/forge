@@ -1,4 +1,0 @@
-= forge-cli
-
-Command line interface for creating Forge apps.
-

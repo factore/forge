@@ -41,14 +41,16 @@ class ForgeCLI::ApplicationCreator
   def completed_message
     %{
 #{"Your new Forge site is almost ready!  Next steps:".foreground(:cyan)}
-  1. Run 'bundle install'
-  2. Set up config/database.yml
-  3. Run 'rake db:create' unless your database already exists
-  4. Run 'rake db:migrate'
-  5. Run 'rake forge:create_admin'
-  6. Run 'rake forge:load_help'
-  7. Edit the contents of config/sitemap.yml, then run 'rake db:seed'
-  8. Review the settings in config/initializers/devise.rb and config/settings.yml
+  1.  Run 'bundle install'
+  2.  Set up config/database.yml
+  3.  Run 'rake db:create' unless your database already exists
+  4.  Run 'rake db:migrate'
+  5.  Run 'rake forge:create_admin'
+  6.  Run 'rake forge:load_help'
+  7.  Edit the contents of config/sitemap.yml, then run 'rake db:seed'
+  8.  Review the settings in config/initializers/devise.rb and config/settings.yml
+  9.  Run 'rails server' to spin up the application
+  10. Access Forge by going to /forge in your browser (e.g. http://localhost:3000/forge)
     }
   end
 
