@@ -87,8 +87,8 @@ FORGE.features.assets.Drawer.prototype.prepareForEditor = function(id) {
 FORGE.features.assets.Drawer.prototype.placeAssetInEditor = function(form) {
   var drawer = this;
   drawer.activeEditor.focus();
-  editor = FORGE.assetDrawer.activeEditor;
-  s = editor.getSelection();
+  var editor = FORGE.assetDrawer.activeEditor;
+  var s = editor.getSelection();
   s.selectRanges(s.getRanges()); // WebKit doesn't seem to focus properly sometimes.
   // WebKit requires manual focus for now :(
 
@@ -98,10 +98,10 @@ FORGE.features.assets.Drawer.prototype.placeAssetInEditor = function(form) {
     dataType: 'HTML',
     data: form.serialize(),
     success: function(data) {
-      editor = FORGE.assetDrawer.activeEditor;
 //      s = editor.getSelection();
 //      s.selectRanges(s.getRanges()); // WebKit doesn't seem to focus properly sometimes.
-      editor.insertHtml(data);
+      var element = CKEDITOR.dom.element.createFromHtml(data);
+      editor.insertElement(element);
     },
     error: function() { alert("Error communicating with server, please try again shortly."); }
   });

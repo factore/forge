@@ -25,7 +25,8 @@ class Asset < ActiveRecord::Base
   end
 
   def dimensions(style = :original)
-    Paperclip::Geometry.from_file(self.attachment.to_file(style)).to_s.split('x')
+    file = Paperclip.io_adapters.for(attachment.styles[style])
+    Paperclip::Geometry.from_file(file).to_s.split('x')
   end
 
   def self.for_drawer(params)

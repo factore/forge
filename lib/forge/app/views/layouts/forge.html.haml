@@ -10,9 +10,6 @@
     :javascript
       var help_slug = '#{@help_slug}'
 
-    - if @uses_ckeditor
-      %script{:type => "text/javascript", :src => "/javascripts/ckeditor/ckeditor.js"}
-
     = javascript_include_tag 'forge/forge_manifest'
     = yield :scripts
 
