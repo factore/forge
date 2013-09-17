@@ -117,11 +117,11 @@ files:
   # Assets
   - 'app/assets'
   - 'lib/assets'
-  - 'public/javascripts/ckeditor'
   - 'public/404.html'
   - 'public/500.html'
   - 'public/pixel.gif'
   - 'public/flash'
+  - 'public/images'
   - 'vendor/assets/images/fancybox'
   - 'vendor/assets/javascripts'
   - 'vendor/assets/stylesheets/fancybox.css.scss'

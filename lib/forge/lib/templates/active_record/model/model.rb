@@ -27,6 +27,9 @@ class <%= class_name %> < ActiveRecord::Base
   belongs_to :<%= attribute.name.gsub(/_id$/, '') %>
 <% end -%>
 
+  # TODO: this opens up everything to mass assignment, so be careful here
+  attr_protected
+
   private
 <% attributes.select { |a| ["datetime", "timestamp"].include?(a.type.to_s) }.each do |f| -%>
     def set_<%= f.name %>

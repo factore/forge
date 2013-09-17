@@ -26,6 +26,7 @@ module Forge
 
         template('controller_spec.rb', File.join('spec/controllers/forge', "#{file_name.pluralize}_controller_spec.rb"))
 
+        say "CAUTION: your new model is open to mass assignment for all attributes due to 'attr_protected' at top of file. Update accordingly.", :red
       end
 
       def add_routes
