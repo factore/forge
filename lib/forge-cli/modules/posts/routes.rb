@@ -3,7 +3,9 @@
 ##############
 resources :posts, :only => [:index, :show] do
   collection do
-    get :preview, :feed
+    get   :feed
+    patch :preview
+    post  :preview
   end
   member do
     get :category

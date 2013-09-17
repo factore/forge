@@ -56,7 +56,9 @@ Forge3::Application.routes.draw do
 
   resources :posts, :only => [:index, :show] do
     collection do
-      get :preview, :feed
+      get   :feed
+      patch :preview
+      post  :preview
     end
     member do
       get :category
@@ -187,7 +189,7 @@ Forge3::Application.routes.draw do
   #See how all your routes lay out with "rake routes"
 
   match 'posts/:month/:year', :controller => 'posts', :action => 'index', :via => :get
-  match '/pages/preview', :controller => 'pages', :action => 'preview', :via => :get
+  match '/pages/preview', :controller => 'pages', :action => 'preview', :via => [:post, :patch]
   match "/sitemap", :controller => 'index', :action => 'sitemap', :via => :get
   match '*slugs', :controller => 'pages', :action => 'show', :via => :get
   root :to => "index#index"
