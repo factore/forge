@@ -50,6 +50,10 @@ module Forge
       def payments
         @payments.to_sym
       end
+
+      def active_merchant
+        { :base_mode => :test }
+      end
     end
   end
 end

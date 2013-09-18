@@ -38,7 +38,7 @@ files:
   - 'lib/models/order'
   - 'lib/forge/config/ecommerce.rb'
   - 'db/help/products_new.help'
-  - 'config/initializers/ecommerce.rb'
+  - 'config/initializers/zecommerce.rb'
 
 migrations:
   - create_addresses
