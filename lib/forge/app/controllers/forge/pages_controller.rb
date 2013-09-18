@@ -9,9 +9,10 @@ class Forge::PagesController < ForgeController
         @pages = @pages.order(:lft)
       }
       format.js {
-        ids = Page.where("title LIKE :q OR content LIKE :q", {:q => "%#{params[:q]}%"}).collect {|p| p.top_parent.id}
+        params[:q] ||= ''
+        ids = Page.where("LOWER(title) LIKE :q OR LOWER(content) LIKE :q", {:q => "%#{params[:q].downcase}%"}).collect {|p| p.top_parent.id}
         @pages = Page.top.where("id IN (?)", ids)
-        render :partial => "page", :collection => @pages
+        render :partial => "page_list", :locals => { :pages => @pages }
       }
     end
   end

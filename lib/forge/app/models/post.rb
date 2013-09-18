@@ -54,6 +54,10 @@ class Post < ActiveRecord::Base
     Post.where("created_at < ?", created_at)[0]
   end
 
+  def posted?
+    self.published && self.created_at <= Time.now
+  end
+
   private
   def set_created_at
     created_at_date && created_at_time && self.created_at = "#{created_at_date} #{created_at_time}"

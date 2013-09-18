@@ -17,10 +17,5 @@
 %p.info These are all of the regular pages in your site.  You can drag &amp; drop pages and subpages to change their order.
 
 = render :partial => "forge/shared/section_header", :locals => {:item => Page}
-= sorted_nested_li(@pages, :list_order) do |page|
-  - page = page[0] if page.is_a?(Array)
-  - if page.parent_id
-    = render "subpage", :subpage => page
-  - else
-    = render "page", :page => page
+%ul#item-list= render :partial => "page_list", :locals => { :pages => @pages }
 #item-list-bottom

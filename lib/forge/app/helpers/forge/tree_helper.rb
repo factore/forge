@@ -5,7 +5,7 @@ module Forge::TreeHelper
 
     return '' if objects.size == 0
 
-    output = %{<ul id="item-list">\n<li class="top">\n<div class="item-content">\n}
+    output = %{<li class="top">\n<div class="item-content">\n}
     path = [nil]
 
     objects.each_with_index do |o, i|
@@ -41,7 +41,7 @@ module Forge::TreeHelper
       if p
         output << %{\n</li>\n</ul>}
       else
-        output << %{\n</div>\n</li>\n</ul>}
+        output << %{\n</div>\n</li>}
       end
     end
 

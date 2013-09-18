@@ -7,7 +7,8 @@ class Forge::PostsController < ForgeController
     respond_to do |format|
       format.html { @posts = Post.paginate(:per_page => 10, :page => params[:page]) }
       format.js  {
-        @posts = Post.where("title LIKE :q OR content LIKE :q", {:q => "%#{params[:q]}%"})
+        params[:q] ||= ''
+        @posts = Post.where("LOWER(title) LIKE :q OR LOWER(content) LIKE :q", {:q => "%#{params[:q].downcase}%"})
         render :partial => "post", :collection => @posts
       }
     end

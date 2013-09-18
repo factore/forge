@@ -30,6 +30,7 @@ class PostsController < ApplicationController
 
   def show
     @post, @page_title = get_post
+    flash.now[:notice] = "This post is not yet posted and will not appear on your live website." unless @post.posted?
     @comment = Comment.create_comment(@post, session[:comment]) if @post.allow_comments?
     respond_to do |format|
       format.html {}
@@ -51,7 +52,7 @@ class PostsController < ApplicationController
 
   private
     def get_post
-      post = Post.posted.find(params[:id])
+      post = current_user.blank? ? Post.posted.find(params[:id]) : Post.find(params[:id])
       page_title = post.seo_title.blank? ? post.title : post.seo_title
       return post, page_title
     end

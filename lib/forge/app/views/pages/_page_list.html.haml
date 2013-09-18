@@ -1,0 +1,6 @@
+= sorted_nested_li(pages, :list_order) do |page|
+  - page = page[0] if page.is_a?(Array)
+  - if page.parent_id
+    = render "subpage", :subpage => page
+  - else
+    = render "page", :page => page

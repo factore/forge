@@ -17,8 +17,8 @@
     });
     
     function runUpdate() {
-      var currentValue = $(this).attr('value');
-      
+      var currentValue = $(this).val();
+
       // Do nothing if the search hasn't changed
       if (currentValue == previousValue) {
         return;
@@ -73,7 +73,5 @@
         $('#item-list-bottom div.regular').fadeIn('fast');
       });
     }
-   
-    
   }
 })(jQuery);
