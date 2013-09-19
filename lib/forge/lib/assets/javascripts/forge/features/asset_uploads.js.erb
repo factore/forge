@@ -43,7 +43,7 @@ FORGE.features.assets.uploads = {
     $('#queue').append($('<div />').attr('id', file.id).html($progressHTML));
     $('#' + file.id +' .upload_status').html('Queued <strong>' + file.name + '</strong> for uploading.');
     $.each($('input[name^=asset], select[name^=asset], textarea[name^=asset]'), function() {
-      $.swfupload.getInstance('#swfupload-control').addPostParam($this.attr('name'), $this.val());
+      $.swfupload.getInstance('#swfupload-control').addPostParam($(this).attr('name'), $(this).val());
     });
     $this.swfupload('startUpload');
     $('#message').hide();
