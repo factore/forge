@@ -23,7 +23,7 @@ class ProductsController < ApplicationController
   end
 
   def preview
-    flash[:notice] = "Please note that product images do not appear in previews."
+    flash.now[:notice] = "Please note that product images do not appear in previews."
     @product = Product.new(params[:product])
     render :action => :show
   end

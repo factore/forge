@@ -21,7 +21,8 @@ Forge3::Application.routes.draw do
   # really need all of the standard views and actions.
   resources :products, :only => [:index, :show] do
     collection do
-      get :preview
+      patch  :preview
+      post   :preview
     end
   end
 
