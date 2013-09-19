@@ -8,7 +8,7 @@ describe Forge::VideosController do
   describe "As an admin" do
     fixtures :users, :roles
     before do
-      controller.stub!(:current_user).and_return(users(:admin))
+      controller.stub(:current_user).and_return(users(:admin))
 
     end
 
@@ -54,7 +54,7 @@ describe Forge::VideosController do
       describe "with valid attributes" do
         before do
           @video = mock_model(Video, :save => true)
-          Video.stub!(:new).and_return(@video)
+          Video.stub(:new).and_return(@video)
         end
 
         it "should assign @video" do
@@ -81,7 +81,7 @@ describe Forge::VideosController do
       describe "with invalid attributes" do
         before do
           @video = mock_model(Video, :save => false)
-          Video.stub!(:new).and_return(@video)
+          Video.stub(:new).and_return(@video)
         end
 
         it "should assign @video" do
@@ -115,7 +115,7 @@ describe Forge::VideosController do
       describe "with valid params" do
         before(:each) do
           @video = mock_model(Video, :update_attributes => true)
-          Video.stub!(:find).with("1").and_return(@video)
+          Video.stub(:find).with("1").and_return(@video)
         end
 
         it "should find video and return object" do
@@ -137,7 +137,7 @@ describe Forge::VideosController do
       describe "with invalid params" do
         before(:each) do
           @video = mock_model(Video, :update_attributes => false)
-          Video.stub!(:find).with("1").and_return(@video)
+          Video.stub(:find).with("1").and_return(@video)
         end
 
         it "should find video and return object" do
@@ -167,7 +167,7 @@ describe Forge::VideosController do
     describe "DELETE /videos/:id" do
       it "should delete" do
         @video = mock_model(Video)
-        Video.stub!(:find).and_return(@video)
+        Video.stub(:find).and_return(@video)
         @video.should_receive(:destroy)
         delete :destroy, :id => 1
       end
@@ -181,8 +181,8 @@ describe Forge::VideosController do
 
       before do
         @video = mock_model(Video)
-        Video.stub!(:find).and_return(@video)
-        @video.stub!(:encode).and_return(mock('response', :success? => true))
+        Video.stub(:find).and_return(@video)
+        @video.stub(:encode).and_return(mock('response', :success? => true))
       end
 
       it "should receive encode" do
@@ -206,7 +206,7 @@ describe Forge::VideosController do
 
   describe "As someone who's not logged in" do
     before do
-      controller.stub!(:current_user).and_return(nil)
+      controller.stub(:current_user).and_return(nil)
     end
 
     it "should not let you get the new action" do
