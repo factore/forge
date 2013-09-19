@@ -1,7 +1,12 @@
 - content_for :scripts do
   :javascript
     $(function() {
-      FORGE.features.nestedFields.init('#photos', {after: function() { FORGE.features.nestedFields.reorganize(4, '#photos-list li'); }});
+      FORGE.features.nestedFields.init('#photos', {
+        after: function() {
+          FORGE.features.nestedFields.reorganize(4, '#photos-list li');
+          FORGE.features.nestedFields.setListOrder('#photos-list li');
+        }
+      });
       FORGE.features.nestedFields.reorganize(4, '#photos-list li');
     });
 
