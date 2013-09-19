@@ -17,7 +17,7 @@ class PagesController < ApplicationController
     @page = Page.new(params[:page])
     @page_title = @page.seo_title.blank? ? @page.title : @page.seo_title
     unless @page.published?
-      flash[:warning] = "This page is not yet published and will not appear on your live website."
+      flash.now[:warning] = "This page is not yet published and will not appear on your live website."
     end
     render :action => :show
   end

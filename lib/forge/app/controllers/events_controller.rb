@@ -42,4 +42,15 @@ class EventsController < ApplicationController
       format.mobile { render :template => 'mobile/event' }
     end
   end
+
+  def preview
+    @event = Event.new(params[:event])
+    # call the private methods that cause the timestamps to be set properly
+    @event.send(:set_starts_at)
+    @event.send(:set_ends_at)
+    unless @event.published?
+      flash.now[:warning] = "This event is not yet published and will not appear on your live website."
+    end
+    render :action => :show
+  end
 end

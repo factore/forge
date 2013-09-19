@@ -19,19 +19,23 @@
         }
       });
 
-      $('.preview').click(function() {
+      $('.preview').click(function(e) {
         for ( instance in CKEDITOR.instances )
           CKEDITOR.instances[instance].updateElement();
-
-        var form = $('form');
-        var vals = form.serialize();
-        var old_action = form.attr('action');
-        form.attr({action: '/events/preview', target: '_blank'}).submit();
-        form.attr({action: old_action, target: ''});
-
         e.preventDefault();
-      })
-    })
+        // store the action
+        var form = $(this).closest('form');
+        var action = $(form).attr("action");
+        // rewrite the target and action
+        $(form).attr("target", "_blank");
+        $(form).attr("action", "/events/preview");
+        $(form).submit();
+        // put things back the way they were
+        $(form).removeAttr("target");
+        $(form).attr("action", action);
+
+      });
+    });
 
 = error_messages_for :event
 
@@ -53,4 +57,5 @@
   #item-list-bottom
     .float-right
       Everything look good?
+      = button_link "Preview", "javascript:;", :class => "preview button"
       = button_link "Save", "javascript:;", :class => "submit button"
