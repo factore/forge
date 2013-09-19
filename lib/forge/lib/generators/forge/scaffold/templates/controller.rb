@@ -13,7 +13,8 @@ class Forge::<%= class_name.pluralize %>Controller < ForgeController
     respond_to do |format|
       format.html { @<%= plural_table_name %> = <%= class_name %><%= ".order(:list_order)" unless attributes.select{|a| a.name == "list_order" }.empty? %>.paginate(:per_page => 10, :page => params[:page]) }
       format.js {
-        @<%= plural_table_name %> = <%= class_name %>.where("title LIKE ?", "%#{params[:q]}%")
+        params[:q] ||= ''
+        @<%= plural_table_name %> = <%= class_name %>.where("LOWER(title) LIKE ?", "%#{params[:q].downcase}%")
         render :partial => "<%= file_name %>", :collection => @<%= plural_table_name %>
       }
     end

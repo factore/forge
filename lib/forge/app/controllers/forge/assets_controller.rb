@@ -13,7 +13,8 @@ class Forge::AssetsController < ForgeController
     respond_to do |format|
       format.html { @assets = Asset.paginate(:per_page => 20, :page => params[:page]) }
       format.js {
-        @assets = Asset.where("assets.title LIKE ?", "%#{params[:q]}%")
+        params[:q] ||= ''
+        @assets = Asset.includes(:tags).where("LOWER(assets.title) LIKE ? OR LOWER(tags.name) LIKE ?", "%#{params[:q].downcase}%", "%#{params[:q].downcase}%").references(:tags)
         render :partial => "asset", :collection => @assets
       }
     end

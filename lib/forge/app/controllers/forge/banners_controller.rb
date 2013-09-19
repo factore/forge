@@ -5,7 +5,8 @@ class Forge::BannersController < ForgeController
     respond_to do |format|
       format.html { @banners = Banner.order(:list_order).paginate(:per_page => 10, :page => params[:page]) }
       format.js {
-        @banners = Banner.where("title LIKE ?", "%#{params[:q]}%")
+        params[:q] ||= ''
+        @banners = Banner.where("LOWER(title) LIKE ?", "%#{params[:q].downcase}%")
         render :partial => "banner", :collection => @banners
       }
     end

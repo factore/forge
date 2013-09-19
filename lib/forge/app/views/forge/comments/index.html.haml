@@ -3,6 +3,7 @@
   :javascript
     $( function () {
       FORGE.features.comments.init();
+      $('#quick-search').quickSearch({url: '#{forge_comments_path}'});
     });
 
 %h1 Comments

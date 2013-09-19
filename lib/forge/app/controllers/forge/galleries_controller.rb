@@ -5,7 +5,8 @@ class Forge::GalleriesController < ForgeController
     respond_to do |format|
       format.html { @galleries = Gallery.paginate(:per_page => 10, :page => params[:page]) }
       format.js { 
-        @galleries = Gallery.where("title LIKE ?", "%#{params[:q]}%")
+        params[:q] ||= ''
+        @galleries = Gallery.where("LOWER(title) LIKE ?", "%#{params[:q].downcase}%")
         render :partial => "gallery", :collection => @galleries
       }
     end

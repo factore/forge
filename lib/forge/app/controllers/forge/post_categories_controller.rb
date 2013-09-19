@@ -6,7 +6,8 @@ class Forge::PostCategoriesController < ForgeController
     respond_to do |format|
       format.html { get_post_categories }
       format.js {
-        @post_categories = PostCategory.where("title LIKE ?", "%#{params[:q]}%")
+        params[:q] ||= ''
+        @post_categories = PostCategory.where("LOWER(title) LIKE ?", "%#{params[:q].downcase}%")
         @post_categories = @post_categories.order(:title)
         render :partial => "post_category", :collection => @post_categories
       }

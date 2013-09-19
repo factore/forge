@@ -4,14 +4,15 @@ class Forge::OrdersController < ForgeController
   def index
     conditions = {"fulfill" => '=', "unfulfill" => '<>'}
     unless params[:show].nil?
-      @orders = Order.not_pending.where("state #{conditions[params[:show]]} 'fulfilled'").order("created_at DESC") #note that this safe from injection, any params[:show] that isn't "fulfill" or nil will just return false
+      @orders = Order.not_pending.where("state #{conditions[params[:show]]} 'fulfilled'").order("orders.created_at DESC") #note that this safe from injection, any params[:show] that isn't "fulfill" or nil will just return false
     else
-      @orders = Order.not_pending.order("created_at DESC")
+      @orders = Order.not_pending.order("orders.created_at DESC")
     end
     respond_to do |format|
       format.html { @orders = @orders.paginate(:per_page => 10, :page => params[:page]).includes(:shipping_address, :billing_address) }
       format.js {
-        @orders = @orders.where("orders.id = ? OR orders.state = ? OR addresses.first_name LIKE ? OR addresses.last_name LIKE ? OR addresses.email like ?", params[:q], params[:q], "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%").includes(:shipping_address, :billing_address)
+        params[:q] ||= ''
+        @orders = @orders.where("orders.id = ? OR orders.state = ? OR LOWER(addresses.first_name) LIKE ? OR LOWER(addresses.last_name) LIKE ? OR LOWER(addresses.email) LIKE ?", params[:q].to_i, params[:q], "%#{params[:q].downcase}%", "%#{params[:q].downcase}%", "%#{params[:q].downcase}%").includes(:shipping_address, :billing_address)
         render :partial => "order", :collection => @orders
       }
     end

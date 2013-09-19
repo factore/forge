@@ -5,10 +5,6 @@ class Forge::TaxRatesController < ForgeController
     @tax_rate = TaxRate.new
     respond_to do |format|
       format.html { get_tax_rates }
-      format.js {
-        @tax_rates = TaxRate.where("title LIKE ?", "%#{params[:q]}%")
-        render :partial => "tax_rate", :collection => @tax_rates
-      }
     end
   end
 

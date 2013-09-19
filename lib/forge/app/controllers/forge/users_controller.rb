@@ -6,7 +6,8 @@ class Forge::UsersController < ForgeController
     respond_to do |format|
       format.html { @users = User.paginate(:per_page => 10, :page => params[:page]) }
       format.js { 
-        @users = User.where("email LIKE ?", "%#{params[:q]}%")
+        params[:q] ||= ''
+        @users = User.where("LOWER(email) LIKE ?", "%#{params[:q].downcase}%")
         render :partial => "user", :collection => @users
       }
     end

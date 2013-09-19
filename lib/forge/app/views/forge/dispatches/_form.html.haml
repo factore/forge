@@ -13,7 +13,7 @@
 = error_messages_for :dispatch
 
 = form_for [:forge, @dispatch] do |f|
-  #form-header= title_row(:explanation => "Give your dispatch a title.") { f.text_field :subject, :class => 'title' }
+  #form-header= title_row(:explanation => "Give your dispatch a subject.", :title => "Subject") { f.text_field :subject, :class => 'title' }
 
   .inner-form
     .column.full.last

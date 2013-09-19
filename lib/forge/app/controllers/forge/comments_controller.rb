@@ -7,7 +7,8 @@ class Forge::CommentsController < ForgeController
     respond_to do |format|
       format.html { @comments = Comment.where(conditions).paginate(:include => :commentable, :per_page => 10, :page => params[:page]) }
       format.js {
-        @comments = Comment.where("author LIKE ? OR content LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%")
+        params[:q] ||= ''
+        @comments = Comment.where("LOWER(author) LIKE ? OR LOWER(content) LIKE ?", "%#{params[:q].downcase}%", "%#{params[:q].downcase}%")
         render :partial => "comment", :collection => @comments
       }
     end

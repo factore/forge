@@ -16,7 +16,8 @@ class Forge::<%= class_name.pluralize %>Controller < ForgeController
         @<%= singular_name %> = <%= class_name %>.new
       }
       format.js {
-        @<%= plural_table_name %> = <%= class_name %>.where("title LIKE ?", "%#{params[:q]}%")
+        params[:q] ||= ''
+        @<%= plural_table_name %> = <%= class_name %>.where("LOWER(title) LIKE ?", "%#{params[:q].downcase}%")
         render :partial => "<%= file_name %>", :collection => @<%= plural_table_name %>
       }
     end

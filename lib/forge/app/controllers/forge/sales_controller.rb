@@ -8,7 +8,8 @@ class Forge::SalesController < ForgeController
     respond_to do |format|
       format.html { @sales = Sale.paginate(:per_page => 10, :page => params[:page]) }
       format.js {
-        @sales = Sale.where("title LIKE ?", "%#{params[:q]}%")
+        params[:q] ||= ''
+        @sales = Sale.where("LOWER(title) LIKE ?", "%#{params[:q].downcase}%")
         render :partial => "sale", :collection => @sales
       }
     end
@@ -16,11 +17,13 @@ class Forge::SalesController < ForgeController
 
   def new
     @sale = Sale.new
-    @products = Product.where("title LIKE :q OR description LIKE :q", {:q => "%#{params[:q]}%"})
+    params[:q] ||= ''
+    @products = Product.where("title LIKE :q OR description LIKE :q", {:q => "%#{params[:q].downcase}%"})
   end
 
   def edit
-    @products = Product.where("title LIKE :q OR description LIKE :q", {:q => "%#{params[:q]}%"})
+    params[:q] ||= ''
+    @products = Product.where("title LIKE :q OR description LIKE :q", {:q => "%#{params[:q].downcase}%"})
   end
 
   def create
@@ -53,7 +56,8 @@ class Forge::SalesController < ForgeController
     respond_to do |format|
       format.html { @products = Product.all }
       format.js  {
-        @products = Product.where("title LIKE :q OR description LIKE :q", {:q => "%#{params[:q]}%"})
+        params[:q] ||= ''
+        @products = Product.where("LOWER(title) LIKE :q OR LOWER(description) LIKE :q", {:q => "%#{params[:q].downcase}%"})
         render :partial => "products"
       }
     end

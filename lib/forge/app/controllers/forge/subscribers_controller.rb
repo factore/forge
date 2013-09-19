@@ -8,7 +8,8 @@ class Forge::SubscribersController < ForgeController
     respond_to do |format|
       format.html { }
       format.js {
-        @subscribers = Subscriber.where("name LIKE :q OR email LIKE :q", {:q => "%#{params[:q]}%"})
+        params[:q] ||= ''
+        @subscribers = Subscriber.where("LOWER(name) LIKE :q OR LOWER(email) LIKE :q", {:q => "%#{params[:q].downcase}%"})
         render :partial => "subscriber", :collection => @subscribers
       }
     end

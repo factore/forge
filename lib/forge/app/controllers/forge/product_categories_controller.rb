@@ -8,7 +8,8 @@ class Forge::ProductCategoriesController < ForgeController
         @product_category = ProductCategory.new
       }
       format.js {
-        @product_categories = ProductCategory.where("title LIKE ?", "%#{params[:q]}%")
+        params[:q] ||= ''
+        @product_categories = ProductCategory.where("LOWER(title) LIKE ?", "%#{params[:q].downcase}%")
         render :partial => "product_category", :collection => @product_categories
       }
     end

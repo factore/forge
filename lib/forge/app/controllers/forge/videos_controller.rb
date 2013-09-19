@@ -8,7 +8,8 @@ class Forge::VideosController < ForgeController
     respond_to do |format|
       format.html { @videos = Video.paginate(:per_page => 10, :page => params[:page]) }
       format.js {
-        @videos = Video.where("title LIKE ?", "%#{params[:q]}%")
+        params[:q] ||= ''
+        @videos = Video.where("LOWER(title) LIKE ?", "%#{params[:q].downcase}%")
         render :partial => "video", :collection => @videos
       }
     end

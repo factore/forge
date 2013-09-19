@@ -10,14 +10,16 @@ class Forge::ProductsController < ForgeController
     respond_to do |format|
       format.html { @products = Product.limit(20).order("list_order ASC") }
       format.js  {
-        @products = Product.where("title LIKE :q OR description LIKE :q", {:q => "%#{params[:q]}%"}).limit(20)
+        params[:q] ||= ''
+        @products = Product.where("LOWER(title) LIKE :q OR LOWER(description) LIKE :q", {:q => "%#{params[:q].downcase}%"}).limit(20)
         render :partial => "product_list"
       }
     end
   end
 
   def search
-    @products = Product.find(:all, :order => "title", :conditions => ["title LIKE ? OR description LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%"])
+    params[:search] ||= ''
+    @products = Product.find(:all, :order => "title", :conditions => ["LOWER(title) LIKE ? OR LOWER(description) LIKE ?", "%#{params[:search].downcase}%", "%#{params[:search].downcase}%"])
   end
 
   # GET /forge_products/new

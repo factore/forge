@@ -8,7 +8,8 @@ class Forge::SubscriberGroupsController < ForgeController
         @subscriber_group = SubscriberGroup.new
       }
       format.js {
-        @subscriber_groups = SubscriberGroup.where("title LIKE ?", "%#{params[:q]}%")
+        params[:q] ||= ''
+        @subscriber_groups = SubscriberGroup.where("LOWER(title) LIKE ?", "%#{params[:q].downcase}%")
         render :partial => "subscriber_group", :collection => @subscriber_groups
       }
     end

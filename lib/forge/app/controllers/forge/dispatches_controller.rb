@@ -6,7 +6,8 @@ class Forge::DispatchesController < ForgeController
     respond_to do |format|
       format.html { @dispatches = Dispatch.paginate(:per_page => 10, :page => params[:page]) }
       format.js { 
-        @dispatches = Dispatch.where("title LIKE ?", "%#{params[:q]}%")
+        params[:q] ||= ''
+        @dispatches = Dispatch.where("LOWER(subject) LIKE ? OR LOWER(content) LIKE ?", "%#{params[:q].downcase}%", "%#{params[:q].downcase}%")
         render :partial => "dispatch", :collection => @dispatches
       }
     end

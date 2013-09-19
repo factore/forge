@@ -31,7 +31,7 @@ class Asset < ActiveRecord::Base
 
   def self.for_drawer(params)
     unless params[:q].blank?
-      assets = where("assets.title LIKE ? OR tags.name = ?", "%#{params[:q]}%", params[:q]).includes(:taggings => :tag)
+      assets = where("LOWER(assets.title) LIKE ? OR LOWER(tags.name) = ?", "%#{params[:q].downcase}%", params[:q].downcase).includes(:tags).references(:tags)
     else
       case params[:filter]
       when "images"
