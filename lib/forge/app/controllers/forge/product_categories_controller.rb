@@ -7,11 +7,6 @@ class Forge::ProductCategoriesController < ForgeController
         @product_categories = ProductCategory.paginate(:per_page => 10, :page => params[:page])
         @product_category = ProductCategory.new
       }
-      format.js {
-        params[:q] ||= ''
-        @product_categories = ProductCategory.where("LOWER(title) LIKE ?", "%#{params[:q].downcase}%")
-        render :partial => "product_category", :collection => @product_categories
-      }
     end
   end
 

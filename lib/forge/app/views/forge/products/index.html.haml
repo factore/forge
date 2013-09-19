@@ -9,14 +9,15 @@
         $('#quick-search').quickSearch({url: '#{forge_products_path}'});
       });
     
-
 %h1 Your Products
 
-%p.info These are all of the products on your site.
+%p.info
+  These are all of the products on your site.  A maximum of 100 products are displayed.  Use the search to find
+  other products as needed.
 
 = render :partial => "forge/shared/section_header", :locals => {:item => Product}
 %ul#item-list= render :partial => "product", :collection => @products
 #item-list-bottom
   %strong.float-right
-    = "Too many results, only 20 displayed" if @products.size > 19
+    = "Too many results, only 100 displayed" if @products.size > 99
 

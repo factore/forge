@@ -3,12 +3,11 @@ class Forge::ProductsController < ForgeController
   before_filter :get_categories, :except => [:destroy, :reorder]
   load_and_authorize_resource :except => [:edit]
 
-  # GET /forge_products
+  # TODO: at the moment, only up to 100 products are shown.  This is so that product reordering can work properly
+  # (it doesn't work well with pagination).  A better solution needs to be put in place for this.
   def index
-    # @categories = ProductCategory.find(:all, :order => "list_order ASC")
-
     respond_to do |format|
-      format.html { @products = Product.limit(20).order("list_order ASC") }
+      format.html { @products = Product.limit(100).order("list_order ASC") }
       format.js  {
         params[:q] ||= ''
         @products = Product.where("LOWER(title) LIKE :q OR LOWER(description) LIKE :q", {:q => "%#{params[:q].downcase}%"}).limit(20)
