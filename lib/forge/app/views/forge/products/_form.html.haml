@@ -2,11 +2,17 @@
   :javascript
     $(function() {
       $('.preview').click(function(e) {
-        for ( instance in CKEDITOR.instances )
-          CKEDITOR.instances[instance].updateElement();
-        var vals = $('form').serialize();
-        window.open('/products/preview?' + vals);
         e.preventDefault();
+        // store the action
+        var form = $(this).closest('form');
+        var action = $(form).attr("action");
+        // rewrite the target and action
+        $(form).attr("target", "_blank");
+        $(form).attr("action", "/products/preview");
+        $(form).submit();
+        // put things back the way they were
+        $(form).removeAttr("target");
+        $(form).attr("action", action);
       });
 
       $('#tabs').tabs();

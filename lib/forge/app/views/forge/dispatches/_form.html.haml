@@ -1,15 +1,3 @@
-- content_for :scripts do
-  :javascript
-    $(function() {
-      $('.preview').click(function(e) {
-        for ( instance in CKEDITOR.instances )
-          CKEDITOR.instances[instance].updateElement();
-        var vals = $('form').serialize();
-        window.open('/posts/preview?' + vals);
-        e.preventDefault();
-      })
-    })
-
 = error_messages_for :dispatch
 
 = form_for [:forge, @dispatch] do |f|
@@ -23,5 +11,4 @@
   #item-list-bottom
     .float-right
       Everything look good?
-      = button_link "Preview", "javascript:;", :class => "preview button"
       = button_link "Save", "javascript:;", :class => "submit button"
