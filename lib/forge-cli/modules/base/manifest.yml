@@ -133,5 +133,23 @@ files:
   - 'db/help/pages_index.help'
   - 'db/help/pages_new.help'
 
+  # Tests
+  - 'features/support'
+  - 'features/step_definitions/web_steps.rb'
+  - 'features/authentication.feature'
+  - 'spec/controllers/forge/pages_controller_spec.rb'
+  - 'spec/controllers/forge/users_controller_spec.rb'
+  - 'spec/controllers/contact_controller_spec.rb'
+  - 'spec/controllers/sessions_controller_spec.rb'
+  - 'spec/integration/pages_spec.rb'
+  - 'spec/models/comment_spec.rb'
+  - 'spec/models/help_topic_spec.rb'
+  - 'spec/models/reorderable_spec.rb'
+  - 'spec/support'
+  - 'spec/spec_helper.rb'
+  - 'spec/fixtures/pages.yml'
+  - 'spec/fixtures/roles.yml'
+  - 'spec/fixtures/users.yml'
+
 migrations:
   - create_base_forge
