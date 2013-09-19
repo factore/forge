@@ -35,5 +35,6 @@ ul#assets { list-style:none; padding:20px 0px 20px 10px;
       small { border-bottom:1px solid #343434; color:white; display:block; line-height:20px; padding-bottom:6px; }
     }
     a { color:white; font-size:.8em; text-transform:uppercase; }
+    &.no-search-results { color: white; }
   }
 }

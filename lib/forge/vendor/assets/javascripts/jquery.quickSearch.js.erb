@@ -1,5 +1,5 @@
-(function($) { 
-  
+(function($) {
+
   $.fn.quickSearch = function(options) {
     var settings = {
       url: '/',
@@ -7,15 +7,15 @@
       holder: $('#item-list'),
       loader: '<%= asset_path 'forge/ajax-loader.gif' %>'
     };
-    if ( options ) 
+    if ( options )
       $.extend( settings, options );
-    
+
     var previousValue = "";
-    
+
     this.each(function() {
       $(this).keyup($.debounce(settings.delay, runUpdate));
     });
-    
+
     function runUpdate() {
       var currentValue = $(this).val();
 
@@ -23,24 +23,24 @@
       if (currentValue == previousValue) {
         return;
       }
-      
-      // Hide the default content if this is the first time the search is entered  
+
+      // Hide the default content if this is the first time the search is entered
       if (previousValue == '') {
         hideDefaultContent();
       }
-      
+
       previousValue = currentValue;
-      
+
       // Restore the old content if search is cleared
       if (currentValue == '') {
         restoreDefaultContent();
         return;
       }
-      
+
       // Show a loader
       var loader = $('<li />').css('text-align', 'center').html($('<img />').attr('src', settings.loader))
       settings.holder.html(loader);
-      
+
       // Run the query
       $.ajax({
         url: settings.url,
@@ -48,9 +48,11 @@
         dataType: 'HTML',
         success: function(data) {
           if ($.trim(data) == '') {
-            var noResult = $('<li />').html("Sorry, we couldn't find anything for <strong>" + currentValue + "</strong>.<br /><small>Why don't you try a broader search term, we'll do our best to find what you're looking for!</small>")
+            var noResult = $('<li />')
+              .addClass('no-search-results')
+              .html("Sorry, we couldn't find anything for <strong>" + currentValue + "</strong>.<br /><small>Why don't you try a broader search term, we'll do our best to find what you're looking for!</small>")
             settings.holder.html(noResult);
-          } else { 
+          } else {
             settings.holder.html(data);
           }
           if(typeof searchTrigger == 'function') {
@@ -59,14 +61,14 @@
         }
       })
     }
-        
+
     function hideDefaultContent() {
       $('<div id="hidden-quick-search-content"/>').html(settings.holder.html()).css('display', 'none').appendTo('body');
       $('#item-list-bottom div.regular').fadeOut('fast', function() {
         $('#item-list-bottom div.search-results').fadeIn('fast');
       });
     }
-    
+
     function restoreDefaultContent() {
       settings.holder.html($('#hidden-quick-search-content').html());
       $('#item-list-bottom div.search-results').fadeOut('fast', function() {
