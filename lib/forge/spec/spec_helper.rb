@@ -19,7 +19,7 @@ Spork.prefork do
     config.fixture_path = "#{::Rails.root}/spec/fixtures"
     config.use_transactional_fixtures = true
 
-    config.backtrace_clean_patterns = [
+    config.backtrace_exclusion_patterns = [
         /\/lib\d*\/ruby\//,
         /bin\//,
         #/gems/,
