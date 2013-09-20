@@ -39,11 +39,15 @@ module ApplicationHelper
   def seo_meta_tags
     obj = instance_variable_get("@#{params[:controller].singularize}")
     tags = []
-    if obj && obj.respond_to?(:seo_keywords) && obj.respond_to?(:seo_description)
-      tags << tag(:meta, {:name => "description", :content => obj.seo_description}) unless obj.seo_description.blank?
-      tags << tag(:meta, {:name => "keywords", :content => obj.seo_keywords }) unless obj.seo_keywords.blank?
-      return tags.join
+    if obj
+      if obj.respond_to?(:seo_keywords) && !obj.seo_keywords.blank?
+        tags << tag(:meta, {:name => "keywords", :content => obj.seo_keywords })
+      end
+      if obj.respond_to?(:seo_description) && !obj.seo_description.blank?
+        tags << tag(:meta, {:name => "description", :content => obj.seo_description})
+      end
     end
+    return tags.join
   end
 
   # eg. first_image(@product)
@@ -120,6 +124,19 @@ module ApplicationHelper
       "<!--[if #{selector}]> -->#{obj.to_s}<!-- <![endif]-->"
     else
       "<!--[if #{selector}]>#{obj.to_s}<![endif]-->"
+    end
+  end
+
+    # humanizing various things
+  def human(object)
+    if object.is_a?(Date)
+      object.strftime("%B %d, %Y")
+    elsif object.is_a?(Time)
+      object.strftime("%B %d, %Y at %I:%M %p")
+    elsif object.is_a?(String)
+      object.humanize
+    else
+      object
     end
   end
 
