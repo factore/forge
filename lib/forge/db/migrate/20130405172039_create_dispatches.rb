@@ -72,7 +72,8 @@ class CreateDispatches < ActiveRecord::Migration
 
     create_table "queued_dispatches" do |t|
       t.integer  "dispatch_id"
-      t.integer  "subscriber_id"
+      t.integer  "emailable_id"
+      t.string   "emailable_type"
       t.datetime "sent_at"
       t.integer  "failed_attempts",     :default => 0
       t.datetime "opened_at"
@@ -83,7 +84,7 @@ class CreateDispatches < ActiveRecord::Migration
     end
 
     add_index "queued_dispatches", ["dispatch_id"], :name => "index_queued_dispatches_on_dispatch_id"
-    add_index "queued_dispatches", ["subscriber_id"], :name => "index_queued_dispatches_on_subscriber_id"
+    add_index "queued_dispatches", ["emailable_id"], :name => "index_queued_dispatches_on_emailable_id"
   end
 
   def down

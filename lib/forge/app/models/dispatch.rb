@@ -2,9 +2,9 @@ class Dispatch < ActiveRecord::Base
   require 'hpricot'
   
   has_many :messages, :class_name => "QueuedDispatch"
-  has_many :queued_messages, :class_name => "QueuedDispatch", :conditions => 'sent_at IS NULL'
-  has_many :sent_messages, :class_name => "QueuedDispatch", :conditions => "sent_at IS NOT NULL"
-  has_many :failed_messages, :class_name => "QueuedDispatch",  :conditions => ["failed_attempts > ?", 0]
+  has_many :queued_messages, -> { where("sent_at IS NULL") }, class_name: "QueuedDispatch"
+  has_many :sent_messages, -> { where "sent_at IS NOT NULL" }, class_name: "QueuedDispatch"
+  has_many :failed_messages, -> { where "failed_attempts > 0" }, class_name: "QueuedDispatch"
   has_many :opens, :class_name => "DispatchOpen"
   has_many :dispatch_links
   has_many :clicks, :through => :dispatch_links
@@ -18,11 +18,11 @@ class Dispatch < ActiveRecord::Base
   after_save :update_dispatch_links
   
   def deliver!(group_ids = [])
-    subscribers = group_ids.blank? ? Subscriber.all : SubscriberGroup.where(id: group_ids).to_a.map(&:subscribers).flatten.uniq
-    subscribers.each {|s| 
-      qd = QueuedDispatch.create(:subscriber => s, :dispatch => self)
-      qd.send!
-    }
+    if group_ids.blank?
+      DispatchQueueCreator.send_to_subscribers_from_object!(self, Subscriber, :all)
+    else
+      DispatchQueueCreator.send_to_subscribers_from_object!(self, SubscriberGroup, :subscribers_to_groups, group_ids)
+    end
     self.update_attributes(:sent_at => Time.now)
   end
   handle_asynchronously :deliver!

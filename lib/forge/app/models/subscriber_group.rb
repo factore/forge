@@ -7,4 +7,8 @@ class SubscriberGroup < ActiveRecord::Base
   # open up everything for mass assignment
   attr_protected
 
+  def self.subscribers_to_groups(group_ids)
+    SubscriberGroup.where(id: group_ids).to_a.map(&:subscribers).flatten.uniq
+  end
+
 end

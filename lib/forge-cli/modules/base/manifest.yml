@@ -150,6 +150,8 @@ files:
   - 'spec/fixtures/pages.yml'
   - 'spec/fixtures/roles.yml'
   - 'spec/fixtures/users.yml'
+  - 'script/spec'
+  - 'script/multispec'
 
 migrations:
   - create_base_forge
