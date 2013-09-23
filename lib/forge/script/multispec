@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+files = Dir.glob(ARGV[0] + "/**/*")
+
+files.select {|f| f.match(/.*_spec\.rb/)}.each do |file|
+  puts file
+  system("script/spec #{file}")
+end

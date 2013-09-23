@@ -41,7 +41,8 @@ module Forge3
     config.autoload_paths += [
       File.join(Rails.root, 'lib'),
       File.join(Rails.root, 'app', 'form_builders'),
-      File.join(Rails.root, 'app', 'abilities')
+      File.join(Rails.root, 'app', 'abilities'),
+      File.join(Rails.root, 'app', 'services')
     ]
 
     # Enable the asset pipeline

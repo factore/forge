@@ -1,4 +1,5 @@
 = image_tag(read_dispatch_url(@dispatch, :email => @email)) 
 = @dispatch.content.html_safe
 
-%small= link_to "Unsubscribe", unsubscribe_dispatch_url(@dispatch, :email => @email, :s_id => @subscriber_id)
+- if @subscriber_id
+  %small= link_to "Unsubscribe", unsubscribe_dispatch_url(@dispatch, :email => @email, :s_id => @subscriber_id)

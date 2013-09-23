@@ -18,6 +18,8 @@ files:
   - 'app/views/forge/dispatches'
   - 'app/views/forge/shared/menu_items/_dispatches.html.haml'
   - 'app/views/dispatch_mailer/dispatch.html.haml'
+  - 'app/services/dispatch_queue_creator.rb'
+  - 'spec_fast/services/dispatch_queue_creator_spec.rb'
 
 delete:
   - 'app/views/forge/shared/menu_items/_subscribers.html.haml'
