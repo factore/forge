@@ -48,6 +48,11 @@ module Forge3
     config.assets.enabled = true
     config.assets.paths = ["#{Rails.root}/app/assets/*/**", "#{Rails.root}/lib/assets/*/**", "#{Rails.root}/vendor/assets/*/**"]
 
+    # ckeditor asset hacks
+    config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
+    config.assets.precompile += Ckeditor.assets
+    config.assets.precompile += %w(ckeditor/*)
+
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
   end

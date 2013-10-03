@@ -7,6 +7,7 @@ source 'https://rubygems.org'
 gem 'capistrano', '2.15.4'
 gem 'therubyracer'
 
+# The Groups
 group :development, :test do
   gem 'faker'
   gem 'guard', '~> 1.6.2'
@@ -20,18 +21,16 @@ group :darwin do
   gem 'rb-fsevent'
 end
 
+# Database Gem (change as needed)
+gem 'pg'
 
 ###################################################
 # Below this line: gems required by Forge         #
 # Don't touch these!                              #
 ###################################################
-# Rails
 gem 'rails', '4.0.0'
 
-# Database Gems (change as needed)
-gem 'pg'
-
-# Plugins
+# Plugins/Libraries
 gem 'aasm', '~> 3.0.16'
 gem 'active_shipping', '~> 0.9.14'
 gem 'activemerchant', '~> 1.29.3'
