@@ -1,12 +1,37 @@
 source 'https://rubygems.org'
 
+###################################################
+# Below this line: our preferred gems             #
+# add or remove to your heart's content           #
+###################################################
+gem 'capistrano', '2.15.4'
+gem 'therubyracer'
+
+group :development, :test do
+  gem 'faker'
+  gem 'guard', '~> 1.6.2'
+  gem 'guard-rspec', '~> 2.4.0'
+  gem 'guard-spork', '~> 1.4.2'
+  gem 'sqlite3'
+end
+
+group :darwin do
+  gem 'growl'
+  gem 'rb-fsevent'
+end
+
+
+###################################################
+# Below this line: gems required by Forge         #
+# Don't touch these!                              #
+###################################################
 # Rails
 gem 'rails', '4.0.0'
 
 # Database Gems (change as needed)
 gem 'pg'
 
-# Required By Forge
+# Plugins
 gem 'aasm', '~> 3.0.16'
 gem 'active_shipping', '~> 0.9.14'
 gem 'activemerchant', '~> 1.29.3'
@@ -58,21 +83,4 @@ group :test do
   gem 'shoulda-matchers', '~> 2.0.0'
   gem 'spork', '~> 0.9.0.rc'
   gem 'zentest-without-autotest', '4.4.0'
-end
-
-###################################################
-# Below this line: our preferred development gems #
-# add or remove to your heart's content           #
-###################################################
-group :development, :test do
-  gem 'faker'
-  gem 'guard', '~> 1.6.2'
-  gem 'guard-rspec', '~> 2.4.0'
-  gem 'guard-spork', '~> 1.4.2'
-  gem 'sqlite3'
-end
-
-group :darwin do
-  gem 'growl'
-  gem 'rb-fsevent'
 end
