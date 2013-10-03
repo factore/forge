@@ -1,10 +1,10 @@
 source "https://rubygems.org"
 
 # Most dependencies come from this gem
-gem 'forge-rad20', :require => 'forge-rad', :git => "git@github.com:factore/forge-rad20.git"
+gem 'forge-rad20', :require => 'forge-rad', :git => "https://github.com/factore/forge-rad20.git"
 
 # Extra Plugins
-gem 'ckeditor', :git => "git@github.com:adriand/ckeditor.git"
+gem 'ckeditor', :git => "https://github.com/adriand/ckeditor.git"
 gem 'exception_notification', :require => 'exception_notifier'
 gem 'launchy'
 gem 'nokogiri', '1.5.10'
