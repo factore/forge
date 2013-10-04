@@ -75,6 +75,7 @@ files:
   - 'app/helpers/mobile_helper.rb'
   - 'app/helpers/routes_helper.rb'
   - 'app/helpers/forge/tree_helper.rb'
+  - 'app/mailers/contact_mailer.rb'
   - 'app/mailers/comment_mailer.rb'
   - 'app/mailers/user_mailer.rb'
 
