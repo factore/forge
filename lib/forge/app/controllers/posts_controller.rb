@@ -16,7 +16,6 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.html {}
-      format.mobile { render :template => "mobile/posts" }
     end
   end
 
@@ -34,7 +33,6 @@ class PostsController < ApplicationController
     @comment = Comment.create_comment(@post, session[:comment]) if @post.allow_comments?
     respond_to do |format|
       format.html {}
-      format.mobile { render :template => "mobile/post" }
     end
   end
 

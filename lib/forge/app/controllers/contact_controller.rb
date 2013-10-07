@@ -5,7 +5,6 @@ class ContactController < ApplicationController
     @contact = Contact.new
     respond_to do |format|
       format.html { render :template => "pages/show" }
-      format.mobile { render :template => "mobile/contact" }
     end
   end
 
@@ -19,7 +18,6 @@ class ContactController < ApplicationController
     end
     respond_to do |format|
       format.html { render :template => "pages/show" }
-      format.mobile { render :template => "mobile/contact" }
     end
   end
 

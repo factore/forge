@@ -4,11 +4,10 @@ class PagesController < ApplicationController
     @page_title = @page.seo_title.blank? ? @page.title : @page.seo_title
 
     if @page.key == "contact-us"
-      redirect_to contact_index_path if @page.key == "contact-us"
+      redirect_to contact_index_path
     else
       respond_to do |format|
         format.html {  }
-        format.mobile { render :template => "mobile/page" }
       end
     end
   end
