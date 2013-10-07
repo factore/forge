@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 # add or remove to your heart's content           #
 ###################################################
 gem 'capistrano', '2.15.4'
+gem 'neat'
 gem 'therubyracer'
 
 # The Groups

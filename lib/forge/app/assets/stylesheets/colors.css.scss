@@ -1,0 +1,34 @@
+// Use American 'color' in variable names for consistency with CSS keywords.
+
+// Named colors
+$light-red: #FF5858;
+$dark-red: darken($light-red, 50%);
+
+$light-green: #66FF33;
+$dark-green: darken($light-green, 50%);
+
+$light-yellow: #f8ff83;
+$dark-yellow: darken($light-yellow, 50%);
+
+$light-grey: #ddd;
+$grey: #555;
+$dark-grey: darken($light-grey, 50%);
+
+$black: #333;
+
+// Text colors
+$primary-text-color: $black;
+$link-color: #E20020;
+
+// Notices/alerts
+$alert-background-color: $light-yellow;
+$alert-text-color: $grey;
+$alert-border-color: $dark-yellow;
+
+$error-background-color: $light-red;
+$error-text-color: $dark-red;
+$error-border-color: $dark-red;
+
+$success-background-color: $light-green;
+$success-text-color: $dark-green;
+$success-border-color: $dark-green;

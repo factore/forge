@@ -1,0 +1,60 @@
+$warning-background-color: #FF4545;
+
+// Messages
+.warning {
+  position: fixed;
+  top: 35%;
+  left: 40%;
+  z-index: 1000;
+  padding: 50px 0px;
+  width: 400px;
+  border: 2px solid #e70a0a;
+  background: #FFC9C9;
+  color: #e70a0a;
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+  opacity: 0.95;
+}
+
+.flash-msg {
+  margin-bottom: 20px;
+  padding: 0px 20px;
+}
+
+.flash-warning, .flash-error, .flash-alert, .flash-notice {
+  border: 1px solid #e6ed7a;
+}
+
+.flash-warning, .flash-error {
+  border-color: $error-border-color;
+  background: $error-background-color;
+  color: $error-text-color;
+}
+
+.flash-alert {
+  border-color: $alert-text-color;
+  background: $alert-background-color;
+  color: $alert-text-color;
+}
+.flash-notice {
+  border-color: $success-border-color;
+  background: $success-background-color;
+  color: $success-text-color;
+}
+
+.errorExplanation {
+  @extend .flash-msg;
+  @extend .flash-warning;
+
+  h2 { display: none; }
+  p {
+    margin-top: 0px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  ul {
+    padding-left: 25px;
+    font-size: 13px;
+  }
+}

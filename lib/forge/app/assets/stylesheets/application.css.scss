@@ -2,7 +2,21 @@
 *= require_self
 */
 
+@import 'bourbon';
+@import 'neat';
 @import 'naturalize.css.scss';
-@import 'mixins.css.scss';
-@import 'flash_messages.css.scss';
-@import 'defaults.css.scss';
+@import 'colors.css.scss';
+@import 'typography.css.scss';
+@import 'helpers.css.scss';
+
+// Layouts, try to make one for each different page type
+@import 'layout/grid.css.scss';
+@import 'layout/global.css.scss';
+@import 'layout/home.css.scss';
+@import 'layout/internal.css.css';
+
+// UI Components, choose as needed
+@import 'ui/comments';
+@import 'ui/messages';
+@import 'ui/tables';
+@import 'ui/tabs';

@@ -1,167 +1,280 @@
-%h1 CSS Styleguide
+.container
+  %h1 CSS Styleguide
 
-%p The purpose of this HTML is to help determine what default settings are with CSS and to make sure that all possible HTML Elements are included in this HTML so as to not miss any possible Elements when designing a site.
+  %p The purpose of this HTML is to help determine what default settings are with CSS and to make sure that all possible HTML Elements are included in this HTML so as to not miss any possible Elements when designing a site.
 
-%hr
+  %hr
 
-%h1 Heading 1
-%h2 Heading 2
-%h3 Heading 3
-%h4 Heading 4
-%h5 Heading 5
-%h6 Heading 6
+  %h1 Heading 1
+  %h2 Heading 2
+  %h3 Heading 3
+  %h4 Heading 4
+  %h5 Heading 5
+  %h6 Heading 6
 
-%hr
+  %hr
 
-%h1 Paragraph
+  %h1 Paragraph (With right floated image)
 
-= image_tag("http://placehold.it/500x300", :class => "right")
-%p
-  Lorem ipsum dolor sit amet,
-  = link_to "test link", "#"
-  adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.
-
-%p
-  Lorem ipsum dolor sit amet,
-  %em emphasis
-  consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.
-
-%hr
-
-%h1 List Types
-
-%h3 Ordered List
-%ol
-  %li List Item 1
-  %li List Item 2
-  %li List Item 3
-
-%h3 Unordered List
-%ul
-  %li List Item 1
-  %li List Item 2
-  %li List Item 3
-
-%hr
-
-%h1 Fieldsets, Legends, and Form Elements
-
-%fieldset
-  %legend Legend
-
-  %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus.
-
-  %form
-    %h2 Form Element
-
-    %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui.
-
-    %p
-      %label
-        Text Field:
-        %input{:class => "field hint", :title => "Sample text"}
-
-    %p
-      %label
-        Text Area:
-        %textarea{:class => "field hint area", :title => "Sample text"}
-
-    %p
-      %label
-        Select Element:
-        %br/
-        %select{:name => "select_element"}
-          %optgroup{:label => "Option Group 1"}
-            %option{:value => "1"} Option 1
-            %option{:value => "2"} Option 2
-            %option{:value => "3"} Option 3
-          %optgroup{:label => "Option Group 2"}
-            %option{:value => "1"} Option 1
-            %option{:value => "2"} Option 2
-            %option{:value => "3"} Option 3
-
-    %p
-      %label
-        Radio Buttons:
-        %br/
-        %input{:type => "radio", :class => "radio", :name => "radio_button", :value => "radio_1"} Radio 1
-        %br/
-        %input{:type => "radio", :class => "radio", :name => "radio_button", :value => "radio_2"} Radio 2
-        %br/
-        %input{:type => "radio", :class => "radio", :name => "radio_button", :value => "radio_3"} Radio 3
-        %br/
-
-    %p
-      %label Checkboxes:
-      %br/
-      %input{:type => "checkbox", :class => "checkbox", :name => "checkboxes", :value => "check_1"} Radio 1
-      %br/
-      %input{:type => "checkbox", :class => "checkbox", :name => "checkboxes", :value => "check_2"} Radio 2
-      %br/
-      %input{:type => "checkbox", :class => "checkbox", :name => "checkboxes", :value => "check_3"} Radio 3
-      %br/
-
-    %p
-      %label
-        Password:
-        %br
-        %input{:type => "password", :class => "field hint", :name => "password", :title => "Sample text"}
-
-    %p
-      %label
-        File Input:
-        %br/
-        %input{:type => "file", :class => "field file", :name => "file"}
-
-    %p
-      %input{:class => "button", :type => "reset", :value => "Clear" }
-      = submit_tag "Submit", :class => "button"
-
-%hr/
-
-%h1 Tables
-
-%table{:cellspacing => "0", :cellpadding => "0"}
-  %tr
-    %th
-      Table Header 1
-    %th Table Header 2
-    %th Table Header 3
-  %tr
-    %td Division 1
-    %td Division 2
-    %td Division 3
-  %tr
-    %td Division 1
-    %td Division 2
-    %td Division 3
-  %tr
-    %td Division 1
-    %td Division 2
-    %td Division 3
-
-%hr
-
-%h1 Misc Stuff - abbr, acronym, pre, code, sub, sup, etc.
-
-%p>
-  Lorem
-  %sup superscript
-  dolor
-  %sub subscript
-  amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam.
-  %cite cite
-  Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy.
-  %acronym{:title => "National Basketball Association"} NBA
-  Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.
-  %abbr{:title => "Avenue"} AVE
-
-%pre
+  = image_tag("http://placehold.it/300x100", :class => "right")
   %p
-    Lorem iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy.
+    Lorem ipsum dolor sit amet,
+    = link_to "test link", "#"
+    adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.
+
+
+  %p
+    Lorem ipsum dolor sit amet,
+    %em emphasis
+    consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.
+
+  .spacer
+  %hr
+
+  %h1 Notifications
+
+  - %w{notice warning error alert}.each do |type|
+    .flash-msg{:class => "flash-#{type}"}
+      %h1= type
+      %p Paragraph inside
+
+      %ul
+        %li List
+        %li of
+        %li Items
+
+
+  %h1 List Types
+
+  %h3 Ordered List
+  %ol
+    %li List Item 1
+    %li List Item 2
+    %li List Item 3
+
+  %h3 Unordered List
+  %ul
+    %li List Item 1
+    %li List Item 2
+    %li List Item 3
+
+  %hr
+
+  %h1 Fieldsets, Legends, and Form Elements
+
+  %fieldset
+    %legend Legend
+
+    %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus.
+
+    %form
+      %h2 Form Element
+
+      %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui.
+
+      %p
+        %label
+          Text Field:
+          %input{:class => "field hint", :title => "Sample text"}
+
+      %p
+        %label
+          Text Area:
+          %textarea{:class => "field hint area", :title => "Sample text"}
+
+      %p
+        %label
+          Select Element:
+          %br/
+          %select{:name => "select_element"}
+            %optgroup{:label => "Option Group 1"}
+              %option{:value => "1"} Option 1
+              %option{:value => "2"} Option 2
+              %option{:value => "3"} Option 3
+            %optgroup{:label => "Option Group 2"}
+              %option{:value => "1"} Option 1
+              %option{:value => "2"} Option 2
+              %option{:value => "3"} Option 3
+
+      %p
+        %label
+          Radio Buttons:
+          %br/
+          %input{:type => "radio", :class => "radio", :name => "radio_button", :value => "radio_1"} Radio 1
+          %br/
+          %input{:type => "radio", :class => "radio", :name => "radio_button", :value => "radio_2"} Radio 2
+          %br/
+          %input{:type => "radio", :class => "radio", :name => "radio_button", :value => "radio_3"} Radio 3
+          %br/
+
+      %p
+        %label Checkboxes:
+        %br/
+        %input{:type => "checkbox", :class => "checkbox", :name => "checkboxes", :value => "check_1"} Radio 1
+        %br/
+        %input{:type => "checkbox", :class => "checkbox", :name => "checkboxes", :value => "check_2"} Radio 2
+        %br/
+        %input{:type => "checkbox", :class => "checkbox", :name => "checkboxes", :value => "check_3"} Radio 3
+        %br/
+
+      %p
+        %label
+          Password:
+          %br
+          %input{:type => "password", :class => "field hint", :name => "password", :title => "Sample text"}
+
+      %p
+        %label
+          File Input:
+          %br/
+          %input{:type => "file", :class => "field file", :name => "file"}
+
+      %p
+        %input{:class => "button", :type => "reset", :value => "Clear" }
+        = submit_tag "Submit", :class => "button"
+
+  %hr/
+
+  %h1 Tables
+
+  %h2 Normal Table
+
+  %table
+    %tr
+      %th
+        Table Header 1
+      %th Table Header 2
+      %th Table Header 3
+    %tr
+      %td Division 1
+      %td Division 2
+      %td Division 3
+    %tr
+      %td Division 1
+      %td Division 2
+      %td Division 3
+    %tr
+      %td Division 1
+      %td Division 2
+      %td Division 3
+
+  %h2 Table With .hoverable class
+
+  %table.hoverable
+    %tr
+      %th
+        Table Header 1
+      %th Table Header 2
+      %th Table Header 3
+    %tr
+      %td Division 1
+      %td Division 2
+      %td Division 3
+    %tr
+      %td Division 1
+      %td Division 2
+      %td Division 3
+    %tr
+      %td Division 1
+      %td Division 2
+      %td Division 3
+
+
+  %h2 Table With .alt row style
+
+  %table
+    %tr
+      %th
+        Table Header 1
+      %th Table Header 2
+      %th Table Header 3
+    %tr
+      %td Division 1
+      %td Division 2
+      %td Division 3
+    %tr.alt
+      %td Division 1
+      %td Division 2
+      %td Division 3
+    %tr
+      %td Division 1
+      %td Division 2
+      %td Division 3
+
+  %hr
+
+  %h1 Tabs
+
+  .tab-section
+    %ul.tabs
+      %li= link_to "First Tab", "#first-tab"
+      %li= link_to "Second Tab", "#second-tab"
+
+    .tab-content#first-tab
+      Content for first tab
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+    .tab-content#second-tab
+      Content for second tab
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+  %h1 Misc Stuff - abbr, acronym, pre, code, sub, sup, etc.
+
+  %p>
+    Lorem
+    %sup superscript
+    dolor
+    %sub subscript
+    amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam.
+    %cite cite
+    Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy.
     %acronym{:title => "National Basketball Association"} NBA
     Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.
     %abbr{:title => "Avenue"} AVE
 
-%blockquote
-  "Lorem ipsum quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  %pre
+    %p
+      Lorem iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy.
+      %acronym{:title => "National Basketball Association"} NBA
+      Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.
+      %abbr{:title => "Avenue"} AVE
+
+  %blockquote
+    "Lorem ipsum quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+
+  %h1 The Grid
+  %p Resize to <500px to see mobile.  Background is hard-coded for debugging.
+  .row{:style => "margin-bottom: 5px;"}
+    - 12.times do
+      .one{:style => "background: #efefef"} One Column
+
+  .row{:style => "margin-bottom: 5px;"}
+    - 6.times do
+      .two{:style => "background: #efefef"} Two Columns
+
+  .row{:style => "margin-bottom: 5px;"}
+    - 4.times do
+      .three{:style => "background: #efefef"} Three Columns
+
+  .row{:style => "margin-bottom: 5px;"}
+    - 3.times do
+      .four{:style => "background: #efefef"} Four Columns
+
+  .row{:style => "margin-bottom: 5px;"}
+    - 2.times do
+      .six{:style => "background: #efefef"} Six Columns
+
+  .row{:style => "margin-bottom: 5px;"}
+    - 1.times do
+      .twelve{:style => "background: #efefef"} Twelve Columns

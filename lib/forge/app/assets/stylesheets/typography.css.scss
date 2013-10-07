@@ -1,0 +1,25 @@
+// Variables
+$serif: "Georgia", "Times New Roman", Serif;
+$sans-serif: Helvetica, Arial, Sans-Serif;
+
+// Default Text Styles
+body {
+  font-size: 14px/1.5;
+  font-family: $sans-serif;
+  color: $primary-text-color;
+}
+
+// Links
+a {
+  color:$link-color;
+  text-decoration:none;
+  &:hover { text-decoration:underline; }
+}
+
+// Headers
+h1 { font-size: 28px; }
+h2 { font-size: 24px; }
+h3 { font-size: 22px; }
+h4 { font-size: 18px; }
+h5 { font-size: 14px; }
+h6 { font-size: 12px; }

@@ -1,0 +1,24 @@
+ul.tabs {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    float: left;
+    border: 1px solid $light-grey;
+    border-bottom: 0px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 5px;
+    margin-right: 5px;
+    &.ui-state-active {
+      background: $light-grey;
+    }
+  }
+}
+
+.tab-content {
+  clear: both;
+  border: 1px solid $light-grey;
+  padding: 5px;
+}
