@@ -1,6 +1,5 @@
 class CommentMailer < ActionMailer::Base
-  default :from => MySettings.from_email
-  default_url_options[:host] = MySettings.site_url ? MySettings.site_url.gsub('http://', '') : 'localhost:3000'
+  default from: Proc.new { MySettings.from_email }
   
   def comment_notification(email, comment)
     @post = comment.commentable

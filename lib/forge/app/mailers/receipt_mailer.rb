@@ -1,8 +1,7 @@
 class ReceiptMailer < ActionMailer::Base
   helper ApplicationHelper
 
-  default :from => MySettings.receipt_email
-  default_url_options[:host] = MySettings.site_url ? MySettings.site_url.gsub('http://', '') : 'localhost:3000'
+  default from: Proc.new { MySettings.receipt_email }
   
   def receipt(order)
     @order = order

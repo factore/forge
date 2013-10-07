@@ -108,6 +108,7 @@ files:
   - 'lib/forge/s3_signature.rb'
   - 'lib/generators/forge'
   - 'lib/tasks/forge.rake'
+  - 'lib/tasks/ckeditor.rake'
   - 'lib/templates/active_record/model/model.rb'
   - 'config/sitemap.yml'
   - 'db/seeds.rb'

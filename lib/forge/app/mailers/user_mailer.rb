@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default :from => MySettings.from_email
+  default from: Proc.new { MySettings.from_email }
 
   def approved(user)
     @user = user

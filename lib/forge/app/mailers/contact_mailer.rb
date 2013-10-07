@@ -1,5 +1,5 @@
 class ContactMailer < ActionMailer::Base
-  default :from => MySettings.from_email, :to => lambda { MySettings.contact_email }
+  default from: Proc.new { MySettings.from_email }, to: Proc.new { MySettings.contact_email }
   
   def contact(contact)
     @contact = contact
